@@ -4,7 +4,7 @@
 package Main;
 
 /**
- * @author MikiWojak
+ * @author MikiWojak (Miko³aj ¯arnowski)
  * Klasa, która uruchamia g³ówne okno programu
  */
 public class Main {
