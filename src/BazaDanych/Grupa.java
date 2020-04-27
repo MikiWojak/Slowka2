@@ -9,7 +9,8 @@ package BazaDanych;
  */
 public class Grupa {
 	/**
-	 * ID grupy
+	 * ID grupy.
+	 * Klucz podstawowy
 	 */
 	private int id_grupa;
 	/**
