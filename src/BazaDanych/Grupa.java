@@ -1,11 +1,11 @@
 /**
- * 
+ * Klasy zw. z baz¹ danych - modele, interfejs, itp.
  */
 package BazaDanych;
 
 /**
- * @author MikiWojak (Miko³aj ¯arnowski)
  * Rekord pobrany z bazy danych z tabeli 'grupy'
+ * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Grupa {
 	/**

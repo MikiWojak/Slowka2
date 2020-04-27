@@ -1,11 +1,11 @@
 /**
- * 
+ * Klasy do uruchomienia programu
  */
 package Main;
 
 /**
- * @author MikiWojak (Miko³aj ¯arnowski)
  * Klasa, która uruchamia g³ówne okno programu
+ * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Main {
 	
