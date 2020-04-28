@@ -65,7 +65,7 @@ public class Slowo {
 		this.czy_zapamietane = czy_zapamietane;
 	}
 	
-	/*
+	/**
 	 * Pobranie ID s³owa z rekordu
 	 * @return ID s³owa
 	 */
@@ -100,5 +100,35 @@ public class Slowo {
 	 * @return flaga czy zapamiêtane (s³owo)
 	 */
 	public boolean pobierzCzyZapamietane() { return czy_zapamietane; }
+	
+	/**
+	 * Ustawienie lub modyfikacja ID s³owa
+	 * @param id_slowo ID s³owa
+	 */
+	public void ustawIdSlowa(int id_slowo) { this.id_slowo = id_slowo; }
+	
+	/**
+	 * Ustawienie lub modyfikacja ID grupy
+	 * @param id_grupa ID grupy
+	 */
+	public void ustawIdGrupy(int id_grupa) { this.id_grupa = id_grupa; }
+	
+	/**
+	 * Ustawienie lub modyfikacja s³owa lub frazy
+	 * @param slowo s³owo lub fraza
+	 */
+	public void ustawSlowo(String slowo) { this.slowo = slowo; }
+	
+	/**
+	 * Ustawienie lub modyfikacja t³umaczenia s³owa lub frazy
+	 * @param tlumaczenie t³umaczenie
+	 */
+	public void ustawTlumaczenie(String tlumaczenie) { this.tlumaczenie = tlumaczenie; }
+	
+	/**
+	 * Ustawienie lub modyfikacja czêœci mowy s³owa lub frazy
+	 * @param czesc_mowy czêœæ mowy
+	 */
+	public void ustawCzescMowy(String czesc_mowy) { this.czesc_mowy = czesc_mowy; }
 	
 }
