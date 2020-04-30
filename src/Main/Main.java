@@ -1,6 +1,3 @@
-/**
- * Klasy do uruchomienia programu
- */
 package Main;
 
 /**
@@ -11,7 +8,7 @@ public class Main {
 	
 	/**
 	 * G³ówna metoda. S³u¿y do uruchomienia programu
-	 * @param args
+	 * @param args argumenty niezbêdne do odpalenia programu
 	 */
 	public static void main(String[] args) {
 		System.out.println("Hello world");
