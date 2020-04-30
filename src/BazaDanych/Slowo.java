@@ -131,4 +131,24 @@ public class Slowo {
 	 */
 	public void ustawCzescMowy(String czesc_mowy) { this.czesc_mowy = czesc_mowy; }
 	
+	/**
+	 * Ustawienie lub modyfikacja flagi 'czy zapamiêtane' (s³owo)
+	 * @param czy_zapamietane flaga 'czy zapamiêtane' (s³owo)
+	 */
+	public void ustawCzyZapamietane(boolean czy_zapamietane) { this.czy_zapamietane = czy_zapamietane; }
+	
+	/**
+	 * Wyœwietlenie wszystkich danych rekordu z tabeli 'slowa'
+	 * @return napis z³o¿ony z: ID s³owa, ID grupy, s³owa, t³umaczenia, czêœci mowy i flagi 'czy zapamiêtane'
+	 */
+	@Override
+	public String toString() {
+		return "[" + id_slowo + "]\t"
+				+ id_grupa + "\t" 
+				+ slowo + "\t" 
+				+ tlumaczenie + "\t" 
+				+ czesc_mowy + "\t" 
+				+ czy_zapamietane + "\n";
+	}
+	
 }

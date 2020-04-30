@@ -79,11 +79,13 @@ public class Grupa {
 	public void ustawOpisGrupy(String opis_grupa) { this.opis_grupa = opis_grupa; }
 	
 	/**
-	 * Wyœwietlenie wszystkich danych z rekordu z tabeli 'grupy'
+	 * Wyœwietlenie wszystkich danych rekordu z tabeli 'grupy'
 	 * @return napis z³o¿ony z: ID grupy, nazwy grupy i opisu grupy
 	 */
 	@Override
 	public String toString() {
-		return "[" + id_grupa + "]\t" + nazwa_grupa + "\t" + opis_grupa + "\n";
+		return "[" + id_grupa + "]\t"
+				+ nazwa_grupa + "\t" 
+				+ opis_grupa + "\n";
 	}
 }
