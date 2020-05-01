@@ -8,6 +8,7 @@ import BazaDanych.Grupa;
 
 /**
  * Testy jednostkowe klasy Grupa
+ * @author MikiWojak (Miko³aj ¯arnowski)
  */
 class TestOfGrupa {
 	/**
