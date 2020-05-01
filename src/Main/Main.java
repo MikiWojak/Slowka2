@@ -1,5 +1,7 @@
 package Main;
 
+import BazaDanych.Grupa;
+
 /**
  * Klasa, która uruchamia g³ówne okno programu
  * @author MikiWojak (Miko³aj ¯arnowski)
@@ -11,6 +13,8 @@ public class Main {
 	 * @param args argumenty niezbêdne do odpalenia programu
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hello world");
+		Grupa grupa1 = new Grupa(1, "Dom", "Pokoje, meble, itp.");
+		System.out.println(grupa1);
+		
 	}
 }

@@ -14,24 +14,14 @@ class TestOfGrupa {
 	 * Obiekt klasy Grupa do testów
 	 */
 	private Grupa grupa1 = new Grupa(1, "Dom", "Pokoje, meble, itp.");
-	
-	/*
-	@Test
-	void testGrupa() {
-		fail("Not yet implemented");
-	}
-	*/
-	
-	/*
-	@Test
-	void testGrupaIntStringString() {
-		fail("Not yet implemented");
-	}
-	*/
+	/**
+	 * Obiekt klasy Grupa do testów
+	 */
+	private Grupa grupa2 = new Grupa(2, "Dom", "Pokoje, meble, itp.");
 	
 	/**
+	 * Test metody {@link BazaDanych.Grupa#pobierzIdGrupa()}.
 	 * Test pobierania ID grupy.
-	 * Test metody pobierzIdGrupa()
 	 */
 	@Test
 	void testPobierzIdGrupa() {
@@ -41,8 +31,8 @@ class TestOfGrupa {
 	}
 	
 	/**
-	 * Test pobierania nazwy grupy
-	 * Test metody pobierzNazwaGrupy()
+	 * Test metody {@link BazaDanych.Grupa#pobierzNazwaGrupy()}
+	 * Test pobierania nazwy grupy.
 	 */
 	@Test
 	void testPobierzNazwaGrupy() {
@@ -50,31 +40,51 @@ class TestOfGrupa {
 		String wynik = grupa1.pobierzNazwaGrupy();
 		assertEquals(oczekiwany, wynik);
 	}
-
+	
+	/**
+	 * Test metody {@link BazaDanych.Grupa#pobierzOpisGrupy()}
+	 * Test pobierania opisu grupy.
+	 */
 	@Test
 	void testPobierzOpisGrupy() {
-		fail("Not yet implemented");
+		String oczekiwany = "Pokoje, meble, itp.";
+		String wynik = grupa1.pobierzOpisGrupy();
+		assertEquals(oczekiwany, wynik);
 	}
-
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
-
+	
+	/**
+	 * Test metody {@link BazaDanych.Grupa#ustawIdGrupy(int)}.
+	 * Test ustawiania ID grupy.
+	 */
 	@Test
 	void testUstawIdGrupy() {
-		fail("Not yet implemented");
+		int oczekiwany = 3;
+		grupa2.ustawIdGrupy(oczekiwany);
+		int wynik = grupa2.pobierzIdGrupa();
+		assertEquals(oczekiwany, wynik);
 	}
-
+	
+	/**
+	 * Test metody {@link BazaDanych.Grupa#ustawNazweGrupy(java.lang.String)}.
+	 * Test ustawiania nazwy grupy.
+	 */
 	@Test
 	void testUstawNazweGrupy() {
-		fail("Not yet implemented");
+		String oczekiwany = "Szko³a";
+		grupa2.ustawNazweGrupy(oczekiwany);
+		String wynik = grupa2.pobierzNazwaGrupy();
+		assertEquals(oczekiwany, wynik);
 	}
-
+	
+	/**
+	 * Test metody {@link BazaDanych.Grupa#ustawOpisGrupy(java.lang.String)}.
+	 * Test ustawiania opisu grupy.
+	 */
 	@Test
 	void testUstawOpisGrupy() {
-		fail("Not yet implemented");
+		String oczekiwany = "¯ycie szkolne, zajêcia, pomieszczenia, itp.";
+		grupa2.ustawOpisGrupy(oczekiwany);
+		String wynik = grupa2.pobierzOpisGrupy();
+		assertEquals(oczekiwany, wynik);
 	}
-
-
 }
