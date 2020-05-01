@@ -1,5 +1,8 @@
 package Main;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import BazaDanych.Grupa;
 import BazaDanych.Slowo;
 
@@ -14,5 +17,7 @@ public class Main {
 	 * @param args argumenty niezbêdne do odpalenia programu
 	 */
 	public static void main(String[] args) {
+		Logger log = LoggerFactory.getLogger(Main.class);
+		log.debug("Hello world!");
 	}
 }
