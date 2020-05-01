@@ -12,11 +12,11 @@ import BazaDanych.Grupa;
  */
 class TestOfGrupa {
 	/**
-	 * Obiekt klasy Grupa do testów
+	 * Obiekt klasy Grupa do testów odczytu
 	 */
 	private Grupa grupa1 = new Grupa(1, "Dom", "Pokoje, meble, itp.");
 	/**
-	 * Obiekt klasy Grupa do testów
+	 * Obiekt klasy Grupa do testów modyfikacji
 	 */
 	private Grupa grupa2 = new Grupa(2, "Dom", "Pokoje, meble, itp.");
 	
