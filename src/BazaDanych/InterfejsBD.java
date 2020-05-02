@@ -3,8 +3,12 @@ package BazaDanych;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -171,6 +175,21 @@ public class InterfejsBD {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Pobranie <b>wszystkich</b> rekordów z tabeli 'grupy'. Rekordy nie s¹ sortowane
+	 * @return lista z rekordami z tabeli 'grupy'
+	 */
+	public List<Grupa> pobierzGrupy() {
+		List<Grupa>grupy = new LinkedList<Grupa>();
+		try {
+			String zapytanie = "SELECT * FROM grupy";
+			ResultSet wynik = statement.executeQuery(zapytanie);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 	
 	/**
