@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import BazaDanych.Grupa;
+import BazaDanych.InterfejsBD;
 import BazaDanych.Slowo;
 
 /**
@@ -19,5 +20,7 @@ public class Main {
 	public static void main(String[] args) {
 		Logger log = LoggerFactory.getLogger(Main.class);
 		log.debug("Hello world!");
+		InterfejsBD bd = new InterfejsBD();
+		bd.zamknijPolaczenie();
 	}
 }
