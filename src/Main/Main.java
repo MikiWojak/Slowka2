@@ -22,5 +22,9 @@ public class Main {
 		log.debug("Hello world!");
 		InterfejsBD bd = new InterfejsBD();
 		bd.zamknijPolaczenie();
+		
+		bd.otworzPolaczenie();
+		bd.utworzGrupe("Dom", "");
+		bd.zamknijPolaczenie();
 	}
 }

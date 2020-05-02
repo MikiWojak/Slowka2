@@ -2,6 +2,7 @@ package BazaDanych;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import org.slf4j.Logger;
@@ -58,6 +59,15 @@ public class InterfejsBD {
 		}
 		
 		//Otwarcie po³¹czenia z baz¹ danych
+		otworzPolaczenie();
+		//Utworzenie tabel.
+		utworzTabele();
+	}
+	
+	/**
+	 * Otwarcie po³¹czenia z baz¹ danych
+	 */
+	public void otworzPolaczenie() {
 		try {
 			connection = DriverManager.getConnection(DB_URL);
 			statement = connection.createStatement();
@@ -67,9 +77,6 @@ public class InterfejsBD {
 			System.err.println("ERROR! Problem z otwarciem po³¹czenia.");
 			e.printStackTrace();
 		}
-		
-		//Utworzenie tabel.
-		utworzTabele();
 	}
 	
 	/**
@@ -104,6 +111,30 @@ public class InterfejsBD {
 			e.printStackTrace();
 			return false;
 		}
+		return true;
+	}
+	
+	/**
+	 * Wstawienie grupy do bazy danych
+	 * @param nazwa_grupa nazwa grupy
+	 * @param opis_grupa opis grupy
+	 * @return status wstawienia grupy do bazy danych
+	 */
+	public boolean utworzGrupe(String nazwa_grupa, String opis_grupa) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"INSERT INTO grupy VALUES (NULL, ?, ?)");
+			preparedStatement.setString(1, nazwa_grupa);
+			preparedStatement.setString(2, opis_grupa);
+			preparedStatement.execute();
+			log.debug("Dodano rekordu do tabeli 'grupy': " + nazwa_grupa);
+		} catch (Exception e) {
+			log.debug("ERROR! B³¹d przy dodawaniu rekordu do tabeli 'grupy'!");
+			System.err.println("ERROR! B³¹d przy dodawaniu rekordu do tabeli 'grupy'!");
+			e.printStackTrace();
+			return false;
+		}
+		
 		return true;
 	}
 	
