@@ -115,12 +115,14 @@ public class InterfejsBD {
 	}
 	
 	/**
-	 * Wstawienie grupy do bazy danych
+	 * Wstawienie grupy do bazy danych.
 	 * @param nazwa_grupa nazwa grupy
 	 * @param opis_grupa opis grupy
 	 * @return status wstawienia grupy do bazy danych
 	 */
-	public boolean utworzGrupe(String nazwa_grupa, String opis_grupa) {
+	public boolean utworzGrupe(
+			String nazwa_grupa, 
+			String opis_grupa) {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
 					"INSERT INTO grupy VALUES (NULL, ?, ?)");
@@ -135,6 +137,24 @@ public class InterfejsBD {
 			return false;
 		}
 		
+		return true;
+	}
+	
+	/**
+	 * Wstawienie s³owa lub frazy do bazy danych.
+	 * @param id_grupa ID grupy, do której przypisane jest s³owo
+	 * @param slowo s³owo lub fraza
+	 * @param tlumaczenie t³umaczenie s³owa
+	 * @param czesc_mowy czêœæ mowy s³owa
+	 * @param czy_zapamietane flaga, czy dane s³owo zosta³o zapamiêtane
+	 * @return status wstawienia s³owa do bazy danych
+	 */
+	public boolean utworzSlowo(
+			int id_grupa,
+			String slowo,
+			String tlumaczenie,
+			String czesc_mowy,
+			boolean czy_zapamietane) {
 		return true;
 	}
 	

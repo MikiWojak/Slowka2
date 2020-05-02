@@ -13,6 +13,7 @@ public class Slowo {
 	private int id_slowo;
 	/**
 	 * ID grupy.
+	 * Grupa, do której jest przypisane s³owo.
 	 * Klucz obcy
 	 */
 	private int id_grupa;
