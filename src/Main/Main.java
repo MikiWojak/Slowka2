@@ -24,7 +24,11 @@ public class Main {
 		bd.zamknijPolaczenie();
 		
 		bd.otworzPolaczenie();
-		bd.utworzGrupe("Dom", "");
+		bd.dodajGrupe("Dom", "");
+		bd.zamknijPolaczenie();
+		
+		bd.otworzPolaczenie();
+		bd.dodajSlowo(1, "house", "dom", "n", false);
 		bd.zamknijPolaczenie();
 	}
 }

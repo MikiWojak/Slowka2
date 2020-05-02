@@ -120,7 +120,7 @@ public class InterfejsBD {
 	 * @param opis_grupa opis grupy
 	 * @return status wstawienia grupy do bazy danych
 	 */
-	public boolean utworzGrupe(
+	public boolean dodajGrupe(
 			String nazwa_grupa, 
 			String opis_grupa) {
 		try {
@@ -129,14 +129,13 @@ public class InterfejsBD {
 			preparedStatement.setString(1, nazwa_grupa);
 			preparedStatement.setString(2, opis_grupa);
 			preparedStatement.execute();
-			log.debug("Dodano rekordu do tabeli 'grupy': " + nazwa_grupa);
-		} catch (Exception e) {
+			log.debug("Dodano rekord do tabeli 'grupy': " + nazwa_grupa);
+		} catch (SQLException e) {
 			log.debug("ERROR! B³¹d przy dodawaniu rekordu do tabeli 'grupy'!");
 			System.err.println("ERROR! B³¹d przy dodawaniu rekordu do tabeli 'grupy'!");
 			e.printStackTrace();
 			return false;
 		}
-		
 		return true;
 	}
 	
@@ -149,12 +148,28 @@ public class InterfejsBD {
 	 * @param czy_zapamietane flaga, czy dane s³owo zosta³o zapamiêtane
 	 * @return status wstawienia s³owa do bazy danych
 	 */
-	public boolean utworzSlowo(
+	public boolean dodajSlowo(
 			int id_grupa,
 			String slowo,
 			String tlumaczenie,
 			String czesc_mowy,
 			boolean czy_zapamietane) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"INSERT INTO slowa VALUES (NULL, ?, ?, ?, ?, ?)");
+			preparedStatement.setInt(1, id_grupa);
+			preparedStatement.setString(2, slowo);
+			preparedStatement.setString(3, tlumaczenie);
+			preparedStatement.setString(4, czesc_mowy);
+			preparedStatement.setBoolean(5, czy_zapamietane);
+			preparedStatement.execute();
+			log.debug("Dodano rekord do tabeli 'slowa': " + slowo + "\t" + tlumaczenie);
+		} catch (SQLException e) {
+			log.debug("ERROR! B³¹d przy dodawaniu rekordu do tabeli 'zadania'!");
+			System.err.println("ERROR! B³¹d przy dodawaniu rekordu do tabeli 'zadania'!");
+			e.printStackTrace();
+			return false;
+		}
 		return true;
 	}
 	
