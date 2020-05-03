@@ -1,5 +1,8 @@
 package Main;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,12 +26,21 @@ public class Main {
 		InterfejsBD bd = new InterfejsBD();
 		bd.zamknijPolaczenie();
 		
+		/*
 		bd.otworzPolaczenie();
+		bd.dodajGrupe("Szko³a",	"");
 		bd.dodajGrupe("Dom", "");
+		bd.dodajGrupe("Œredniowiecze", "");
+		bd.zamknijPolaczenie();
+		*/
+		
+		List<Grupa>grupy = new LinkedList<Grupa>();
+		bd.otworzPolaczenie();
+		grupy = bd.pobierzGrupyWszystkieAlfabetycznieRosnaco();
 		bd.zamknijPolaczenie();
 		
-		bd.otworzPolaczenie();
-		bd.dodajSlowo(1, "house", "dom", "n", false);
-		bd.zamknijPolaczenie();
+		for(int i = 0; i < grupy.size(); i++) {
+			System.out.print(grupy.get(i));
+		}
 	}
 }

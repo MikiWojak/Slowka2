@@ -178,18 +178,54 @@ public class InterfejsBD {
 	}
 	
 	/**
-	 * Pobranie <b>wszystkich</b> rekordów z tabeli 'grupy'. Rekordy nie s¹ sortowane
+	 * Baza pod pobieranie danych z tabeli 'grupy'.
+	 * @param zapytanie zapytanie do pobrania rekordów z tabeli 'grupy'
 	 * @return lista z rekordami z tabeli 'grupy'
 	 */
-	public List<Grupa> pobierzGrupy() {
+	private List<Grupa> pobierzGrupyBaza(String zapytanie) {
 		List<Grupa>grupy = new LinkedList<Grupa>();
 		try {
-			String zapytanie = "SELECT * FROM grupy";
 			ResultSet wynik = statement.executeQuery(zapytanie);
-		} catch (Exception e) {
-			// TODO: handle exception
+			int id_grupa;
+			String nazwa_grupa;
+			String opis_grupa;
+			
+			while(wynik.next()) {
+				id_grupa = wynik.getInt("id_grupa");
+				nazwa_grupa = wynik.getString("nazwa_grupa");
+				opis_grupa = wynik.getString("opis_grupa");
+				
+				grupy.add(new Grupa(id_grupa, nazwa_grupa, opis_grupa));
+			}
+		} catch (SQLException e) {
+			log.debug("ERROR! B³¹d podczas pobierania danych z tabeli 'grupy'!");
+			e.printStackTrace();
+			return null;
 		}
-		return null;
+		log.debug("Pobrano dane z tabeli 'grupy' zgodnie z zapytaniem.");
+		return grupy;
+	}
+	
+	/**
+	 * Pobranie <b>wszystkich</b> rekordów z tabeli 'grupy'.
+	 * Rekordy nie s¹ sortowane.
+	 * @return lista z rekordami z tabeli 'grupy'
+	 */
+	public List<Grupa> pobierzGrupyWszystkie() {
+		List<Grupa>grupy = pobierzGrupyBaza("SELECT * FROM grupy");
+		log.debug("Pobrano dane z tabeli 'grupy' - wszystkie grupy, niesortowane.");
+		return grupy;
+	}
+	
+	/**
+	 * Pobranie <b>wszystkich</b> rekordów z tabeli 'grupy'.
+	 * Rekordy s¹ posortowane alfabetycznie rosn¹co.
+	 * @return lista z rekordami z tabeli 'grupy'
+	 */
+	public List<Grupa> pobierzGrupyWszystkieAlfabetycznieRosnaco() {
+		List<Grupa>grupy = pobierzGrupyBaza("SELECT * FROM grupy ORDER BY nazwa_grupa");
+		log.debug("Pobrano dane z tabeli 'grupy' - wszystkie grupy, posortowane alfabetycznie rosn¹co.");
+		return grupy;
 	}
 	
 	/**
