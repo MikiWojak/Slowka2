@@ -37,6 +37,7 @@ public class Main {
 		List<Grupa>grupy = new LinkedList<Grupa>();
 		bd.otworzPolaczenie();
 		grupy = bd.pobierzGrupyWszystkieAlfabetycznieRosnaco();
+		//grupy = bd.pobierzGrupyWszystkie();
 		bd.zamknijPolaczenie();
 		
 		for(int i = 0; i < grupy.size(); i++) {

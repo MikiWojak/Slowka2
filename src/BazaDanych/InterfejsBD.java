@@ -178,8 +178,8 @@ public class InterfejsBD {
 	}
 	
 	/**
-	 * Baza pod pobieranie danych z tabeli 'grupy'.
-	 * @param zapytanie zapytanie do pobrania rekordów z tabeli 'grupy'
+	 * Baza do pobierania danych z tabeli 'grupy'.
+	 * @param zapytanie treœæ zapytania do pobrania rekordów z tabeli 'grupy'
 	 * @return lista z rekordami z tabeli 'grupy'
 	 */
 	private List<Grupa> pobierzGrupyBaza(String zapytanie) {
@@ -194,7 +194,6 @@ public class InterfejsBD {
 				id_grupa = wynik.getInt("id_grupa");
 				nazwa_grupa = wynik.getString("nazwa_grupa");
 				opis_grupa = wynik.getString("opis_grupa");
-				
 				grupy.add(new Grupa(id_grupa, nazwa_grupa, opis_grupa));
 			}
 		} catch (SQLException e) {
@@ -212,7 +211,8 @@ public class InterfejsBD {
 	 * @return lista z rekordami z tabeli 'grupy'
 	 */
 	public List<Grupa> pobierzGrupyWszystkie() {
-		List<Grupa>grupy = pobierzGrupyBaza("SELECT * FROM grupy");
+		String zapytanie = "SELECT * FROM grupy";
+		List<Grupa>grupy = pobierzGrupyBaza(zapytanie);
 		log.debug("Pobrano dane z tabeli 'grupy' - wszystkie grupy, niesortowane.");
 		return grupy;
 	}
@@ -223,9 +223,43 @@ public class InterfejsBD {
 	 * @return lista z rekordami z tabeli 'grupy'
 	 */
 	public List<Grupa> pobierzGrupyWszystkieAlfabetycznieRosnaco() {
-		List<Grupa>grupy = pobierzGrupyBaza("SELECT * FROM grupy ORDER BY nazwa_grupa");
+		String zapytanie = "SELECT * FROM grupy ORDER BY nazwa_grupa";
+		List<Grupa>grupy = pobierzGrupyBaza(zapytanie);
 		log.debug("Pobrano dane z tabeli 'grupy' - wszystkie grupy, posortowane alfabetycznie rosn¹co.");
 		return grupy;
+	}
+	
+	/**
+	 * Baza do pobierania rekordów z tabeli 's³owa'.
+	 * @param zapytanie treœæ zapytania do pobrania rekordów z tabeli 's³owa'
+	 * @return lista z rekordami z tabeli 's³owa'
+	 */
+	private List<Slowo> pobierzSlowaBaza(String zapytanie) {
+		List<Slowo>slowa = new LinkedList<Slowo>();
+		try {
+			ResultSet wynik = statement.executeQuery(zapytanie);
+			int id_slowo;
+			int id_grupa;
+			String slowo;
+			String tlumaczenie;
+			String czesc_mowy;
+			boolean czy_zapamietane;
+			while(wynik.next()) {
+				id_slowo = wynik.getInt("id_slowo");
+				id_grupa = wynik.getInt("id_grupa");
+				slowo = wynik.getString("slowo");
+				tlumaczenie = wynik.getString("tlumaczenie");
+				czesc_mowy = wynik.getString("czesc_mowy");
+				czy_zapamietane = wynik.getBoolean("czy_zapamietane");
+				slowa.add(new Slowo(id_slowo, id_grupa, slowo, tlumaczenie, czesc_mowy, czy_zapamietane));
+			}
+		} catch (SQLException e) {
+			log.debug("ERROR! B³¹d podczas pobierania danych z tabeli 'zadania'!");
+			e.printStackTrace();
+			return null;
+		}
+		log.debug("Pobrano dane z tabeli 'zadania' zgodnie z zapytaniem.");
+		return slowa;
 	}
 	
 	/**
