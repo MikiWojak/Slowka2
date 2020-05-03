@@ -85,6 +85,7 @@ public class InterfejsBD {
 	
 	/**
 	 * Utworzenie tabel, jeœli te nie istniej¹.
+	 * Struktura tabel w bazie danych.
 	 * @return status utworzenia tabel 
 	 */
 	private boolean utworzTabele() {
@@ -259,6 +260,18 @@ public class InterfejsBD {
 			return null;
 		}
 		log.debug("Pobrano dane z tabeli 'zadania' zgodnie z zapytaniem.");
+		return slowa;
+	}
+	
+	/**
+	 * Pobranie <b>wszystkich</b> rekordów z tabeli 's³owa'.
+	 * Rekordy nie s¹ sortowane.
+	 * @return lista z rekordami z tabeli 's³owa'
+	 */
+	public List<Slowo> pobierzSlowaWszystkie() {
+		String zapytanie = "SELECT * FROM slowa";
+		List<Slowo>slowa = pobierzSlowaBaza(zapytanie);
+		log.debug("Pobrano dane z tabeli 'zadania' - wszystkie zadania, niesortowane.");
 		return slowa;
 	}
 	
