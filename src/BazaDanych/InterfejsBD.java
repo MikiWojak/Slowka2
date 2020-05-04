@@ -255,11 +255,11 @@ public class InterfejsBD {
 				slowa.add(new Slowo(id_slowo, id_grupa, slowo, tlumaczenie, czesc_mowy, czy_zapamietane));
 			}
 		} catch (SQLException e) {
-			log.debug("ERROR! B³¹d podczas pobierania danych z tabeli 'zadania'!");
+			log.debug("ERROR! B³¹d podczas pobierania danych z tabeli 'slowa'!");
 			e.printStackTrace();
 			return null;
 		}
-		log.debug("Pobrano dane z tabeli 'zadania' zgodnie z zapytaniem.");
+		log.debug("Pobrano dane z tabeli 'slowa' zgodnie z zapytaniem.");
 		return slowa;
 	}
 	
@@ -271,7 +271,20 @@ public class InterfejsBD {
 	public List<Slowo> pobierzSlowaWszystkie() {
 		String zapytanie = "SELECT * FROM slowa";
 		List<Slowo>slowa = pobierzSlowaBaza(zapytanie);
-		log.debug("Pobrano dane z tabeli 'zadania' - wszystkie zadania, niesortowane.");
+		log.debug("Pobrano dane z tabeli 'slowa' - wszystkie s³owa, niesortowane.");
+		return slowa;
+	}
+	
+	/**
+	 * Pobranie rekordów z tabeli s³owa nale¿¹cych do <b>okreœlonej grupy</b>.
+	 * Rekordy nie s¹ sortowane.
+	 * @param id_grupa ID grupy, do której nale¿¹ pobrane rekordy
+	 * @return lista z rekordami z tabeli 's³owa'
+	 */
+	public List<Slowo> pobierzSlowaZGrupy(int id_grupa) {
+		String zapytanie = "SELECT * FROM slowa WHERE id_grupa = " + id_grupa;
+		List<Slowo>slowa = pobierzSlowaBaza(zapytanie);
+		log.debug("Pobrano dane z tabeli 'slowa' - s³owa nale¿¹ce do grupy o ID: " + id_grupa + ", niesortowane.");
 		return slowa;
 	}
 	
