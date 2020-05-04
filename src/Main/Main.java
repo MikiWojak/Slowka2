@@ -28,10 +28,20 @@ public class Main {
 		
 	
 		bd.otworzPolaczenie();
-		List<Slowo>slowa = bd.pobierzSlowaZGrupy(2);
+		List<Grupa>grupy = bd.pobierzGrupyWszystkie();
 		bd.zamknijPolaczenie();
-		for(int i = 0; i < slowa.size(); i++) {
-			System.out.print(slowa.get(i));
+		for(int i = 0; i < grupy.size(); i++) {
+			System.out.print(grupy.get(i));
 		}
+		
+		/*
+		bd.otworzPolaczenie();
+		//bd.modyfikujGrupa(2, "Mi³oœæ", "S³owa zw. z ¿yciem uczuciowym, podrywem, itp.");
+		//grupy = bd.pobierzGrupyWszystkie();
+		bd.zamknijPolaczenie();
+		for(int i = 0; i < grupy.size(); i++) {
+			System.out.print(grupy.get(i));
+		}
+		*/
 	}
 }

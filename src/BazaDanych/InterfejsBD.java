@@ -289,6 +289,37 @@ public class InterfejsBD {
 	}
 	
 	/**
+	 * Modyfikacja rekordu nale¿¹cego do tabeli 'grupy' 
+	 * @param id_grupa ID grupy
+	 * @param nazwa_grupa nazwa grupy
+	 * @param opis_grupa opis grupy
+	 * @return status modyfikacji grupy
+	 */
+	public boolean modyfikujGrupa(
+			int id_grupa,
+			String nazwa_grupa,
+			String opis_grupa) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(""
+					+ "UPDATE grupy SET "
+					+ "nazwa_grupa = ?, "
+					+ "opis_grupa = ? "
+					+ "WHERE id_grupa = ?");
+			preparedStatement.setString(1, nazwa_grupa);
+			preparedStatement.setString(2, opis_grupa);
+			preparedStatement.setInt(3, id_grupa);
+			preparedStatement.execute();
+			log.debug("Zmodyfikowano grupê o ID: " + id_grupa);
+		} catch (SQLException e) {
+			log.debug("ERROR! B³¹d przy modyfikacji grupy o ID: " + id_grupa + "!");
+			System.err.println("ERROR! B³¹d przy modyfikacji grupy!");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
 	 * Zamkniêcie po³¹czenia z baz¹ danych.
 	 */
 	public void zamknijPolaczenie() {
