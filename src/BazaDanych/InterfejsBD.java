@@ -290,9 +290,9 @@ public class InterfejsBD {
 	
 	/**
 	 * Modyfikacja rekordu nale¿¹cego do tabeli 'grupy' 
-	 * @param id_grupa ID grupy
-	 * @param nazwa_grupa nazwa grupy
-	 * @param opis_grupa opis grupy
+	 * @param id_grupa ID grupy do zmodyfikowania
+	 * @param nazwa_grupa nowa lub taka sama nazwa grupy
+	 * @param opis_grupa nowy lub taki sam opis grupy
 	 * @return status modyfikacji grupy
 	 */
 	public boolean modyfikujGrupa(
@@ -313,6 +313,36 @@ public class InterfejsBD {
 		} catch (SQLException e) {
 			log.debug("ERROR! B³¹d przy modyfikacji grupy o ID: " + id_grupa + "!");
 			System.err.println("ERROR! B³¹d przy modyfikacji grupy!");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Usuniêcie grupy oraz powi¹zanych z ni¹ s³ów.
+	 * @param id_grupa ID grupy do usuniêcia
+	 * @return status usuniêcia grupy
+	 */
+	public boolean usunGrupe(int id_grupa) {
+		try {
+			PreparedStatement preparedStatement;
+			//usuniêcie s³ów powi¹zanych z grup¹
+			preparedStatement = connection.prepareStatement(""
+					+ "DELETE FROM slowa WHERE id_grupa = ?");
+			preparedStatement.setInt(1, id_grupa);
+			preparedStatement.execute();
+			log.debug("Usuniêto s³owa nale¿¹ce do grupy o ID: " + id_grupa);
+			
+			//usuniêcie grupy
+			preparedStatement = connection.prepareStatement(""
+					+ "DELETE FROM grupy WHERE id_grupa = ?");
+			preparedStatement.setInt(1, id_grupa);
+			preparedStatement.execute();
+			log.debug("Usuniêto grupê o ID: " + id_grupa);
+		} catch (SQLException e) {
+			log.debug("ERROR! B³¹d przy próbie usuniêcia grupy o ID: " + id_grupa + " oraz powi¹zanych s³ów!");
+			System.err.println("ERROR! B³¹d przy próbie usuniêcia grupy oraz powi¹zanych s³ów!");
 			e.printStackTrace();
 			return false;
 		}

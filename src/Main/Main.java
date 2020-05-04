@@ -29,18 +29,30 @@ public class Main {
 	
 		bd.otworzPolaczenie();
 		List<Grupa>grupy = bd.pobierzGrupyWszystkie();
+		List<Slowo>slowa = bd.pobierzSlowaZGrupy(1);
 		bd.zamknijPolaczenie();
 		for(int i = 0; i < grupy.size(); i++) {
 			System.out.print(grupy.get(i));
 		}
+		System.out.println("\nGrupa ID: 1");
+		for(int i = 0; i < slowa.size(); i++) {
+			System.out.print(slowa.get(i));
+		}
 		
 		/*
+		System.out.println();
+		
 		bd.otworzPolaczenie();
-		//bd.modyfikujGrupa(2, "Mi³oœæ", "S³owa zw. z ¿yciem uczuciowym, podrywem, itp.");
-		//grupy = bd.pobierzGrupyWszystkie();
+		//bd.usunGrupe(1);
+		grupy = bd.pobierzGrupyWszystkie();
+		slowa = bd.pobierzSlowaZGrupy(1);
 		bd.zamknijPolaczenie();
 		for(int i = 0; i < grupy.size(); i++) {
 			System.out.print(grupy.get(i));
+		}
+		System.out.println("\nGrupa ID: 1");
+		for(int i = 0; i < slowa.size(); i++) {
+			System.out.print(slowa.get(i));
 		}
 		*/
 	}
