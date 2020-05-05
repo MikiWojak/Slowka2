@@ -30,16 +30,14 @@ public class Main {
 		bd.otworzPolaczenie();
 		List<Slowo>slowa = bd.pobierzSlowaWszystkie();
 		bd.zamknijPolaczenie();
-		System.out.println("\nGrupa ID: 1");
 		for(int i = 0; i < slowa.size(); i++) {
 			System.out.print(slowa.get(i));
 		}
 		
 		bd.otworzPolaczenie();
-		//bd.modyfikujSlowo(5, 1, "padded armour", "przeszywanica", "n", true);
+		bd.usunSlowo(4);
 		slowa = bd.pobierzSlowaWszystkie();
 		bd.zamknijPolaczenie();
-		System.out.println("\nGrupa ID: 1");
 		for(int i = 0; i < slowa.size(); i++) {
 			System.out.print(slowa.get(i));
 		}

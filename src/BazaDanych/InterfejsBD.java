@@ -393,6 +393,27 @@ public class InterfejsBD {
 	}
 	
 	/**
+	 * Usuniêcie s³owa lub frazy
+	 * @param id_slowo ID s³owa do usuniêcia
+	 * @return status usuniêcia s³owa
+	 */
+	public boolean usunSlowo(int id_slowo) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(""
+					+ "DELETE FROM slowa WHERE id_slowo = ?");
+			preparedStatement.setInt(1, id_slowo);
+			preparedStatement.execute();
+			log.debug("Usuniêto s³owo o ID: " + id_slowo);
+		} catch (SQLException e) {
+			log.debug("ERROR! B³¹d przy próbie usuniêcia s³owa o ID: " + id_slowo + "!");
+			System.err.println("ERROR! B³¹d przy próbie usuniêcia s³owa!");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
 	 * Zamkniêcie po³¹czenia z baz¹ danych.
 	 */
 	public void zamknijPolaczenie() {
