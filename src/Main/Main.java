@@ -28,32 +28,20 @@ public class Main {
 		
 	
 		bd.otworzPolaczenie();
-		List<Grupa>grupy = bd.pobierzGrupyWszystkie();
-		List<Slowo>slowa = bd.pobierzSlowaZGrupy(1);
+		List<Slowo>slowa = bd.pobierzSlowaWszystkie();
 		bd.zamknijPolaczenie();
-		for(int i = 0; i < grupy.size(); i++) {
-			System.out.print(grupy.get(i));
-		}
 		System.out.println("\nGrupa ID: 1");
 		for(int i = 0; i < slowa.size(); i++) {
 			System.out.print(slowa.get(i));
 		}
-		
-		/*
-		System.out.println();
 		
 		bd.otworzPolaczenie();
-		//bd.usunGrupe(1);
-		grupy = bd.pobierzGrupyWszystkie();
-		slowa = bd.pobierzSlowaZGrupy(1);
+		//bd.modyfikujSlowo(5, 1, "padded armour", "przeszywanica", "n", true);
+		slowa = bd.pobierzSlowaWszystkie();
 		bd.zamknijPolaczenie();
-		for(int i = 0; i < grupy.size(); i++) {
-			System.out.print(grupy.get(i));
-		}
 		System.out.println("\nGrupa ID: 1");
 		for(int i = 0; i < slowa.size(); i++) {
 			System.out.print(slowa.get(i));
 		}
-		*/
 	}
 }

@@ -295,7 +295,7 @@ public class InterfejsBD {
 	 * @param opis_grupa nowy lub taki sam opis grupy
 	 * @return status modyfikacji grupy
 	 */
-	public boolean modyfikujGrupa(
+	public boolean modyfikujGrupe(
 			int id_grupa,
 			String nazwa_grupa,
 			String opis_grupa) {
@@ -313,6 +313,49 @@ public class InterfejsBD {
 		} catch (SQLException e) {
 			log.debug("ERROR! B³¹d przy modyfikacji grupy o ID: " + id_grupa + "!");
 			System.err.println("ERROR! B³¹d przy modyfikacji grupy!");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Modyfikacja rekordu nale¿¹cego do tabeli 'slowa'
+	 * @param id_slowo ID s³owa do modyfikacji
+	 * @param id_grupa nowe lub takie samo ID grupy
+	 * @param slowo nowe lub takie samo s³owo
+	 * @param tlumaczenie nowe lub takie samo t³umaczenie
+	 * @param czesc_mowy nowa lub taka sama czêœæ mowy
+	 * @param czy_zapamietane zmieniona lub taka sama flaga 'czy zapamiêtane'
+	 * @return status modyfikacji s³owa
+	 */
+	public boolean modyfikujSlowo(
+			int id_slowo,
+			int id_grupa,
+			String slowo,
+			String tlumaczenie,
+			String czesc_mowy,
+			boolean czy_zapamietane) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(""
+					+ "UPDATE slowa SET "
+					+ "id_grupa = ?, "
+					+ "slowo = ?, "
+					+ "tlumaczenie = ?, "
+					+ "czesc_mowy = ?, "
+					+ "czy_zapamietane = ? "
+					+ "WHERE id_slowo = ?");
+			preparedStatement.setInt(1, id_grupa);
+			preparedStatement.setString(2, slowo);
+			preparedStatement.setString(3, tlumaczenie);
+			preparedStatement.setString(4, czesc_mowy);
+			preparedStatement.setBoolean(5, czy_zapamietane);
+			preparedStatement.setInt(6, id_slowo);
+			preparedStatement.execute();
+			log.debug("Zmodyfikowano s³owo o ID: " + id_slowo);
+		} catch (SQLException e) {
+			log.debug("ERROR! B³¹d przy modyfikacji s³owa o ID: " + id_slowo + "!");
+			System.err.println("ERROR! B³¹d przy modyfikacji s³owa!");
 			e.printStackTrace();
 			return false;
 		}
