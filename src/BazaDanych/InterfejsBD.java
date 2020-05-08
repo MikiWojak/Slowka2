@@ -414,6 +414,28 @@ public class InterfejsBD {
 	}
 	
 	/**
+	 * Wyczyszczenie tabel z <b>ca³ej zawartoœci</b>.
+	 * G³ównie do testów.
+	 * @return status wyczyszczenia tabel.
+	 */
+	public boolean wyczyscTabele() {
+		try {
+			//grupy
+			statement.execute("DELETE FROM grupy");
+			log.debug("Wyczyszczono tabelê 'grupy'.");
+			//slowa
+			statement.execute("DELETE FROM slowa");
+			log.debug("Wyczyszczono tabelê 'slowa'.");
+		} catch (SQLException e) {
+			log.debug("ERROR! B³¹d przy czyszczeniu tabel!");
+			System.err.println("ERROR! B³¹d przy czyszczeniu tabel!");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
 	 * Zamkniêcie po³¹czenia z baz¹ danych.
 	 */
 	public void zamknijPolaczenie() {

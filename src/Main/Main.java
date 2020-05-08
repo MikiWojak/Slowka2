@@ -28,18 +28,7 @@ public class Main {
 		
 	
 		bd.otworzPolaczenie();
-		List<Slowo>slowa = bd.pobierzSlowaWszystkie();
+		bd.wyczyscTabele();
 		bd.zamknijPolaczenie();
-		for(int i = 0; i < slowa.size(); i++) {
-			System.out.print(slowa.get(i));
-		}
-		
-		bd.otworzPolaczenie();
-		bd.usunSlowo(4);
-		slowa = bd.pobierzSlowaWszystkie();
-		bd.zamknijPolaczenie();
-		for(int i = 0; i < slowa.size(); i++) {
-			System.out.print(slowa.get(i));
-		}
 	}
 }
