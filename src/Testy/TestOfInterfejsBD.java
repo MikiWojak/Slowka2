@@ -85,19 +85,35 @@ class TestOfInterfejsBD {
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#pobierzGrupyWszystkie()}.
+	 * Test metody {@link BazaDanych.InterfejsBD#pobierzGrupyWszystkie()}.
+	 * Test pobierania wszystkich grup (niesortowane).
 	 */
 	@Test
 	void testPobierzGrupyWszystkie() {
-		fail("Not yet implemented");
+		int oczekiwane[] = {1, 2, 3};
+		grupy.clear();
+		grupy = interfejs.pobierzGrupyWszystkie();
+		
+		//Test - po³o¿enie rekordów (po ID)
+		for(int i = 0; i < grupy.size(); i++) {
+			assertEquals(oczekiwane[i], grupy.get(i).pobierzIdGrupa());
+		}
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#pobierzGrupyWszystkieAlfabetycznieRosnaco()}.
+	 * Test metody {@link BazaDanych.InterfejsBD#pobierzGrupyWszystkieAlfabetycznieRosnaco()}.
+	 * Test pobierania wszystkich grup posortowanych alfabetycznie rosn¹co.
 	 */
 	@Test
 	void testPobierzGrupyWszystkieAlfabetycznieRosnaco() {
-		fail("Not yet implemented");
+		int oczekiwane[] = {2, 1, 3};
+		grupy.clear();
+		grupy = interfejs.pobierzGrupyWszystkieAlfabetycznieRosnaco();
+		
+		//Test - po³o¿enie rekordów (po ID)
+		for(int i = 0; i < grupy.size(); i++) {
+			assertEquals(oczekiwane[i], grupy.get(i).pobierzIdGrupa());
+		}
 	}
 
 	/**
