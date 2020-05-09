@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import BazaDanych.Grupa;
 import BazaDanych.InterfejsBD;
@@ -17,6 +20,8 @@ import BazaDanych.Slowo;
  * Testy jednostkowe g³ównego interfejsu bazy danych.
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
+
+@TestMethodOrder(OrderAnnotation.class)
 class TestOfInterfejsBD {
 	/**
 	 * Obiekt klasy InterfejsBD do testów.
@@ -36,6 +41,7 @@ class TestOfInterfejsBD {
 	 * Test dodawania grup do bazy danych.
 	 */
 	@Test
+	@Order(1)
 	void testDodajGrupe() {
 		//czyszczenie BD
 		interfejs.wyczyscTabele();
@@ -56,6 +62,7 @@ class TestOfInterfejsBD {
 	 * Test dodawania s³ów do bazy danych.
 	 */
 	@Test
+	@Order(2)
 	void testDodajSlowo() {
 		//Dodawanie s³ów
 		interfejs.dodajSlowo(1, "computer", "komputer", "n", false);
@@ -88,6 +95,7 @@ class TestOfInterfejsBD {
 	 * Test pobierania wszystkich grup (niesortowane).
 	 */
 	@Test
+	@Order(3)
 	void testPobierzGrupyWszystkie() {
 		int oczekiwane[] = {1, 2, 3};
 		grupy.clear();
@@ -104,6 +112,7 @@ class TestOfInterfejsBD {
 	 * Test pobierania wszystkich grup posortowanych alfabetycznie rosn¹co.
 	 */
 	@Test
+	@Order(4)
 	void testPobierzGrupyWszystkieAlfabetycznieRosnaco() {
 		int oczekiwane[] = {2, 1, 3};
 		grupy.clear();
@@ -120,15 +129,14 @@ class TestOfInterfejsBD {
 	 * Test pobrania jedej grupy.
 	 */
 	@Test
+	@Order(5)
 	void testPobierzGrupe() {
-		int oczekiwane[] = {3};
+		int oczekiwane = 3;
 		grupy.clear();
 		grupy = interfejs.pobierzGrupe(3);
 		
-		//Test - po³o¿enie rekordów (po ID)
-		for(int i = 0; i < grupy.size(); i++) {
-			assertEquals(oczekiwane[i], grupy.get(i).pobierzIdGrupa());
-		}
+		//Test 
+		assertEquals(oczekiwane, grupy.get(0).pobierzIdGrupa());
 	}
 
 	/**
@@ -136,6 +144,7 @@ class TestOfInterfejsBD {
 	 * Test pobierania wszystkich s³ów niezale¿nie od grupy i nieposortowanych.
 	 */
 	@Test
+	@Order(6)
 	void testPobierzSlowaWszystkie() {
 		int oczekiwane[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 		slowa.clear();
@@ -152,6 +161,7 @@ class TestOfInterfejsBD {
 	 * Test pobierania s³ów nale¿¹cych do danej grupy, nieposortowanych.
 	 */
 	@Test
+	@Order(7)
 	void testPobierzSlowaZGrupy() {
 		int oczekiwane[] = {4, 5, 6, 13, 14};
 		slowa.clear();
@@ -167,13 +177,20 @@ class TestOfInterfejsBD {
 	 * Test metody {@link BazaDanych.InterfejsBD#modyfikujGrupe(int, java.lang.String, java.lang.String)}.
 	 */
 	@Test
+	@Order(8)
 	void testModyfikujGrupe() {
 		int id = 1;
 		String nazwa = "Podzespo³y komputerowe";
 		String opis = "Czêœci komputerowe";
 		
 		interfejs.modyfikujGrupe(id, nazwa, opis);
-		fail("Not yet implemented");
+		grupy.clear();
+		grupy = interfejs.pobierzGrupe(1);
+		
+		//Test
+		assertEquals(id, grupy.get(0).pobierzIdGrupa());
+		assertEquals(nazwa, grupy.get(0).pobierzNazwaGrupy());
+		assertEquals(opis, grupy.get(0).pobierzOpisGrupy());
 	}
 
 	/**
