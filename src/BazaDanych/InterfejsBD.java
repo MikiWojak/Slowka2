@@ -231,6 +231,18 @@ public class InterfejsBD {
 	}
 	
 	/**
+	 * Pobranie <b>jednego</b> rekordu z tabeli 'grupy'.
+	 * @param id_grupa ID grupy
+	 * @return obiekt klasy Grupa - rekord z tabeli 'grupy'
+	 */
+	public List<Grupa> pobierzGrupe(int id_grupa) {
+		String zapytanie = "SELECT * FROM grupy WHERE id_grupa = " + id_grupa;
+		List<Grupa> grupy = pobierzGrupyBaza(zapytanie);
+		log.debug("Pobrano dane z tabeli 'grupy' - jedna grupa.");
+		return grupy;
+	}
+	
+	/**
 	 * Baza do pobierania rekordów z tabeli 's³owa'.
 	 * @param zapytanie treœæ zapytania do pobrania rekordów z tabeli 's³owa'
 	 * @return lista z rekordami z tabeli 's³owa'

@@ -114,6 +114,22 @@ class TestOfInterfejsBD {
 			assertEquals(oczekiwane[i], grupy.get(i).pobierzIdGrupa());
 		}
 	}
+	
+	/**
+	 * Test metody {@link BazaDanych.InterfejsBD#pobierzGrupe(int)}.
+	 * Test pobrania jedej grupy.
+	 */
+	@Test
+	void testPobierzGrupe() {
+		int oczekiwane[] = {3};
+		grupy.clear();
+		grupy = interfejs.pobierzGrupe(3);
+		
+		//Test - po³o¿enie rekordów (po ID)
+		for(int i = 0; i < grupy.size(); i++) {
+			assertEquals(oczekiwane[i], grupy.get(i).pobierzIdGrupa());
+		}
+	}
 
 	/**
 	 * Test metody {@link BazaDanych.InterfejsBD#pobierzSlowaWszystkie()}.
@@ -148,10 +164,15 @@ class TestOfInterfejsBD {
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#modyfikujGrupe(int, java.lang.String, java.lang.String)}.
+	 * Test metody {@link BazaDanych.InterfejsBD#modyfikujGrupe(int, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	void testModyfikujGrupe() {
+		int id = 1;
+		String nazwa = "Podzespo³y komputerowe";
+		String opis = "Czêœci komputerowe";
+		
+		interfejs.modyfikujGrupe(id, nazwa, opis);
 		fail("Not yet implemented");
 	}
 

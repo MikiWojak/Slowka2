@@ -28,7 +28,10 @@ public class Main {
 		
 	
 		bd.otworzPolaczenie();
-		bd.wyczyscTabele();
+		List<Grupa> grupy = bd.pobierzGrupe(3);
+		for(int i = 0; i < grupy.size(); i++) {
+			System.out.print(grupy.get(i));
+		}
 		bd.zamknijPolaczenie();
 	}
 }
