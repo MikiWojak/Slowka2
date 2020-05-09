@@ -44,17 +44,44 @@ class TestOfInterfejsBD {
 		interfejs.dodajGrupe("Komputer", "Podzespo³y komputerowe");
 		interfejs.dodajGrupe("Broñ bia³a", "Sieczna, obuchowa i drzewcowa");
 		interfejs.dodajGrupe("Zbroje", "Lekkie i ciê¿kie");
+		//Test - iloœæ grup
 		int oczekiwane = 3;
-		
-		//int wynik = 
+		grupy.clear();
+		grupy = interfejs.pobierzGrupyWszystkie();
+		int wynik = grupy.size();
+		assertEquals(oczekiwane, wynik);
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#dodajSlowo(int, java.lang.String, java.lang.String, java.lang.String, boolean)}.
+	 * Test metody {@link BazaDanych.InterfejsBD#dodajSlowo(int, java.lang.String, java.lang.String, java.lang.String, boolean)}.
+	 * Test dodawania s³ów do bazy danych.
 	 */
 	@Test
 	void testDodajSlowo() {
-		fail("Not yet implemented");
+		//Dodawanie s³ów
+		interfejs.dodajSlowo(1, "computer", "komputer", "n", false);
+		interfejs.dodajSlowo(1, "legacy", "przestarza³y", "adj", false);
+		interfejs.dodajSlowo(1, "processor", "procesor", "n", false);
+		interfejs.dodajSlowo(2, "mace", "buzdygan", "n", false);
+		interfejs.dodajSlowo(2, "sword", "miecz", "n", true);
+		interfejs.dodajSlowo(2, "lance", "kopia rycerska", "n", true);
+		interfejs.dodajSlowo(3, "padded", "przeszywanica", "n", true);
+		interfejs.dodajSlowo(3, "chainmail", "kolczuga", "n", true);
+		interfejs.dodajSlowo(3, "coat of plates", "pancerz typu p³aty", "n", true);
+		
+		interfejs.dodajSlowo(1, "graphic card", "karta graficzna", "n", false);
+		interfejs.dodajSlowo(1, "fix", "naprawiaæ (komputer)", "v", false);
+		interfejs.dodajSlowo(1, "motherboard", "p³yta g³ówna", "n", false);
+		interfejs.dodajSlowo(2, "warhammer", "m³ot rycerski", "n", false);
+		interfejs.dodajSlowo(2, "dagger", "sztylet", "n", true);
+		interfejs.dodajSlowo(3, "full plate", "zbroja p³ytowa", "n", true);
+		
+		//Test - iloœæ s³ów
+		int oczekiwane = 15;
+		slowa.clear();
+		slowa = interfejs.pobierzSlowaWszystkie();
+		int wynik = slowa.size();
+		assertEquals(oczekiwane, wynik);
 	}
 
 	/**
