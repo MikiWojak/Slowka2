@@ -12,10 +12,9 @@ import BazaDanych.InterfejsBD;
 import BazaDanych.Slowo;
 
 /**
- * Pierwszy test jednostkowy klasy InterfejsBD.
- * Nowa baza danych.
- * Testy jednostkowe g³ównego interfejsu bazy danych.
  * <b>Przed wykonaniem usun¹æ plik bazy danych z folderu g³ównego!</b>
+ * Pierwszy test jednostkowy klasy InterfejsBD.
+ * Testy jednostkowe g³ównego interfejsu bazy danych.
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 class TestOfInterfejsBD {
@@ -117,19 +116,35 @@ class TestOfInterfejsBD {
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#pobierzSlowaWszystkie()}.
+	 * Test metody {@link BazaDanych.InterfejsBD#pobierzSlowaWszystkie()}.
+	 * Test pobierania wszystkich s³ów niezale¿nie od grupy i nieposortowanych.
 	 */
 	@Test
 	void testPobierzSlowaWszystkie() {
-		fail("Not yet implemented");
+		int oczekiwane[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+		slowa.clear();
+		slowa = interfejs.pobierzSlowaWszystkie();
+		
+		//Test - po³o¿enie rekordów (po ID)
+		for(int i = 0; i < slowa.size(); i++) {
+			assertEquals(oczekiwane[i], slowa.get(i).pobierzIdSlowo());
+		}
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#pobierzSlowaZGrupy(int)}.
+	 * Test metody {@link BazaDanych.InterfejsBD#pobierzSlowaZGrupy(int)}.
+	 * Test pobierania s³ów nale¿¹cych do danej grupy, nieposortowanych.
 	 */
 	@Test
 	void testPobierzSlowaZGrupy() {
-		fail("Not yet implemented");
+		int oczekiwane[] = {4, 5, 6, 13, 14};
+		slowa.clear();
+		slowa = interfejs.pobierzSlowaZGrupy(2);
+		
+		//Test - po³o¿enie rekordów (po ID)
+		for(int i = 0; i < slowa.size(); i++) {
+			assertEquals(oczekiwane[i], slowa.get(i).pobierzIdSlowo());
+		}
 	}
 
 	/**
@@ -169,14 +184,6 @@ class TestOfInterfejsBD {
 	 */
 	@Test
 	void testWyczyscTabele() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#zamknijPolaczenie()}.
-	 */
-	@Test
-	void testZamknijPolaczenie() {
 		fail("Not yet implemented");
 	}
 
