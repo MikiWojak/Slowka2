@@ -233,12 +233,12 @@ public class InterfejsBD {
 	/**
 	 * Pobranie <b>jednego</b> rekordu z tabeli 'grupy'.
 	 * @param id_grupa ID grupy
-	 * @return obiekt klasy Grupa - rekord z tabeli 'grupy'
+	 * @return lista z jednym rekordem z tabeli 'grupy'
 	 */
 	public List<Grupa> pobierzGrupe(int id_grupa) {
 		String zapytanie = "SELECT * FROM grupy WHERE id_grupa = " + id_grupa;
 		List<Grupa> grupy = pobierzGrupyBaza(zapytanie);
-		log.debug("Pobrano dane z tabeli 'grupy' - jedna grupa.");
+		log.debug("Pobrano dane z tabeli 'grupy' - jedna grupa o ID: " + id_grupa);
 		return grupy;
 	}
 	
@@ -297,6 +297,18 @@ public class InterfejsBD {
 		String zapytanie = "SELECT * FROM slowa WHERE id_grupa = " + id_grupa;
 		List<Slowo>slowa = pobierzSlowaBaza(zapytanie);
 		log.debug("Pobrano dane z tabeli 'slowa' - s³owa nale¿¹ce do grupy o ID: " + id_grupa + ", niesortowane.");
+		return slowa;
+	}
+	
+	/**
+	 * Pobranie <b>jednego</b> rekordu z tabeli 'slowa'.
+	 * @param id_slowo ID s³owa
+	 * @return lista z jednym rekordem z tabeli 'slowa'
+	 */
+	public List<Slowo> pobierzSlowo(int id_slowo) {
+		String zapytanie = "SELECT * FROM slowa WHERE id_slowo = " + id_slowo;
+		List<Slowo>slowa = pobierzSlowaBaza(zapytanie);
+		log.debug("Pobrano dane z tabeli 'slowa' - jedno slowo o ID: " + id_slowo);
 		return slowa;
 	}
 	

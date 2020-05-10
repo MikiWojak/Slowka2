@@ -172,6 +172,21 @@ class TestOfInterfejsBD {
 			assertEquals(oczekiwane[i], slowa.get(i).pobierzIdSlowo());
 		}
 	}
+	
+	/**
+	 * Test metody {@link BazaDanych.InterfejsBD#pobierzSlowo(int)}.
+	 * Test pobrania jedengo slowa.
+	 */
+	@Test
+	@Order(8)
+	void testPobierzSlowo() {
+		int oczekiwane = 4;
+		slowa.clear();
+		slowa = interfejs.pobierzSlowo(4);
+		
+		//Test
+		assertEquals(oczekiwane, slowa.get(0).pobierzIdSlowo());
+	}
 
 	/**
 	 * Test metody {@link BazaDanych.InterfejsBD#modyfikujGrupe(int, java.lang.String, java.lang.String)}.
