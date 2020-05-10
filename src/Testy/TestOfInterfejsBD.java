@@ -234,11 +234,22 @@ class TestOfInterfejsBD {
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#usunGrupe(int)}.
+	 * Test metody {@link BazaDanych.InterfejsBD#usunGrupe(int)}.
+	 * Test usuwania grupy i powi¹zanych z ni¹ s³ów.
 	 */
 	@Test
+	@Order(10)
 	void testUsunGrupe() {
-		fail("Not yet implemented");
+		int id_grupa = 3;
+		interfejs.usunGrupe(id_grupa);
+		
+		grupy.clear();
+		grupy = interfejs.pobierzGrupe(id_grupa);
+		slowa.clear();
+		slowa = interfejs.pobierzSlowaZGrupy(id_grupa);
+		
+		assertEquals(0, grupy.size());
+		assertEquals(0, slowa.size());
 	}
 
 	/**
