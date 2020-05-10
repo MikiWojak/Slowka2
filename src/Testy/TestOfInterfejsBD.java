@@ -200,7 +200,7 @@ class TestOfInterfejsBD {
 		
 		interfejs.modyfikujGrupe(id, nazwa, opis);
 		grupy.clear();
-		grupy = interfejs.pobierzGrupe(1);
+		grupy = interfejs.pobierzGrupe(id);
 		
 		//Test
 		assertEquals(id, grupy.get(0).pobierzIdGrupa());
@@ -212,8 +212,25 @@ class TestOfInterfejsBD {
 	 * Test method for {@link BazaDanych.InterfejsBD#modyfikujSlowo(int, int, java.lang.String, java.lang.String, java.lang.String, boolean)}.
 	 */
 	@Test
+	@Order(9)
 	void testModyfikujSlowo() {
-		fail("Not yet implemented");
+		int id = 5;
+		int grupa = 2;
+		String slowo = "longsword";
+		String tlumaczenie = "miecz d³ugi";
+		String czesc = "noun";
+		boolean flaga = false;
+		
+		interfejs.modyfikujSlowo(id, grupa, slowo, tlumaczenie, czesc, flaga);
+		slowa.clear();
+		slowa = interfejs.pobierzSlowo(id);
+		
+		assertEquals(id, slowa.get(0).pobierzIdSlowo());
+		assertEquals(grupa, slowa.get(0).pobierzIdGrupy());
+		assertEquals(slowo, slowa.get(0).pobierzSlowo());
+		assertEquals(tlumaczenie, slowa.get(0).pobierzTlumaczenie());
+		assertEquals(czesc, slowa.get(0).pobierzCzescMowy());
+		assertEquals(flaga, slowa.get(0).pobierzCzyZapamietane());
 	}
 
 	/**
