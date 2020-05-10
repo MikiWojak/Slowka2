@@ -253,11 +253,20 @@ class TestOfInterfejsBD {
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#usunSlowo(int)}.
+	 * Test metody {@link BazaDanych.InterfejsBD#usunSlowo(int)}.
+	 * Test usuwania pojedynczego slowa.
 	 */
 	@Test
+	@Order(11)
 	void testUsunSlowo() {
-		fail("Not yet implemented");
+		int id_slowo = 12;
+		interfejs.usunSlowo(id_slowo);
+		
+		slowa.clear();
+		slowa = interfejs.pobierzSlowo(id_slowo);
+		
+		assertEquals(0, slowa.size());
+		
 	}
 
 	/**
