@@ -270,11 +270,20 @@ class TestOfInterfejsBD {
 	}
 
 	/**
-	 * Test method for {@link BazaDanych.InterfejsBD#wyczyscTabele()}.
+	 * Test metody {@link BazaDanych.InterfejsBD#wyczyscTabele()}.
+	 * Test czyszczenia tabel.
 	 */
 	@Test
+	@Order(12)
 	void testWyczyscTabele() {
-		fail("Not yet implemented");
+		interfejs.wyczyscTabele();
+		grupy.clear();
+		grupy = interfejs.pobierzGrupyWszystkie();
+		slowa.clear();
+		slowa = interfejs.pobierzSlowaWszystkie();
+		
+		assertEquals(0, grupy.size());
+		assertEquals(0, slowa.size());
 	}
 
 }
