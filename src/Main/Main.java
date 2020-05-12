@@ -23,15 +23,5 @@ public class Main {
 	public static void main(String[] args) {
 		Logger log = LoggerFactory.getLogger(Main.class);
 		log.debug("Hello world!");
-		InterfejsBD bd = new InterfejsBD();
-		bd.zamknijPolaczenie();
-		
-	
-		bd.otworzPolaczenie();
-		List<Grupa> grupy = bd.pobierzGrupe(3);
-		for(int i = 0; i < grupy.size(); i++) {
-			System.out.print(grupy.get(i));
-		}
-		bd.zamknijPolaczenie();
 	}
 }
