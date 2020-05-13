@@ -1,5 +1,8 @@
 package Program;
 
+import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 
 /**
@@ -7,13 +10,23 @@ import javax.swing.JPanel;
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Panel extends JPanel {
-
+	
+	/**
+	 * Szerokoœæ okna
+	 */
+	protected final int OKNO_SZEROKOSC = 1200;
+	/**
+	 * Wysokoœæ okna
+	 */
+	protected final int OKNO_WYSOKOSC = 600;
+	
 	/**
 	 * Utworzenie panelu g³ównego.
 	 * Konstruktor klasy Panel.
 	 */
 	public Panel() {
-
+		setPreferredSize(new Dimension(OKNO_SZEROKOSC, OKNO_WYSOKOSC));
+		setBackground(Color.GRAY);
 	}
 
 }

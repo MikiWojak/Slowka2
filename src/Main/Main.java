@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import BazaDanych.Grupa;
 import BazaDanych.InterfejsBD;
 import BazaDanych.Slowo;
+import Program.Program;
 
 /**
  * Klasa, która uruchamia g³ówne okno programu
@@ -17,11 +18,29 @@ import BazaDanych.Slowo;
 public class Main {
 	
 	/**
+	 * Generowanie logów.
+	 */
+	private static Logger log;
+	/**
+	 * G³ówne okno programu.
+	 */
+	private static Program program;
+	
+	/**
 	 * G³ówna metoda. S³u¿y do uruchomienia programu
 	 * @param args argumenty niezbêdne do odpalenia programu
 	 */
 	public static void main(String[] args) {
-		Logger log = LoggerFactory.getLogger(Main.class);
-		log.debug("Hello world!");
+		log = LoggerFactory.getLogger(Main.class);
+		
+		//Uruchomienie programu
+		try {
+			program = new Program();
+			log.debug("Uruchomiono program");
+		} catch (Exception e) {
+			log.debug("ERROR! B³¹d podczas uruchamiania programu!");
+			e.printStackTrace();
+		}
+		
 	}
 }

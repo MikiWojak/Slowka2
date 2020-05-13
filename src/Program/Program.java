@@ -19,8 +19,12 @@ public class Program extends JFrame {
 	 * Konstruktor klasy Program.
 	 */
 	public Program() {
+		add(new Panel());
+		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setResizable(false);
+		setTitle("S³ówka 2");
+		setVisible(true);
 	}
 
 }
