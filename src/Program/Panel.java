@@ -26,7 +26,6 @@ public class Panel extends JPanel {
 	 */
 	public Panel() {
 		setPreferredSize(new Dimension(OKNO_SZEROKOSC, OKNO_WYSOKOSC));
-		setBackground(Color.GRAY);
 	}
 
 }

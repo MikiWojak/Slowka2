@@ -19,6 +19,7 @@ public class Program extends JFrame {
 	 * Konstruktor klasy Program.
 	 */
 	public Program() {
+		setBounds(100, 100, 0, 0);
 		add(new Panel());
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
