@@ -39,7 +39,7 @@ public class Program extends JFrame {
 	public Program() {
 		inicjujKomponenty();
 		//zmiana panelu
-		zmienPanel(test);
+		//zmienPanel(test);
 	}
 	
 	/**

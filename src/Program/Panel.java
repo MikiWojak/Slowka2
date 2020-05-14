@@ -25,6 +25,7 @@ public class Panel extends JPanel {
 	 * Konstruktor klasy Panel.
 	 */
 	public Panel() {
+		setLayout(null);
 		setPreferredSize(new Dimension(OKNO_SZEROKOSC, OKNO_WYSOKOSC));
 	}
 
