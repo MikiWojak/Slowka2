@@ -1,6 +1,7 @@
 package Program;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -27,11 +28,18 @@ public class Program extends JFrame {
 	private Panel widok;
 	
 	/**
+	 * Panel testu s³ówek.
+	 */
+	private Panel test;
+	
+	/**
 	 * Utworzenie g³ównego programu.
 	 * Konstruktor klasy Program.
 	 */
 	public Program() {
 		inicjujKomponenty();
+		//zmiana panelu
+		zmienPanel(test);
 	}
 	
 	/**
@@ -45,11 +53,32 @@ public class Program extends JFrame {
 		setTitle("S³ówka 2");
 		
 		//komponenty
-		add(new Panel());
+		warstwy = new JLayeredPane();
+		warstwy.setLayout(new CardLayout());
+		getContentPane().add(warstwy);
+		
+		widok = new Widok();
+		warstwy.add(widok);
+		
+		test = new Test();
+		warstwy.add(test);
+		
 		pack();
 		
 		//koñcowe parametry
 		setVisible(true);
+	}
+	
+	/**
+	 * Zmiana panelu.
+	 * Zmiana na widok lub test.
+	 * @param panel panel, jaki ma byæ wczytany
+	 */
+	public void zmienPanel(JPanel panel) {
+		warstwy.removeAll();
+		warstwy.add(panel);
+		warstwy.repaint();
+		warstwy.revalidate();
 	}
 
 }
