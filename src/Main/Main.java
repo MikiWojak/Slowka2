@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import BazaDanych.Grupa;
 import BazaDanych.InterfejsBD;
 import BazaDanych.Slowo;
+import Program.Program;
 
 /**
  * Klasa, która uruchamia g³ówne okno programu
@@ -23,5 +24,6 @@ public class Main {
 	public static void main(String[] args) {
 		Logger log = LoggerFactory.getLogger(Main.class);
 		log.debug("Hello world!");
+		Program program = new Program();
 	}
 }
