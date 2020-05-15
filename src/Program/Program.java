@@ -19,6 +19,10 @@ import java.awt.Dimension;
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Program extends JFrame {
+	private JMenuBar mnBarMenu;
+	private JMenu mnWidok;
+	private JMenu mnTest;
+	private JLayeredPane warstwy;
 	
 	/**
 	 * Utworzenie g³ównego programu.
@@ -28,30 +32,20 @@ public class Program extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
+		mnBarMenu = new JMenuBar();
+		setJMenuBar(mnBarMenu);
 		
-		JMenu mnNewMenu = new JMenu("Widok");
-		menuBar.add(mnNewMenu);
+		mnWidok = new JMenu("Widok");
+		mnBarMenu.add(mnWidok);
 		
-		JMenu mnNewMenu_1 = new JMenu("Test");
-		menuBar.add(mnNewMenu_1);
+		mnTest = new JMenu("Test");
+		mnBarMenu.add(mnTest);
 		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLayeredPane layeredPane = new JLayeredPane();
-		getContentPane().add(layeredPane);
-		layeredPane.setPreferredSize(new Dimension(200, 100));
-		layeredPane.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.GREEN);
-		panel_1.setBounds(0, 0, 200, 100);
-		layeredPane.add(panel_1);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 200, 100);
-		panel.setBackground(Color.RED);
-		layeredPane.add(panel);
+		warstwy = new JLayeredPane();
+		getContentPane().add(warstwy);
+		warstwy.setPreferredSize(new Dimension(1200, 600));
+		warstwy.setLayout(null);
 		
 		
 		
