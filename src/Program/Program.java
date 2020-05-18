@@ -19,19 +19,26 @@ import java.awt.Dimension;
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Program extends JFrame {
+	private final int OKNO_SZEROKOSC = 1200;
+	private final int OKNO_WYSOKOSC = 600;
+	
 	private JMenuBar mnBarMenu;
 	private JMenu mnWidok;
 	private JMenu mnTest;
 	private JLayeredPane warstwy;
 	
+	private Panel widok;
+	private Panel test;
 	/**
 	 * Utworzenie g³ównego programu.
 	 * Konstruktor klasy Program.
 	 */
 	public Program() {
+		//operacje pocz¹tkowe
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 0, 0);
 		
+		//komponenty
 		mnBarMenu = new JMenuBar();
 		setJMenuBar(mnBarMenu);
 		
@@ -44,13 +51,18 @@ public class Program extends JFrame {
 		
 		warstwy = new JLayeredPane();
 		getContentPane().add(warstwy);
-		warstwy.setPreferredSize(new Dimension(1200, 600));
+		warstwy.setPreferredSize(new Dimension(OKNO_SZEROKOSC, OKNO_WYSOKOSC));
 		warstwy.setLayout(null);
 		
+		widok = new Widok();
+		warstwy.add(widok);
 		
+		test = new Test();
+		warstwy.add(test);
 		
+		//operacje koñcowe
 		pack();
-		
+		setResizable(false);
 		setVisible(true);
 	}
 }

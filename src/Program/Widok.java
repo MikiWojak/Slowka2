@@ -1,5 +1,7 @@
 package Program;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
 
 /**
@@ -13,7 +15,7 @@ public class Widok extends Panel {
 	 * Konstruktor klasy Widok.
 	 */
 	public Widok() {
-
+		setBackground(Color.BLUE);
 	}
 
 }
