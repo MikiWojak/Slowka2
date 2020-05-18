@@ -12,6 +12,10 @@ import javax.swing.JMenu;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 /**
@@ -43,9 +47,21 @@ public class Program extends JFrame {
 		setJMenuBar(mnBarMenu);
 		
 		mnWidok = new JMenu("Widok");
+		mnWidok.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				zmienPanel(test);
+			}
+		});
 		mnBarMenu.add(mnWidok);
 		
 		mnTest = new JMenu("Test");
+		mnTest.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				zmienPanel(widok);
+			}
+		});
 		mnBarMenu.add(mnTest);
 		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -64,5 +80,12 @@ public class Program extends JFrame {
 		pack();
 		setResizable(false);
 		setVisible(true);
+	}
+	
+	private void zmienPanel(JPanel panel) {
+		warstwy.removeAll();
+		warstwy.add(panel);
+		warstwy.repaint();
+		warstwy.revalidate();
 	}
 }
