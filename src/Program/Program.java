@@ -50,16 +50,24 @@ public class Program extends JFrame {
 		mnWidok.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				zmienPanel(test);
+				zmienPanel(widok);
+				
+				mnWidok.setEnabled(false);
+				mnTest.setEnabled(true);
+				
 			}
 		});
+		mnWidok.setEnabled(false);
 		mnBarMenu.add(mnWidok);
 		
 		mnTest = new JMenu("Test");
 		mnTest.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				zmienPanel(widok);
+				zmienPanel(test);			
+				
+				mnWidok.setEnabled(true);
+				mnTest.setEnabled(false);
 			}
 		});
 		mnBarMenu.add(mnTest);
