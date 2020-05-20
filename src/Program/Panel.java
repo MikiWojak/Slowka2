@@ -11,6 +11,7 @@ import javax.swing.JPanel;
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public abstract class Panel extends JPanel {
+	
 	/**
 	 * Szerokoœæ panelu.
 	 */

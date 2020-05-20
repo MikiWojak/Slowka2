@@ -22,8 +22,18 @@ public class Main {
 	 * @param args argumenty niezbêdne do odpalenia programu
 	 */
 	public static void main(String[] args) {
+		//logi
 		Logger log = LoggerFactory.getLogger(Main.class);
-		log.debug("Hello world!");
-		Program program = new Program();
+		log.debug("Witaj œwiecie!");
+		
+		//program
+		try {
+			Program program = new Program();
+			log.debug("Uruchomiono program");
+		} catch (Exception e) {
+			log.debug("ERROR! Problem z uruchomieniem programu!");
+			e.printStackTrace();
+		}
+		
 	}
 }

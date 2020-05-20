@@ -17,6 +17,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -26,6 +28,7 @@ import java.awt.event.ActionEvent;
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Program extends JFrame {
+	
 	/**
 	 * Szerokosæ okna - pojemnika na panele.
 	 */
@@ -38,6 +41,10 @@ public class Program extends JFrame {
 	 * Interfejs bazy danych.
 	 */
 	private InterfejsBD interfejsBD;
+	/**
+	 * Generowanie logów.
+	 */
+	private Logger log;
 	/**
 	 * Pasek menu.
 	 */
@@ -85,6 +92,8 @@ public class Program extends JFrame {
 		pack();
 		setResizable(false);
 		setVisible(true);
+		
+		log.debug("Utworzono obiekt klasy Program.");
 	}
 	
 	/**
@@ -133,8 +142,11 @@ public class Program extends JFrame {
 	 * Inicjacja pól klasy.
 	 */
 	private void inicjujPola() {
+		//interfejsBD
 		interfejsBD = new InterfejsBD();
 		interfejsBD.zamknijPolaczenie();
+		//log
+		log = LoggerFactory.getLogger(Program.class);
 	}
 	
 	/**
@@ -154,9 +166,9 @@ public class Program extends JFrame {
 	 */
 	private void zmienPanelNaWidok() {
 		zmienPanel(widok);
-		
 		mnWidok.setEnabled(false);
 		mnTest.setEnabled(true);
+		log.debug("Zmiana panelu na 'widok'.");
 	}
 	
 	/**
@@ -165,8 +177,8 @@ public class Program extends JFrame {
 	 */
 	private void zmienPanelNaTest() {
 		zmienPanel(test);			
-		
 		mnWidok.setEnabled(true);
 		mnTest.setEnabled(false);
+		log.debug("Zmiana panelu na 'test'.");
 	}
 }
