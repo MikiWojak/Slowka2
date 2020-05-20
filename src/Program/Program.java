@@ -22,21 +22,50 @@ import java.awt.event.ActionEvent;
 
 
 /**
- * G³owne okno programu. W nim bêd¹ zawarte g³ówne funkcje programu
+ * G³owne okno programu. W nim bêd¹ zawarte g³ówne funkcje programu.
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Program extends JFrame {
+	/**
+	 * Szerokosæ okna - pojemnika na panele.
+	 */
 	private final int OKNO_SZEROKOSC = 1200;
+	/**
+	 * Wysokoœæ okna - pojemnika na panele.
+	 */
 	private final int OKNO_WYSOKOSC = 600;
-	
+	/**
+	 * Interfejs bazy danych.
+	 */
 	private InterfejsBD interfejsBD;
-	
+	/**
+	 * Pasek menu.
+	 */
 	private JMenuBar mnBarMenu;
+	/**
+	 * Opcja widok.
+	 * Prze³¹czenie programu na panel widok.
+	 */
 	private JMenu mnWidok;
+	/**
+	 * Opcja test.
+	 * Prze³¹czenie programu na panel test.
+	 */
 	private JMenu mnTest;
+	/**
+	 * Pojemnik na panele.
+	 * Umo¿liwia prze³¹czanie siê miêdzy kilkoma panelami.
+	 */
 	private JLayeredPane warstwy;
-	
+	/**
+	 * Panel widok.
+	 * Lista grup i s³ów.
+	 */
 	private Panel widok;
+	/**
+	 * Panel test.
+	 * Nauka s³ów metod¹ wielokrotnych powtórzeñ.
+	 */
 	private Panel test;
 	
 	/**
@@ -50,7 +79,7 @@ public class Program extends JFrame {
 		
 		//inicjacje
 		inicjujKomponenty();
-		
+		inicjujPola();
 		
 		//operacje koñcowe
 		pack();
@@ -58,6 +87,10 @@ public class Program extends JFrame {
 		setVisible(true);
 	}
 	
+	/**
+	 * Inicjacja elementów okna.
+	 * G³ównie elementów z biblioteki Swing.
+	 */
 	private void inicjujKomponenty() {
 		//mnBarMenu
 		mnBarMenu = new JMenuBar();
@@ -96,11 +129,18 @@ public class Program extends JFrame {
 		warstwy.add(test);
 	}
 	
-	private void inicjujZmienne() {
+	/**
+	 * Inicjacja pól klasy.
+	 */
+	private void inicjujPola() {
 		interfejsBD = new InterfejsBD();
 		interfejsBD.zamknijPolaczenie();
 	}
 	
+	/**
+	 * Zmiana panelu.
+	 * @param panel panel, jaki ma zostaæ wyœwietlony
+	 */
 	private void zmienPanel(JPanel panel) {
 		warstwy.removeAll();
 		warstwy.add(panel);
@@ -108,6 +148,10 @@ public class Program extends JFrame {
 		warstwy.revalidate();
 	}
 	
+	/**
+	 * Zmiana panelu na widok.
+	 * Do wykorzystania w opcji Widok oraz w skrótach klawiszowych.
+	 */
 	private void zmienPanelNaWidok() {
 		zmienPanel(widok);
 		
@@ -115,6 +159,10 @@ public class Program extends JFrame {
 		mnTest.setEnabled(true);
 	}
 	
+	/**
+	 * Zmiana panelu na test.
+	 * Do wykorzystania w opcji Widok oraz w skrótach klawiszowych.
+	 */
 	private void zmienPanelNaTest() {
 		zmienPanel(test);			
 		
