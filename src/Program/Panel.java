@@ -39,7 +39,6 @@ public abstract class Panel extends JPanel {
 	 */
 	protected Panel() {
 		setBounds(0, 0, PANEL_SZEROKOSC, PANEL_WYSOKOSC);
-		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		
 		inicjujPola();
