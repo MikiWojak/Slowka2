@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * Panel z widokiem na grupy i s³owa.
@@ -17,6 +19,8 @@ import javax.swing.JTable;
 public class Widok extends Panel {
 	private JLabel lblWidok;
 	private JTable table;
+	
+	Object[] nazwyKolumn;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -43,9 +47,14 @@ public class Widok extends Panel {
 		
 		
 		utworzTabele();
-
-		table.setBounds(400, 46, 800, 140);
-		add(table);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(400, 46, 800, 140);
+		add(scrollPane);
+		scrollPane.setViewportView(table);
+		table.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 	
 	/**
@@ -60,14 +69,34 @@ public class Widok extends Panel {
 	 * Tworzenie tabeli i obiektów w niej
 	 */
 	private void utworzTabele() {
-		String[] nazwyKolumn = {"S³owo",
+		Object[] nazwyKolumn = {"S³owo",
 								"T³umaczenie",
 								"Czêœæ mowy",
 								"Czy nauczone"
 		};
 		Object[][] dane = {
+				{"computer", "komputer", "n", "tak"}, 
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"}, 
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
+				{"computer", "komputer", "n", "tak"},
 				{"computer", "komputer", "n", "tak"}
 		};
+		
 		table = new JTable(dane, nazwyKolumn);
 	}
 }
