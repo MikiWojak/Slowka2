@@ -21,15 +21,22 @@ public class Widok extends Panel {
 	 * Konstruktor klasy Widok.
 	 */
 	public Widok() {
-		
-		lblWidok = new JLabel("Widok");
-		lblWidok.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWidok.setFont(new Font("Arial", Font.BOLD, 16));
-		lblWidok.setBounds(0, 13, 1132, 20);
-		add(lblWidok);
+		inicjujKomponenty();
 		inicjujPola();
 		
 		log.debug("Utworzono obiekt klasy Widok.");
+	}
+	
+	/**
+	 * Inicjacja elementów panelu.
+	 * G³ównie elementów z biblioteki Swing.
+	 */
+	private void  inicjujKomponenty() {
+		lblWidok = new JLabel("Widok");
+		lblWidok.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWidok.setFont(new Font("Arial", Font.BOLD, 16));
+		lblWidok.setBounds(0, 13, 1200, 20);
+		add(lblWidok);
 	}
 	
 	/**

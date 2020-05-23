@@ -21,15 +21,22 @@ public class Test extends Panel {
 	 * Konstruktor klasy Test.
 	 */
 	public Test() {
+		inicjujKomponenty();
+		inicjujPola();
 		
+		log.debug("Utworzono obiekt klasy Test.");
+	}
+	
+	/**
+	 * Inicjacja elementów panelu.
+	 * G³ównie elementów z biblioteki Swing.
+	 */
+	private void inicjujKomponenty() {
 		lblTest = new JLabel("Test");
 		lblTest.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTest.setFont(new Font("Arial", Font.BOLD, 16));
 		lblTest.setBounds(0, 13, 1200, 20);
 		add(lblTest);
-		inicjujPola();
-		
-		log.debug("Utworzono obiekt klasy Test.");
 	}
 	
 	/**
