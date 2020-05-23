@@ -20,7 +20,9 @@ public class Widok extends Panel {
 	private JLabel lblWidok;
 	private JTable table;
 	
-	Object[] nazwyKolumn;
+	int rekordy = 40;
+	private Object[] nazwyKolumn = new Object[4];
+	private Object[][] dane = new Object[rekordy][4];
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -44,17 +46,18 @@ public class Widok extends Panel {
 		lblWidok.setBounds(0, 13, 1200, 20);
 		add(lblWidok);
 		
-		
-		
+		//Tabele
 		utworzTabele();
+		table = new JTable(dane, nazwyKolumn);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(400, 46, 800, 140);
+		scrollPane.setBounds(400, 46, 800, 400);
 		add(scrollPane);
 		scrollPane.setViewportView(table);
 		table.setFont(new Font("Arial", Font.PLAIN, 16));
+		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 	}
 	
 	/**
@@ -69,34 +72,16 @@ public class Widok extends Panel {
 	 * Tworzenie tabeli i obiektów w niej
 	 */
 	private void utworzTabele() {
-		Object[] nazwyKolumn = {"S³owo",
-								"T³umaczenie",
-								"Czêœæ mowy",
-								"Czy nauczone"
-		};
-		Object[][] dane = {
-				{"computer", "komputer", "n", "tak"}, 
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"}, 
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"},
-				{"computer", "komputer", "n", "tak"}
-		};
+		nazwyKolumn[0] = "S³owo";
+		nazwyKolumn[1] = "T³umaczenie";
+		nazwyKolumn[2] = "Czêœæ mowy";
+		nazwyKolumn[3] = "Czy nauczone";
 		
-		table = new JTable(dane, nazwyKolumn);
+		for(int i = 0; i < rekordy; i++) {
+			dane[i][0] = "computer";
+			dane[i][1] = "komputer";
+			dane[i][2] = "n";
+			dane[i][3] = "tak";
+		}
 	}
 }
