@@ -17,12 +17,13 @@ import javax.swing.ScrollPaneConstants;
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Widok extends Panel {
-	private JLabel lblWidok;
-	private JTable table;
+	private JLabel lblNazwaGrupa;
+	private JTable tableSlowa;
 	
 	int rekordy = 40;
 	private Object[] nazwyKolumn = new Object[4];
 	private Object[][] dane = new Object[rekordy][4];
+	private JScrollPane scrollSlowa;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -40,24 +41,31 @@ public class Widok extends Panel {
 	 * G³ównie elementów z biblioteki Swing.
 	 */
 	private void  inicjujKomponenty() {
-		lblWidok = new JLabel("Widok");
-		lblWidok.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWidok.setFont(new Font("Arial", Font.BOLD, 16));
-		lblWidok.setBounds(0, 13, 1200, 20);
-		add(lblWidok);
+		lblNazwaGrupa = new JLabel("Grupa");
+		lblNazwaGrupa.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNazwaGrupa.setFont(new Font("Arial", Font.BOLD, 16));
+		lblNazwaGrupa.setBounds(400, 13, 800, 20);
+		add(lblNazwaGrupa);
 		
 		//Tabele
 		utworzTabele();
-		table = new JTable(dane, nazwyKolumn);
+		//table
+		tableSlowa = new JTable(dane, nazwyKolumn);
+		tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
+		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
+		tableSlowa.setRowHeight(25);
+
+		tableSlowa.getColumnModel().getColumn(0).setPreferredWidth(250);
+		tableSlowa.getColumnModel().getColumn(1).setPreferredWidth(250);
+		tableSlowa.getColumnModel().getColumn(2).setPreferredWidth(150);
+		tableSlowa.getColumnModel().getColumn(3).setPreferredWidth(150);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(400, 46, 800, 400);
-		add(scrollPane);
-		scrollPane.setViewportView(table);
-		table.setFont(new Font("Arial", Font.PLAIN, 16));
-		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
+		scrollSlowa = new JScrollPane();
+		scrollSlowa.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollSlowa.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollSlowa.setBounds(400, 46, 800, 500);
+		add(scrollSlowa);
+		scrollSlowa.setViewportView(tableSlowa);
 	}
 	
 	/**
