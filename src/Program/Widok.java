@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import org.slf4j.LoggerFactory;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.Vector;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -20,10 +22,13 @@ public class Widok extends Panel {
 	private JLabel lblNazwaGrupa;
 	private JTable tableSlowa;
 	
-	int rekordy = 40;
+	private int rekordy = 40;
 	private Object[] nazwyKolumn = new Object[4];
 	private Object[][] dane = new Object[rekordy][4];
 	private JScrollPane scrollSlowa;
+	
+	private Vector<String> nazwyKolumnV = new Vector<String>();
+	private Vector<Vector<Object>> daneV = new Vector<Vector<Object>>();
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -34,6 +39,8 @@ public class Widok extends Panel {
 		inicjujPola();
 		
 		log.debug("Utworzono obiekt klasy Widok.");
+		
+		
 	}
 	
 	/**
@@ -49,8 +56,10 @@ public class Widok extends Panel {
 		
 		//Tabele
 		utworzTabele();
+		utworzVektory();
 		//table
-		tableSlowa = new JTable(dane, nazwyKolumn);
+		//tableSlowa = new JTable(dane, nazwyKolumn);
+		tableSlowa = new JTable(daneV, nazwyKolumnV);
 		tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
 		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 		tableSlowa.setRowHeight(25);
@@ -91,5 +100,30 @@ public class Widok extends Panel {
 			dane[i][2] = "n";
 			dane[i][3] = "tak";
 		}
+	}
+	
+	private void utworzVektory() {
+		nazwyKolumnV.add("S³owo");
+		nazwyKolumnV.add("T³umaczenie");
+		nazwyKolumnV.add("Czêœæ mowy");
+		nazwyKolumnV.add("Czy nauczone");
+		
+		for(int i = 0; i < nazwyKolumnV.size(); i++) {
+			System.out.println(nazwyKolumnV.get(i));
+		}
+		for(int i = 0; i < rekordy; i++) {
+			Vector<Object> kolumna = new Vector<Object>();
+			/*
+			for(int j = 0; j < nazwyKolumnV.size(); j++) {
+			}
+			*/
+			kolumna.add("coat of plates");
+			kolumna.add("zbroja typu p³aty");
+			kolumna.add("noun");
+			kolumna.add(false);
+			
+			daneV.add(kolumna);
+		}
+		
 	}
 }
