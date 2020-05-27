@@ -5,14 +5,20 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import org.slf4j.LoggerFactory;
+
+import BazaDanych.Slowo;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JButton;
 
 /**
  * Panel z widokiem na grupy i s³owa.
@@ -29,6 +35,7 @@ public class Widok extends Panel {
 	
 	private Vector<String> nazwyKolumnV = new Vector<String>();
 	private Vector<Vector<Object>> daneV = new Vector<Vector<Object>>();
+	private JButton btnAktualizuj;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -57,6 +64,7 @@ public class Widok extends Panel {
 		//Tabele
 		utworzTabele();
 		utworzVektory();
+		aktualizujDane();
 		//table
 		//tableSlowa = new JTable(dane, nazwyKolumn);
 		tableSlowa = new JTable(daneV, nazwyKolumnV);
@@ -75,6 +83,10 @@ public class Widok extends Panel {
 		scrollSlowa.setBounds(400, 46, 800, 500);
 		add(scrollSlowa);
 		scrollSlowa.setViewportView(tableSlowa);
+		
+		btnAktualizuj = new JButton("Aktualizuj");
+		btnAktualizuj.setBounds(400, 559, 97, 25);
+		add(btnAktualizuj);
 	}
 	
 	/**
@@ -108,9 +120,6 @@ public class Widok extends Panel {
 		nazwyKolumnV.add("Czêœæ mowy");
 		nazwyKolumnV.add("Czy nauczone");
 		
-		for(int i = 0; i < nazwyKolumnV.size(); i++) {
-			System.out.println(nazwyKolumnV.get(i));
-		}
 		for(int i = 0; i < rekordy; i++) {
 			Vector<Object> kolumna = new Vector<Object>();
 			/*
@@ -125,5 +134,24 @@ public class Widok extends Panel {
 			daneV.add(kolumna);
 		}
 		
+	}
+	
+	private void aktualizujDane() {
+		interfejsBD.otworzPolaczenie();
+		List<Slowo>slowa = new LinkedList<Slowo>();
+		slowa = interfejsBD.pobierzSlowaZGrupy(3);
+		
+		daneV.clear();
+		
+		for(int i = 0; i < slowa.size(); i++) {
+			Vector<Object> kolumna = new Vector<Object>();
+			
+			kolumna.add(slowa.get(i).pobierzSlowo());
+			kolumna.add(slowa.get(i).pobierzTlumaczenie());
+			kolumna.add(slowa.get(i).pobierzCzescMowy());
+			kolumna.add(slowa.get(i).pobierzCzyZapamietane());
+			
+			daneV.add(kolumna);
+		}
 	}
 }
