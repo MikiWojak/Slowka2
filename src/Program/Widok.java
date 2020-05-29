@@ -31,7 +31,7 @@ public class Widok extends Panel {
 	private JLabel lblNazwaGrupa;
 	private JTable tableSlowa;
 	
-	private int rekordy = 40;
+	private int rekordy = 34;
 	private Object[] nazwyKolumn = new Object[4];
 	private Object[][] dane = new Object[rekordy][4];
 	private JScrollPane scrollSlowa;
@@ -39,6 +39,8 @@ public class Widok extends Panel {
 	private Vector<String> nazwyKolumnV = new Vector<String>();
 	private Vector<Vector<Object>> daneV = new Vector<Vector<Object>>();
 	private JButton btnAktualizuj;
+	private JButton btnComputers;
+	private JButton btnWar;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -87,14 +89,32 @@ public class Widok extends Panel {
 		add(scrollSlowa);
 		scrollSlowa.setViewportView(tableSlowa);
 		
-		btnAktualizuj = new JButton("Aktualizuj");
+		btnAktualizuj = new JButton("Medieval");
 		btnAktualizuj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				aktualizujTabele();
+				aktualizujTabele(1);
 			}
 		});
-		btnAktualizuj.setBounds(400, 559, 97, 25);
+		btnAktualizuj.setBounds(400, 559, 200, 25);
 		add(btnAktualizuj);
+		
+		btnComputers = new JButton("Computers");
+		btnComputers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				aktualizujTabele(2);
+			}
+		});
+		btnComputers.setBounds(615, 559, 200, 25);
+		add(btnComputers);
+		
+		btnWar = new JButton("War");
+		btnWar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				aktualizujTabele(3);
+			}
+		});
+		btnWar.setBounds(830, 557, 200, 25);
+		add(btnWar);
 	}
 	
 	/**
@@ -127,26 +147,12 @@ public class Widok extends Panel {
 		nazwyKolumnV.add("T³umaczenie");
 		nazwyKolumnV.add("Czêœæ mowy");
 		nazwyKolumnV.add("Czy nauczone");
-		
-		for(int i = 0; i < rekordy; i++) {
-			Vector<Object> kolumna = new Vector<Object>();
-			/*
-			for(int j = 0; j < nazwyKolumnV.size(); j++) {
-			}
-			*/
-			kolumna.add("coat of plates");
-			kolumna.add("zbroja typu p³aty");
-			kolumna.add("noun");
-			kolumna.add(false);
-			
-			daneV.add(kolumna);
-		}
 	}
 	
 	private void aktualizujDane() {
 		interfejsBD.otworzPolaczenie();
 		List<Slowo>slowa = new LinkedList<Slowo>();
-		slowa = interfejsBD.pobierzSlowaZGrupy(3);
+		slowa = interfejsBD.pobierzSlowaZGrupy(0);
 		
 		daneV.clear();
 		
@@ -162,7 +168,7 @@ public class Widok extends Panel {
 		}
 	}
 	
-	private void aktualizujTabele() {
+	private void aktualizujTabele(int id_grupa) {
 		//Model tabeli
 		DefaultTableModel tableModel = (DefaultTableModel) tableSlowa.getModel();
 		//usuniêcie danych
@@ -171,7 +177,7 @@ public class Widok extends Panel {
 	    //pobranie z BD
 	    interfejsBD.otworzPolaczenie();
 		List<Slowo>slowa = new LinkedList<Slowo>();
-		slowa = interfejsBD.pobierzSlowaWszystkie();
+		slowa = interfejsBD.pobierzSlowaZGrupy(id_grupa);
 		
 		//wyczyszczenie wektora
 		daneV.clear();
