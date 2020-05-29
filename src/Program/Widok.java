@@ -67,7 +67,7 @@ public class Widok extends Panel {
 		//Tabele
 		utworzTabele();
 		utworzVektory();
-		aktualizujDane();
+		//aktualizujDane();
 		//table
 		//tableSlowa = new JTable(dane, nazwyKolumn);
 		tableSlowa = new JTable(daneV, nazwyKolumnV);
@@ -90,10 +90,7 @@ public class Widok extends Panel {
 		btnAktualizuj = new JButton("Aktualizuj");
 		btnAktualizuj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//dodaj dane do tabeli
-				utworzVektory();
-				DefaultTableModel model = (DefaultTableModel)tableSlowa.getModel();
-				model.addRow(daneV);
+				aktualizujTabele();
 			}
 		});
 		btnAktualizuj.setBounds(400, 559, 97, 25);
@@ -144,7 +141,6 @@ public class Widok extends Panel {
 			
 			daneV.add(kolumna);
 		}
-		
 	}
 	
 	private void aktualizujDane() {
@@ -164,5 +160,37 @@ public class Widok extends Panel {
 			
 			daneV.add(kolumna);
 		}
+	}
+	
+	private void aktualizujTabele() {
+		//Model tabeli
+		DefaultTableModel tableModel = (DefaultTableModel) tableSlowa.getModel();
+		//usuniêcie danych
+	    tableModel.setRowCount(0);
+	    
+	    //pobranie z BD
+	    interfejsBD.otworzPolaczenie();
+		List<Slowo>slowa = new LinkedList<Slowo>();
+		slowa = interfejsBD.pobierzSlowaWszystkie();
+		
+		//wyczyszczenie wektora
+		daneV.clear();
+		
+		for(int i = 0; i < slowa.size(); i++) {
+			Vector<Object> kolumna = new Vector<Object>();
+			
+			kolumna.add(slowa.get(i).pobierzSlowo());
+			kolumna.add(slowa.get(i).pobierzTlumaczenie());
+			kolumna.add(slowa.get(i).pobierzCzescMowy());
+			kolumna.add(slowa.get(i).pobierzCzyZapamietane());
+			
+			tableModel.addRow(kolumna);
+		}
+	    
+		//zmiana danych w tabeli
+	    tableSlowa.setModel(tableModel);
+	    
+	    //ignorowanie takich samych danych
+	    tableModel.fireTableDataChanged();
 	}
 }
