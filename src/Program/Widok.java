@@ -15,10 +15,13 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * Panel z widokiem na grupy i s³owa.
@@ -85,6 +88,14 @@ public class Widok extends Panel {
 		scrollSlowa.setViewportView(tableSlowa);
 		
 		btnAktualizuj = new JButton("Aktualizuj");
+		btnAktualizuj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//dodaj dane do tabeli
+				utworzVektory();
+				DefaultTableModel model = (DefaultTableModel)tableSlowa.getModel();
+				model.addRow(daneV);
+			}
+		});
 		btnAktualizuj.setBounds(400, 559, 97, 25);
 		add(btnAktualizuj);
 	}
