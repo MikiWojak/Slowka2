@@ -81,12 +81,18 @@ public class Widok extends Panel {
 				// TODO Auto-generated method stub
 				Component component = super.prepareRenderer(renderer, row, column);
 				
-				setFont(new Font("Arial", Font.BOLD, 16));
+				if(daneV.get(row).get(3).equals(false)) {
+					setFont(new Font("Arial", Font.BOLD, 16));
+				} else {
+					setFont(new Font("Arial", Font.PLAIN, 16));
+				}
+				
+				
 				
 				return component;
 			}
 		};
-		tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
+		//tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
 		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 		tableSlowa.setRowHeight(25);
 
