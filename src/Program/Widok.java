@@ -87,15 +87,23 @@ public class Widok extends Panel {
 
 				//  Color row based on a cell value
 
-				if (!isRowSelected(row))
-				{
-					c.setBackground(getBackground());
+					//Czcionka
+					c.setFont(getFont());
 					int modelRow = convertRowIndexToModel(row);
 					boolean type = (boolean)getModel().getValueAt(modelRow, 3);
-					if (false == type) c.setBackground(Color.RED);
-					if (true == type) c.setBackground(Color.GREEN);
-				}
+					if (false == type) c.setFont(new Font("Arial", Font.BOLD, 16));
+					if (true == type) c.setFont(new Font("Arial", Font.PLAIN, 16));
 
+					//Kolor t³a
+					if (!isRowSelected(row))
+					{
+						c.setBackground(getBackground());
+						modelRow = convertRowIndexToModel(row);
+						type = (boolean)getModel().getValueAt(modelRow, 3);
+						if (false == type) c.setBackground(Color.LIGHT_GRAY);
+						if (true == type) c.setBackground(Color.GREEN);
+					}
+					
 				return c;
 			}
 		};
