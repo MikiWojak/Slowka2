@@ -11,17 +11,25 @@ import BazaDanych.Slowo;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
@@ -84,23 +92,28 @@ public class Widok extends Panel {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 				// TODO Auto-generated method stub
 				Component c = super.prepareRenderer(renderer, row, column);
+				JComponent jc = (JComponent)c;
+				
+				//Do granic
+				Border outside = new MatteBorder(2, 0, 2, 0, Color.RED);
+				Border inside = new EmptyBorder(0, 2, 0, 2);
+				Border highlight = new CompoundBorder(outside, inside);
 
 				//  Color row based on a cell value
 
-					//Czcionka
-					c.setFont(getFont());
-					boolean type = slowa.get(row).pobierzCzyZapamietane();
-					if (false == type) c.setFont(new Font("Arial", Font.PLAIN, 16));
-					if (true == type) c.setFont(new Font("Arial", Font.BOLD, 16));
+				//Czcionka
+				c.setFont(getFont());
+				boolean type = slowa.get(row).pobierzCzyZapamietane();
+				if (false == type) { c.setFont(new Font("Arial", Font.PLAIN, 16)); }
+				if (true == type) { c.setFont(new Font("Arial", Font.BOLD, 16)); }
 
-					//Kolor t³a
-					if (!isRowSelected(row))
-					{
-						c.setBackground(getBackground());
-						type = slowa.get(row).pobierzCzyZapamietane();
-						if (false == type) c.setBackground(Color.LIGHT_GRAY);
-						if (true == type) c.setBackground(Color.GREEN);
-					}
+				//Kolor t³a
+				c.setBackground(getBackground());
+				type = slowa.get(row).pobierzCzyZapamietane();
+				if (false == type) { c.setBackground(Color.LIGHT_GRAY); }
+				if (true == type) { c.setBackground(Color.GREEN); }
+					
+				if (isRowSelected(row)) { jc.setBorder(highlight); }
 					
 				return c;
 			}
