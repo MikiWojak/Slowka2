@@ -45,6 +45,10 @@ public class Widok extends Panel {
 	private JButton btnComputers;
 	private JButton btnWar;
 	
+	private int index = 0;
+	
+	List<Slowo>slowa = new LinkedList<Slowo>();
+	
 	/**
 	 * Utworzenie panelu z widokiem.
 	 * Konstruktor klasy Widok.
@@ -79,17 +83,20 @@ public class Widok extends Panel {
 			@Override
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 				// TODO Auto-generated method stub
-				Component component = super.prepareRenderer(renderer, row, column);
-				
-				if(daneV.get(row).get(3).equals(false)) {
-					setFont(new Font("Arial", Font.BOLD, 16));
-				} else {
-					setFont(new Font("Arial", Font.PLAIN, 16));
+				Component c = super.prepareRenderer(renderer, row, column);
+
+				//  Color row based on a cell value
+
+				if (!isRowSelected(row))
+				{
+					c.setBackground(getBackground());
+					int modelRow = convertRowIndexToModel(row);
+					boolean type = (boolean)getModel().getValueAt(modelRow, 3);
+					if (false == type) c.setBackground(Color.RED);
+					if (true == type) c.setBackground(Color.GREEN);
 				}
-				
-				
-				
-				return component;
+
+				return c;
 			}
 		};
 		//tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -170,7 +177,6 @@ public class Widok extends Panel {
 	
 	private void aktualizujDane() {
 		interfejsBD.otworzPolaczenie();
-		List<Slowo>slowa = new LinkedList<Slowo>();
 		slowa = interfejsBD.pobierzSlowaZGrupy(0);
 		
 		daneV.clear();
@@ -195,7 +201,6 @@ public class Widok extends Panel {
 	    
 	    //pobranie z BD
 	    interfejsBD.otworzPolaczenie();
-		List<Slowo>slowa = new LinkedList<Slowo>();
 		slowa = interfejsBD.pobierzSlowaZGrupy(id_grupa);
 		
 		//wyczyszczenie wektora
