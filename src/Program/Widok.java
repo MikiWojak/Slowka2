@@ -89,17 +89,15 @@ public class Widok extends Panel {
 
 					//Czcionka
 					c.setFont(getFont());
-					int modelRow = convertRowIndexToModel(row);
-					boolean type = (boolean)getModel().getValueAt(modelRow, 3);
-					if (false == type) c.setFont(new Font("Arial", Font.BOLD, 16));
-					if (true == type) c.setFont(new Font("Arial", Font.PLAIN, 16));
+					boolean type = slowa.get(row).pobierzCzyZapamietane();
+					if (false == type) c.setFont(new Font("Arial", Font.PLAIN, 16));
+					if (true == type) c.setFont(new Font("Arial", Font.BOLD, 16));
 
 					//Kolor t³a
 					if (!isRowSelected(row))
 					{
 						c.setBackground(getBackground());
-						modelRow = convertRowIndexToModel(row);
-						type = (boolean)getModel().getValueAt(modelRow, 3);
+						type = slowa.get(row).pobierzCzyZapamietane();
 						if (false == type) c.setBackground(Color.LIGHT_GRAY);
 						if (true == type) c.setBackground(Color.GREEN);
 					}
@@ -111,10 +109,9 @@ public class Widok extends Panel {
 		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 		tableSlowa.setRowHeight(25);
 
-		tableSlowa.getColumnModel().getColumn(0).setPreferredWidth(250);
-		tableSlowa.getColumnModel().getColumn(1).setPreferredWidth(250);
-		tableSlowa.getColumnModel().getColumn(2).setPreferredWidth(150);
-		tableSlowa.getColumnModel().getColumn(3).setPreferredWidth(150);
+		tableSlowa.getColumnModel().getColumn(0).setPreferredWidth(340);
+		tableSlowa.getColumnModel().getColumn(1).setPreferredWidth(340);
+		tableSlowa.getColumnModel().getColumn(2).setPreferredWidth(120);
 		
 		scrollSlowa = new JScrollPane();
 		scrollSlowa.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -180,7 +177,6 @@ public class Widok extends Panel {
 		nazwyKolumnV.add("S³owo");
 		nazwyKolumnV.add("T³umaczenie");
 		nazwyKolumnV.add("Czêœæ mowy");
-		nazwyKolumnV.add("Czy nauczone");
 	}
 	
 	private void aktualizujDane() {
@@ -195,7 +191,6 @@ public class Widok extends Panel {
 			kolumna.add(slowa.get(i).pobierzSlowo());
 			kolumna.add(slowa.get(i).pobierzTlumaczenie());
 			kolumna.add(slowa.get(i).pobierzCzescMowy());
-			kolumna.add(slowa.get(i).pobierzCzyZapamietane());
 			
 			daneV.add(kolumna);
 		}
