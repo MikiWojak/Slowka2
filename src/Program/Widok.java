@@ -1,6 +1,7 @@
 package Program;
 
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JPanel;
 
@@ -16,11 +17,13 @@ import java.util.Vector;
 
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 
 /**
@@ -72,7 +75,17 @@ public class Widok extends Panel {
 		//aktualizujDane();
 		//table
 		//tableSlowa = new JTable(dane, nazwyKolumn);
-		tableSlowa = new JTable(daneV, nazwyKolumnV);
+		tableSlowa = new JTable(daneV, nazwyKolumnV) {
+			@Override
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				// TODO Auto-generated method stub
+				Component component = super.prepareRenderer(renderer, row, column);
+				
+				setFont(new Font("Arial", Font.BOLD, 16));
+				
+				return component;
+			}
+		};
 		tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
 		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 		tableSlowa.setRowHeight(25);
