@@ -2,9 +2,12 @@ package Program;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
+import BazaDanych.Grupa;
 import BazaDanych.InterfejsBD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +37,11 @@ public abstract class Panel extends JPanel {
 	protected Logger log;
 	
 	/**
+	 * Lista grup na s³owa.
+	 */
+	protected List<Grupa>grupy;
+	
+	/**
 	 * Utworzenie panelu g³ównego.
 	 * Konstruktor klasy Panel.
 	 */
@@ -55,6 +63,8 @@ public abstract class Panel extends JPanel {
 		interfejsBD.zamknijPolaczenie();
 		//log
 		log = LoggerFactory.getLogger(Panel.class);
+		//lista grup
+		grupy = new LinkedList<Grupa>();
 	}
 
 }

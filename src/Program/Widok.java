@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import org.slf4j.LoggerFactory;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -44,8 +46,8 @@ public class Widok extends Panel {
 	 * Konstruktor klasy Widok.
 	 */
 	public Widok() {
-		inicjujKomponenty();
 		inicjujPola();
+		inicjujKomponenty();
 		
 		log.debug("Utworzono obiekt klasy Widok.");
 	}
@@ -68,7 +70,11 @@ public class Widok extends Panel {
 		add(scrollGrupy);
 		
 		listGrupy = new JList();
+		listGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
 		scrollGrupy.setViewportView(listGrupy);
+		//grupy do listy
+		pobierzGrupyBD();
+		listGrupy.setModel(utworzListeGrup());
 		
 		scrollSlowa = new JScrollPane();
 		scrollSlowa.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -86,5 +92,32 @@ public class Widok extends Panel {
 	private void inicjujPola() {
 		//log
 		log = LoggerFactory.getLogger(Widok.class);
+	}
+	
+	/**
+	 * Pobranie wszystkich grup z bazy danych. Grupy nie s¹ sortowane.
+	 */
+	private void pobierzGrupyBD() {
+		interfejsBD.otworzPolaczenie();
+		grupy = interfejsBD.pobierzGrupyWszystkie();
+		interfejsBD.zamknijPolaczenie();
+	}
+	
+	/**
+	 * Utworzenie lub aktualizacja listy grup ze s³owami.
+	 * Nale¿y u¿yæ po funkcji: pobierzGrupyBD.
+	 * @return grupy do umieszczenia w liœcie grup
+	 */
+	private DefaultListModel<Object>utworzListeGrup() {
+		DefaultListModel<Object>lista_grup = new DefaultListModel<Object>();
+		try {
+			for(int i = 0; i < grupy.size(); i++) {
+				lista_grup.addElement(grupy.get(i).pobierzNazwaGrupy());
+			}
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return lista_grup;
 	}
 }
