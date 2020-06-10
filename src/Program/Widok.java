@@ -14,6 +14,8 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  * Panel z widokiem na grupy i s³owa.
@@ -70,6 +72,11 @@ public class Widok extends Panel {
 		add(scrollGrupy);
 		
 		listGrupy = new JList();
+		listGrupy.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				zmienGrupe();
+			}
+		});
 		listGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
 		scrollGrupy.setViewportView(listGrupy);
 		//grupy do listy
@@ -119,5 +126,14 @@ public class Widok extends Panel {
 			return null;
 		}
 		return lista_grup;
+	}
+	
+	/**
+	 * Zmiana aktualnie wyœwietlanej grupy. Do zastosowania z listenerem listy grup.
+	 */
+	private void zmienGrupe() {
+		int indexLista = listGrupy.getSelectedIndex();
+		//nag³ówek listy s³ów
+		lblGrupa.setText(grupy.get(indexLista).pobierzNazwaGrupy());
 	}
 }
