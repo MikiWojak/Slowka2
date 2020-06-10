@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.event.ListSelectionEvent;
 
 /**
@@ -85,7 +86,8 @@ public class Widok extends Panel {
 		});
 		listGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
 		scrollGrupy.setViewportView(listGrupy);
-		pobierzGrupyBD();																			//grupy do listy
+		//grupy do listy
+		pobierzGrupyBD();
 		listGrupy.setModel(utworzListeGrup());
 		
 		scrollSlowa = new JScrollPane();
@@ -94,7 +96,8 @@ public class Widok extends Panel {
 		scrollSlowa.setBounds(400, 50, 800, 500);
 		add(scrollSlowa);
 		
-		utworzNazwyKolumnTabebaSlow();																//nazwy kolumn
+		//nazwy kolumn
+		utworzNazwyKolumnTabebaSlow();																
 		tableSlowa = new JTable(daneTabelaSlow, nazwyKolumnTabelaSlow);
 		scrollSlowa.setViewportView(tableSlowa);
 	}
@@ -144,6 +147,8 @@ public class Widok extends Panel {
 		int indexLista = listGrupy.getSelectedIndex();
 		//nag³ówek listy s³ów
 		lblGrupa.setText(grupy.get(indexLista).pobierzNazwaGrupy());
+		//tabela
+		aktualizujTabele(grupy.get(indexLista).pobierzIdGrupa());
 	}
 	
 	/**
@@ -153,5 +158,34 @@ public class Widok extends Panel {
 		nazwyKolumnTabelaSlow.add("S³owo");
 		nazwyKolumnTabelaSlow.add("T³umaczenie");
 		nazwyKolumnTabelaSlow.add("Czêœæ mowy");
+	}
+	
+	/**
+	 * Utworzenie listy s³ów do tabeli.
+	 * @param id_grupa ID wybranej grupy.
+	 */
+	private void aktualizujTabele(int id_grupa) {
+		DefaultTableModel daneDoTabeli = (DefaultTableModel) tableSlowa.getModel();
+		//usuniêcie danych
+		daneDoTabeli.setRowCount(0);
+		//pobranie s³ów z BD
+		interfejsBD.otworzPolaczenie();
+		slowa = interfejsBD.pobierzSlowaZGrupy(id_grupa);
+		interfejsBD.zamknijPolaczenie();
+		//wyczyszczenie wektora
+		daneTabelaSlow.clear();
+		//dane do wektora
+		for(int i = 0; i < slowa.size(); i++) {
+			Vector<Object> kolumna = new Vector<Object>();	
+			kolumna.add(slowa.get(i).pobierzSlowo());
+			kolumna.add(slowa.get(i).pobierzTlumaczenie());
+			kolumna.add(slowa.get(i).pobierzCzescMowy());
+			kolumna.add(slowa.get(i).pobierzCzyZapamietane());
+			daneDoTabeli.addRow(kolumna);
+		}
+		//zmiana danych w tabeli
+		tableSlowa.setModel(daneDoTabeli);
+		//ignorowanie takich samych danych
+		daneDoTabeli.fireTableDataChanged();
 	}
 }

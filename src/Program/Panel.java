@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 
 import BazaDanych.Grupa;
 import BazaDanych.InterfejsBD;
+import BazaDanych.Slowo;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +44,11 @@ public abstract class Panel extends JPanel {
 	protected List<Grupa>grupy;
 	
 	/**
+	 * Lista s³ów. 
+	 */
+	protected List<Slowo>slowa;
+	
+	/**
 	 * Utworzenie panelu g³ównego.
 	 * Konstruktor klasy Panel.
 	 */
@@ -63,8 +70,9 @@ public abstract class Panel extends JPanel {
 		interfejsBD.zamknijPolaczenie();
 		//log
 		log = LoggerFactory.getLogger(Panel.class);
-		//lista grup
+		//listy
 		grupy = new LinkedList<Grupa>();
+		slowa = new LinkedList<Slowo>();
 	}
 
 }
