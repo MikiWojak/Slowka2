@@ -1,23 +1,30 @@
 package Program;
 
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JPanel;
 
 import org.slf4j.LoggerFactory;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.Vector;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.event.ListSelectionEvent;
 
 /**
@@ -98,7 +105,38 @@ public class Widok extends Panel {
 		
 		//nazwy kolumn
 		utworzNazwyKolumnTabebaSlow();																
-		tableSlowa = new JTable(daneTabelaSlow, nazwyKolumnTabelaSlow);
+		tableSlowa = new JTable(daneTabelaSlow, nazwyKolumnTabelaSlow) {
+			@Override
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				// TODO Auto-generated method stub
+				Component component = super.prepareRenderer(renderer, row, column);
+				JComponent jcomponent = (JComponent)component;
+				//Do granic
+				Border outside = new MatteBorder(2, 0, 2, 0, Color.RED);
+				Border inside = new EmptyBorder(0, 2, 0, 2);
+				Border highlight = new CompoundBorder(outside, inside);
+				//Czcionka
+				component.setFont(getFont());
+				boolean type = slowa.get(row).pobierzCzyZapamietane();
+				if (false == type) { component.setFont(new Font("Arial", Font.PLAIN, 16)); }
+				if (true == type) { component.setFont(new Font("Arial", Font.BOLD, 16)); }
+				//Kolor t³a
+				component.setBackground(getBackground());
+				type = slowa.get(row).pobierzCzyZapamietane();
+				if (false == type) { component.setBackground(Color.LIGHT_GRAY); }
+				if (true == type) { component.setBackground(Color.GREEN); }
+				//Wybrany rekord
+				if (isRowSelected(row)) { jcomponent.setBorder(highlight); }
+					
+				return component;
+			}
+		};
+		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
+		tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
+		tableSlowa.setRowHeight(25);
+		tableSlowa.getColumnModel().getColumn(0).setPreferredWidth(340);
+		tableSlowa.getColumnModel().getColumn(1).setPreferredWidth(340);
+		tableSlowa.getColumnModel().getColumn(2).setPreferredWidth(120);
 		scrollSlowa.setViewportView(tableSlowa);
 	}
 	
