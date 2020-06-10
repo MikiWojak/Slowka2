@@ -149,6 +149,7 @@ public class Widok extends Panel {
 		lblGrupa.setText(grupy.get(indexLista).pobierzNazwaGrupy());
 		//tabela
 		aktualizujTabele(grupy.get(indexLista).pobierzIdGrupa());
+		log.debug("Wyœwietlono grupê o ID: " + grupy.get(indexLista).pobierzIdGrupa());
 	}
 	
 	/**
