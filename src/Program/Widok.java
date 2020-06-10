@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.Vector;
+
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JTable;
@@ -42,7 +44,11 @@ public class Widok extends Panel {
 	 * Lista grup ze s³owami.
 	 */
 	private JList listGrupy;
-	
+	/**
+	 * Wektor z nazwami kolumn do tabeli s³ów.
+	 */
+	private Vector<String>nazwyKolumnTabelaSlow;
+	private Vector<Vector<Object>>daneTabelaSlow;
 	/**
 	 * Utworzenie panelu z widokiem.
 	 * Konstruktor klasy Widok.
@@ -79,8 +85,7 @@ public class Widok extends Panel {
 		});
 		listGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
 		scrollGrupy.setViewportView(listGrupy);
-		//grupy do listy
-		pobierzGrupyBD();
+		pobierzGrupyBD();																			//grupy do listy
 		listGrupy.setModel(utworzListeGrup());
 		
 		scrollSlowa = new JScrollPane();
@@ -89,7 +94,8 @@ public class Widok extends Panel {
 		scrollSlowa.setBounds(400, 50, 800, 500);
 		add(scrollSlowa);
 		
-		tableSlowa = new JTable();
+		utworzNazwyKolumnTabebaSlow();																//nazwy kolumn
+		tableSlowa = new JTable(daneTabelaSlow, nazwyKolumnTabelaSlow);
 		scrollSlowa.setViewportView(tableSlowa);
 	}
 	
@@ -99,6 +105,9 @@ public class Widok extends Panel {
 	private void inicjujPola() {
 		//log
 		log = LoggerFactory.getLogger(Widok.class);
+		//wektory
+		nazwyKolumnTabelaSlow = new Vector<String>();
+		daneTabelaSlow = new Vector<Vector<Object>>();
 	}
 	
 	/**
@@ -135,5 +144,14 @@ public class Widok extends Panel {
 		int indexLista = listGrupy.getSelectedIndex();
 		//nag³ówek listy s³ów
 		lblGrupa.setText(grupy.get(indexLista).pobierzNazwaGrupy());
+	}
+	
+	/**
+	 * Dodanie nazw kolumn do wektora. Utworzenie kolumn w tabeli.
+	 */
+	private void utworzNazwyKolumnTabebaSlow() {
+		nazwyKolumnTabelaSlow.add("S³owo");
+		nazwyKolumnTabelaSlow.add("T³umaczenie");
+		nazwyKolumnTabelaSlow.add("Czêœæ mowy");
 	}
 }
