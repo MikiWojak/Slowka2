@@ -134,12 +134,21 @@ public class Widok extends Panel {
 				return component;
 			}
 		};
+		tableSlowa.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				int index = tableSlowa.getSelectedRow();
+				System.out.println(index);
+			}
+		});
 		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 		tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
 		tableSlowa.setRowHeight(25);
 		tableSlowa.getColumnModel().getColumn(0).setPreferredWidth(340);
 		tableSlowa.getColumnModel().getColumn(1).setPreferredWidth(340);
 		tableSlowa.getColumnModel().getColumn(2).setPreferredWidth(120);
+		tableSlowa.setDefaultEditor(Object.class, null);
 		scrollSlowa.setViewportView(tableSlowa);
 	}
 	
