@@ -138,8 +138,21 @@ public class Widok extends Panel {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO Auto-generated method stub
+				/*
 				int index = tableSlowa.getSelectedRow();
 				System.out.println(index);
+				*/
+				
+				/*
+				int index[] = tableSlowa.getSelectedRows();
+				int size = tableSlowa.getSelectedRowCount();
+				
+				System.out.println(size);
+				for(int i = 0; i < size; i++) {
+					System.out.print(index[i] + "\t");
+				}
+				System.out.println();
+				*/
 			}
 		});
 		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
