@@ -26,6 +26,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * Panel z widokiem na grupy i s³owa.
@@ -60,6 +63,14 @@ public class Widok extends Panel {
 	 * Wektor z danymi do tabeli.
 	 */
 	private Vector<Vector<Object>>daneTabelaSlow;
+	/**
+	 * Przycisk do dodawania grupy.
+	 */
+	private JButton btnDodajGrupe;
+	/**
+	 * Przycisk do dodawania s³owa.
+	 */
+	private JButton btnDodajSlowo;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -163,6 +174,26 @@ public class Widok extends Panel {
 		tableSlowa.getColumnModel().getColumn(2).setPreferredWidth(120);
 		tableSlowa.setDefaultEditor(Object.class, null);
 		scrollSlowa.setViewportView(tableSlowa);
+		
+		btnDodajGrupe = new JButton("Dodaj grupe");
+		btnDodajGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnDodajGrupe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Dodaj grupê");
+			}
+		});
+		btnDodajGrupe.setBounds(0, 555, 150, 30);
+		add(btnDodajGrupe);
+		
+		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
+		btnDodajSlowo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Dodaj s³owo");
+			}
+		});
+		btnDodajSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnDodajSlowo.setBounds(400, 555, 150, 30);
+		add(btnDodajSlowo);
 	}
 	
 	/**
