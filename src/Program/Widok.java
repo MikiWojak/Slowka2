@@ -56,7 +56,11 @@ public class Widok extends Panel {
 	 * Wektor z nazwami kolumn do tabeli s³ów.
 	 */
 	private Vector<String>nazwyKolumnTabelaSlow;
+	/**
+	 * Wektor z danymi do tabeli.
+	 */
 	private Vector<Vector<Object>>daneTabelaSlow;
+	
 	/**
 	 * Utworzenie panelu z widokiem.
 	 * Konstruktor klasy Widok.
@@ -108,7 +112,6 @@ public class Widok extends Panel {
 		tableSlowa = new JTable(daneTabelaSlow, nazwyKolumnTabelaSlow) {
 			@Override
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-				// TODO Auto-generated method stub
 				Component component = super.prepareRenderer(renderer, row, column);
 				JComponent jcomponent = (JComponent)component;
 				//Do granic
