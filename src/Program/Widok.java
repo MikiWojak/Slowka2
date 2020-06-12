@@ -7,8 +7,11 @@ import javax.swing.JPanel;
 
 import org.slf4j.LoggerFactory;
 
+import Edycja.Edycja;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.Vector;
@@ -179,6 +182,7 @@ public class Widok extends Panel {
 		btnDodajGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDodajGrupe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JDialog edycja = new Edycja();
 				System.out.println("Dodaj grupê");
 			}
 		});
@@ -188,6 +192,7 @@ public class Widok extends Panel {
 		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
 		btnDodajSlowo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JDialog edycja = new Edycja();
 				System.out.println("Dodaj s³owo");
 			}
 		});
