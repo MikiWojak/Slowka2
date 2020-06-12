@@ -18,6 +18,13 @@ public class Edycja extends JDialog {
 	
 	/**
 	 * Utworzenie okienka.
+	 * @param tryb nr trybu:
+	 * <ul>
+	 * <li>0 - Dodaj grupe</li>
+	 * <li>1 - Modyfikuj grupe</li>
+	 * <li>2 - Dodaj slowo</li>
+	 * <li>3 - Modyfikuj slowo</li>
+	 * </ul>
 	 */
 	public Edycja(int tryb) {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -28,7 +35,7 @@ public class Edycja extends JDialog {
 			panel = new Grupa();
 			setTitle("Dodaj grupe");
 			break;
-		case 1:
+		case 2:
 			panel = new Slowo();
 			setTitle("Dodaj s³owo");
 			break;
