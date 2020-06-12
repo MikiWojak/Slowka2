@@ -10,14 +10,32 @@ import javax.swing.JDialog;
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
 public class Edycja extends JDialog {
-
+	
+	/**
+	 * Panel do edycji grupy lub s³owa.
+	 */
+	private Panel panel;
+	
 	/**
 	 * Utworzenie okienka.
 	 */
-	public Edycja() {
-		setBounds(100, 100, 450, 300);
+	public Edycja(int tryb) {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
+		
+		switch(tryb) {
+		case 0:
+			panel = new Grupa();
+			setTitle("Dodaj grupe");
+			break;
+		case 1:
+			panel = new Slowo();
+			setTitle("Dodaj s³owo");
+			break;
+		}
+		
+		add(panel);
+		pack();
 		
 		inicjujKoniec();
 	}

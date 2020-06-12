@@ -182,7 +182,7 @@ public class Widok extends Panel {
 		btnDodajGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDodajGrupe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JDialog edycja = new Edycja();
+				JDialog edycja = new Edycja(0);
 				System.out.println("Dodaj grupê");
 			}
 		});
@@ -192,7 +192,7 @@ public class Widok extends Panel {
 		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
 		btnDodajSlowo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JDialog edycja = new Edycja();
+				JDialog edycja = new Edycja(1);
 				System.out.println("Dodaj s³owo");
 			}
 		});
