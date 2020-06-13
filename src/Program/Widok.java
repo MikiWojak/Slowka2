@@ -192,7 +192,7 @@ public class Widok extends Panel {
 		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
 		btnDodajSlowo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JDialog edycja = new Edycja(1);
+				JDialog edycja = new Edycja(2);
 				System.out.println("Dodaj s³owo");
 			}
 		});
