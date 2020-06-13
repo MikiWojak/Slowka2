@@ -33,7 +33,11 @@ public class Edycja extends JDialog {
 		switch(tryb) {
 		case 0:
 			panel = new Grupa();
-			setTitle("Dodaj grupe");
+			setTitle("Dodaj grupê");
+			break;
+		case 1:
+			panel = new Grupa(1);
+			setTitle("Modyfikuj grupê");
 			break;
 		case 2:
 			panel = new Slowo();

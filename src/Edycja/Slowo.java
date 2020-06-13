@@ -31,7 +31,7 @@ public class Slowo extends Panel {
 	 */
 	private void inicjujKomponenty() {
 		lblOpis = new JLabel("Dodaj s\u0142owo");
-		lblOpis.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblOpis.setFont(new Font("Arial", Font.BOLD, 16));
 		lblOpis.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOpis.setBounds(0, 0, 800, 25);
 		add(lblOpis);
