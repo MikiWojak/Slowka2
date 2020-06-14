@@ -17,13 +17,11 @@ public class Edycja extends JDialog {
 	private Panel panel;
 	
 	/**
-	 * Utworzenie okienka.
+	 * Utworzenie okienka do dodawania s³owa lub grupy.
 	 * @param tryb nr trybu:
 	 * <ul>
-	 * <li>0 - Dodaj grupe</li>
-	 * <li>1 - Modyfikuj grupe</li>
-	 * <li>2 - Dodaj slowo</li>
-	 * <li>3 - Modyfikuj slowo</li>
+	 * <li>0 - Dodaj grupê</li>
+	 * <li>1 - Dodaj slowo</li>
 	 * </ul>
 	 */
 	public Edycja(int tryb) {
@@ -33,26 +31,29 @@ public class Edycja extends JDialog {
 		switch(tryb) {
 		case 0:
 			panel = new Grupa();
-			setTitle("Dodaj grupê");
+			inicjujKomponenty("Dodaj grupê");
 			break;
 		case 1:
-			panel = new Grupa(1);
-			setTitle("Modyfikuj grupê");
-			break;
-		case 2:
 			panel = new Slowo();
-			setTitle("Dodaj s³owo");
+			inicjujKomponenty("Dodaj s³owo");
 			break;
-		case 3:
-			panel = new Slowo(12);
-			setTitle("Modyfikuj s³owo");
+		default:
 			break;
 		}
 		
+		inicjujKoniec();
+	}
+	
+	/**
+	 * Inicjuje komponenty okienka do dodawania lub modyfikacji rekordów.
+	 * Nadaje tytu³ dla okienka.
+	 * Dodaje panel do okienka.
+	 * @param tytul tytu³ dla okienka
+	 */
+	private void inicjujKomponenty(String tytul) {
+		setTitle(tytul);
 		add(panel);
 		pack();
-		
-		inicjujKoniec();
 	}
 	
 	/**
