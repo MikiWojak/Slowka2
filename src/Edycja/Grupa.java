@@ -46,7 +46,6 @@ public class Grupa extends Panel{
 	 */
 	private void inicjujKomponenty() {
 		setPreferredSize(new Dimension(800, 400));
-		setLayout(null);
 		
 		lblOpis = new JLabel("Dodaj grup\u0119");
 		lblOpis.setHorizontalAlignment(SwingConstants.CENTER);

@@ -43,7 +43,6 @@ public class Slowo extends Panel {
 	 */
 	private void inicjujKomponenty() {
 		setPreferredSize(new Dimension(800, 600));
-		setLayout(null);
 		
 		lblOpis = new JLabel("Dodaj s\u0142owo");
 		lblOpis.setFont(new Font("Arial", Font.BOLD, 16));

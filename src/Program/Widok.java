@@ -74,6 +74,14 @@ public class Widok extends Panel {
 	 * Przycisk do dodawania s³owa.
 	 */
 	private JButton btnDodajSlowo;
+	/**
+	 * Przycisk do modyfikacji grupy.
+	 */
+	private JButton btnModyfikujGrupe;
+	/**
+	 * Przycisk do modyfikacji s³owa.
+	 */
+	private JButton btnModyfikujSlowo;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -100,7 +108,7 @@ public class Widok extends Panel {
 		scrollGrupy = new JScrollPane();
 		scrollGrupy.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollGrupy.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollGrupy.setBounds(0, 0, 350, 550);
+		scrollGrupy.setBounds(0, 0, 350, 500);
 		add(scrollGrupy);
 		
 		listGrupy = new JList();
@@ -118,7 +126,7 @@ public class Widok extends Panel {
 		scrollSlowa = new JScrollPane();
 		scrollSlowa.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollSlowa.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollSlowa.setBounds(400, 50, 800, 500);
+		scrollSlowa.setBounds(400, 50, 800, 450);
 		add(scrollSlowa);
 		
 		//nazwy kolumn
@@ -178,27 +186,45 @@ public class Widok extends Panel {
 		tableSlowa.setDefaultEditor(Object.class, null);
 		scrollSlowa.setViewportView(tableSlowa);
 		
-		btnDodajGrupe = new JButton("Dodaj grupe");
+		btnDodajGrupe = new JButton("Dodaj grup\u0119");
 		btnDodajGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDodajGrupe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog edycja = new Edycja(0);
-				//System.out.println("Dodaj grupê");
 			}
 		});
-		btnDodajGrupe.setBounds(0, 555, 150, 30);
+		btnDodajGrupe.setBounds(0, 516, 150, 30);
 		add(btnDodajGrupe);
 		
 		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
 		btnDodajSlowo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog edycja = new Edycja(2);
-				//System.out.println("Dodaj s³owo");
 			}
 		});
 		btnDodajSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnDodajSlowo.setBounds(400, 555, 150, 30);
+		btnDodajSlowo.setBounds(400, 516, 150, 30);
 		add(btnDodajSlowo);
+		
+		btnModyfikujGrupe = new JButton("Modyfikuj grup\u0119");
+		btnModyfikujGrupe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JDialog edycja = new Edycja(1);
+			}
+		});
+		btnModyfikujGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnModyfikujGrupe.setBounds(0, 554, 150, 30);
+		add(btnModyfikujGrupe);
+		
+		btnModyfikujSlowo = new JButton("Modyfikuj s\u0142owo");
+		btnModyfikujSlowo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JDialog edycja = new Edycja(3);
+			}
+		});
+		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnModyfikujSlowo.setBounds(400, 555, 150, 30);
+		add(btnModyfikujSlowo);
 	}
 	
 	/**

@@ -27,6 +27,7 @@ public abstract class Panel extends JPanel {
 	 */
 	public Panel() {
 		setPreferredSize(new Dimension(PANEL_SZEROKOSC, PANEL_WYSOKOSC));
+		setLayout(null);
 	}
 
 }
