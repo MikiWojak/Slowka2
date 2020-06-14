@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Edycja;
 
 import java.awt.Color;
@@ -8,6 +5,9 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * Panel do edycji grup.
@@ -16,6 +16,14 @@ import javax.swing.SwingConstants;
 public class Grupa extends Panel{
 	
 	/**
+	 * Nr trybu:
+	 * <ul>
+	 * <li>0 - dodaj grupê</li>
+	 * <li>0 - modyfikuj grupê</li>
+	 * </ul>
+	 */
+	private int tryb;
+	/**
 	 * ID grupy do modyfikacji. 
 	 */
 	private int id_grupa;
@@ -23,11 +31,16 @@ public class Grupa extends Panel{
 	 * Napis informuj¹cy czy nowa grupa, czy edycja istniej¹cej.
 	 */
 	private JLabel lblOpis;
+	/**
+	 * Przycisk potwierdzaj¹cy dodanie lub modyfikacjê grupy.
+	 */
+	private JButton btnPotwierdzAkcje;
 	
 	/**
 	 * Konstruktor klasy Grupa - nowa grupa.
 	 */
 	public Grupa() {
+		tryb = 0;
 		inicjujKomponenty();
 	}
 	
@@ -36,6 +49,7 @@ public class Grupa extends Panel{
 	 * @param id_grupa ID grupy do modyfikacji
 	 */
 	public Grupa(int id_grupa) {
+		tryb = 1;
 		this.id_grupa = id_grupa;
 		inicjujKomponenty();
 		modyfikujKomponenty();
@@ -52,6 +66,25 @@ public class Grupa extends Panel{
 		lblOpis.setFont(new Font("Arial", Font.BOLD, 16));
 		lblOpis.setBounds(0, 0, 800, 25);
 		add(lblOpis);
+		
+		btnPotwierdzAkcje = new JButton("Dodaj grup\u0119");
+		btnPotwierdzAkcje.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnPotwierdzAkcje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switch(tryb) {
+				case 0:
+					System.out.println("Dodano grupê");
+					break;
+				case 1:
+					System.out.println("Zmodyfikowano grupê");
+					break;
+				default:
+					break;
+				}
+			}
+		});
+		btnPotwierdzAkcje.setBounds(0, 370, 150, 30);
+		add(btnPotwierdzAkcje);
 	}
 	
 	/**
@@ -59,5 +92,6 @@ public class Grupa extends Panel{
 	 */
 	private void modyfikujKomponenty() {
 		lblOpis.setText("Modyfikuj grupê o ID: " + id_grupa);
+		btnPotwierdzAkcje.setText("Modyfikuj grupê");
 	}
 }
