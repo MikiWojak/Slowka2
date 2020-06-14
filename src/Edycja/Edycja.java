@@ -43,6 +43,10 @@ public class Edycja extends JDialog {
 			panel = new Slowo();
 			setTitle("Dodaj s³owo");
 			break;
+		case 3:
+			panel = new Slowo(12);
+			setTitle("Modyfikuj s³owo");
+			break;
 		}
 		
 		add(panel);

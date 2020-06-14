@@ -52,8 +52,10 @@ public class Slowo extends Panel {
 		add(lblOpis);
 	}
 	
+	/**
+	 * Modyfikuje komponenty na potrzeby edycji s³owa.
+	 */
 	private void modyfikujKomponenty() {
-		// TODO Auto-generated method stub
-		
+		lblOpis.setText("Modfikuj s³owo o ID: " + id_slowo);
 	}
 }
