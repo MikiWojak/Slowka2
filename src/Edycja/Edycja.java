@@ -17,53 +17,46 @@ public class Edycja extends JDialog {
 	private Panel panel;
 	
 	/**
-	 * Utworzenie okienka do dodawania s³owa lub grupy.
+	 * Utworzenie okienka do dodawania grupy.
+	 */
+	public Edycja() {
+		panel = new Grupa();
+		inicjujKomponenty("Dodaj grupê");
+		inicjujKoniec();
+	}
+	
+	/**
+	 * Utworzenie okienka do modyfikacji grupy lub dodania s³owa.
 	 * @param tryb nr trybu:
 	 * <ul>
-	 * <li>0 - Dodaj grupê</li>
-	 * <li>1 - Dodaj slowo</li>
+	 * <li>0 - Modyfikuj grupê</li>
+	 * <li>1 - Dodaj s³owo</li>
 	 * </ul>
+	 * @param id_grupa ID grupy niezale¿nie od trybu
 	 */
-	public Edycja(int tryb) {
+	public Edycja(int tryb, int id_grupa) {
 		switch(tryb) {
 		case 0:
-			panel = new Grupa();
-			inicjujKomponenty("Dodaj grupê");
+			panel = new Grupa(id_grupa);
+			inicjujKomponenty("Modyfikuj grupê");
 			break;
 		case 1:
-			panel = new Slowo();
+			panel = new Slowo(id_grupa);
 			inicjujKomponenty("Dodaj s³owo");
 			break;
 		default:
 			break;
 		}
-		
 		inicjujKoniec();
 	}
 	
 	/**
-	 * Utworzenie okienka do modyfikacji s³owa lub grupy.
-	 * @param tryb nr trybu:
-	 * <ul>
-	 * <li>0 - Modyfikuj grupê</li>
-	 * <li>1 - Modyfikuj slowo</li>
-	 * </ul>
-	 * @param id ID grupy lub s³owa w zale¿noœci od trybu
+	 * Utworzenie okienka do modyfikacji s³owa.
+	 * @param id_slowo ID s³owa do modyfikacji
 	 */
-	public Edycja(int tryb, int id) {
-		switch(tryb) {
-		case 0:
-			panel = new Grupa(id);
-			inicjujKomponenty("Modyfikuj grupê");
-			break;
-		case 1:
-			panel = new Slowo(id);
-			inicjujKomponenty("Modyfikuj s³owo");
-			break;
-		default:
-			break;
-		}
-		
+	public Edycja(int id_slowo) {
+		panel = new Slowo(id_slowo, false);
+		inicjujKomponenty("Modyfikuj s³owo");
 		inicjujKoniec();
 	}
 	

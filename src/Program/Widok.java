@@ -190,7 +190,8 @@ public class Widok extends Panel {
 		btnDodajGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDodajGrupe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JDialog edycja = new Edycja(0);
+				//Nowa grupa
+				JDialog edycja = new Edycja();
 			}
 		});
 		btnDodajGrupe.setBounds(0, 516, 150, 30);
@@ -199,7 +200,8 @@ public class Widok extends Panel {
 		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
 		btnDodajSlowo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JDialog edycja = new Edycja(1);
+				//S³owo do grupy nr 3
+				JDialog edycja = new Edycja(1, 3);
 			}
 		});
 		btnDodajSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -209,6 +211,7 @@ public class Widok extends Panel {
 		btnModyfikujGrupe = new JButton("Modyfikuj grup\u0119");
 		btnModyfikujGrupe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Grupa nr 1
 				JDialog edycja = new Edycja(0, 1);
 			}
 		});
@@ -219,7 +222,8 @@ public class Widok extends Panel {
 		btnModyfikujSlowo = new JButton("Modyfikuj s\u0142owo");
 		btnModyfikujSlowo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JDialog edycja = new Edycja(1, 11);
+				//S³owo nr 13
+				JDialog edycja = new Edycja(13);			
 			}
 		});
 		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));

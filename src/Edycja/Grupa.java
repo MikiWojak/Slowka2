@@ -16,14 +16,6 @@ import java.awt.event.ActionEvent;
 public class Grupa extends Panel{
 	
 	/**
-	 * Nr trybu:
-	 * <ul>
-	 * <li>0 - dodaj grupê</li>
-	 * <li>0 - modyfikuj grupê</li>
-	 * </ul>
-	 */
-	private int tryb;
-	/**
 	 * ID grupy do modyfikacji. 
 	 */
 	private int id_grupa;
@@ -40,7 +32,6 @@ public class Grupa extends Panel{
 	 * Konstruktor klasy Grupa - nowa grupa.
 	 */
 	public Grupa() {
-		tryb = 0;
 		inicjujKomponenty();
 		btnPotwierdzAkcje.addActionListener(new DodajGrupe());
 	}
@@ -50,7 +41,6 @@ public class Grupa extends Panel{
 	 * @param id_grupa ID grupy do modyfikacji
 	 */
 	public Grupa(int id_grupa) {
-		tryb = 1;
 		this.id_grupa = id_grupa;
 		inicjujKomponenty();
 		modyfikujKomponenty();
@@ -98,7 +88,7 @@ public class Grupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println(tryb + "\tDodano grupê");			
+			System.out.println("Dodano grupê");			
 		}
 	}
 	
@@ -117,7 +107,7 @@ public class Grupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println(tryb + "\tZmodyfikowano grupê o ID\t" + id_grupa);
+			System.out.println("Zmodyfikowano grupê o ID\t" + id_grupa);
 		}
 	}
 }
