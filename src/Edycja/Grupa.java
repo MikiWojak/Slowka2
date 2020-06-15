@@ -42,6 +42,7 @@ public class Grupa extends Panel{
 	public Grupa() {
 		tryb = 0;
 		inicjujKomponenty();
+		btnPotwierdzAkcje.addActionListener(new DodajGrupe());
 	}
 	
 	/**
@@ -69,20 +70,6 @@ public class Grupa extends Panel{
 		
 		btnPotwierdzAkcje = new JButton("Dodaj grup\u0119");
 		btnPotwierdzAkcje.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnPotwierdzAkcje.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				switch(tryb) {
-				case 0:
-					System.out.println("Dodano grupê");
-					break;
-				case 1:
-					System.out.println("Zmodyfikowano grupê");
-					break;
-				default:
-					break;
-				}
-			}
-		});
 		btnPotwierdzAkcje.setBounds(0, 370, 150, 30);
 		add(btnPotwierdzAkcje);
 	}
@@ -93,5 +80,44 @@ public class Grupa extends Panel{
 	private void modyfikujKomponenty() {
 		lblOpis.setText("Modyfikuj grupê o ID: " + id_grupa);
 		btnPotwierdzAkcje.setText("Modyfikuj grupê");
+		btnPotwierdzAkcje.addActionListener(new ModyfikujGrupe());
+	}
+	
+	/**
+	 * Klasa wewnêtrzna dodania grupy.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class DodajGrupe implements ActionListener {
+		/**
+		 * Konstruktor klasy DodajGrupe.
+		 */
+		public DodajGrupe() {}
+		
+		/**
+		 * Akcja dodania grupy.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println(tryb + "\tDodano grupê");			
+		}
+	}
+	
+	/**
+	 * Klasa wewnêtrzna modyfikacji grupy.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class ModyfikujGrupe implements ActionListener {
+		/**
+		 * Konstruktor klasy ModyfikujGrupe 
+		 */
+		public ModyfikujGrupe() {}
+		
+		/**
+		 * Akcja modyfikacji grupy.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println(tryb + "\tZmodyfikowano grupê o ID\t" + id_grupa);
+		}
 	}
 }
