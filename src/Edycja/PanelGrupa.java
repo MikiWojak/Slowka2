@@ -11,6 +11,10 @@ import org.slf4j.LoggerFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * Panel do edycji grup.
@@ -30,6 +34,7 @@ public class PanelGrupa extends Panel{
 	 * Przycisk potwierdzaj¹cy dodanie lub modyfikacjê grupy.
 	 */
 	private JButton btnPotwierdzAkcje;
+	private JTextField textField;
 	
 	/**
 	 * Konstruktor klasy Grupa - nowa grupa.
@@ -55,18 +60,45 @@ public class PanelGrupa extends Panel{
 	 * Inicjuje komponenty na potrzeby nowej grupy.
 	 */
 	private void inicjujKomponenty() {
-		setPreferredSize(new Dimension(800, 400));
+		setPreferredSize(new Dimension(800, 305));
 		
 		lblOpis = new JLabel("Dodaj grup\u0119");
 		lblOpis.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOpis.setFont(new Font("Arial", Font.BOLD, 16));
-		lblOpis.setBounds(0, 0, 800, 25);
+		lblOpis.setBounds(0, 15, 800, 25);
 		add(lblOpis);
 		
 		btnPotwierdzAkcje = new JButton("Dodaj grup\u0119");
 		btnPotwierdzAkcje.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnPotwierdzAkcje.setBounds(0, 370, 150, 30);
+		btnPotwierdzAkcje.setBounds(630, 260, 150, 30);
 		add(btnPotwierdzAkcje);
+		
+		JLabel lblNewLabel = new JLabel("Nazwa");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setFont(new Font("Arial", Font.ITALIC, 16));
+		lblNewLabel.setBounds(15, 55, 80, 25);
+		add(lblNewLabel);
+		
+		JLabel lblOpis_1 = new JLabel("Opis");
+		lblOpis_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblOpis_1.setFont(new Font("Arial", Font.ITALIC, 16));
+		lblOpis_1.setBounds(15, 95, 85, 150);
+		add(lblOpis_1);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Arial", Font.PLAIN, 16));
+		textField.setBounds(115, 55, 665, 25);
+		add(textField);
+		textField.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(115, 95, 665, 150);
+		add(scrollPane);
+		
+		JTextPane textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
+		textPane.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 	
 	/**
