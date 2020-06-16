@@ -34,10 +34,25 @@ public class PanelGrupa extends Panel{
 	 * Przycisk potwierdzaj¹cy dodanie lub modyfikacjê grupy.
 	 */
 	private JButton btnPotwierdzAkcje;
+	/**
+	 * Pole na nazwê grupy.
+	 */
 	private JTextField tfNazwa;
+	/**
+	 * Opis pola na nazwê grupy.
+	 */
 	private JLabel lblNazwa;
+	/**
+	 * Opis pola na opis grupy.
+	 */
 	private JLabel lblOpis;
+	/**
+	 * Scrolle do pola na opis grupy.
+	 */
 	private JScrollPane scrollOpis;
+	/**
+	 * Pole na opis grupy.
+	 */
 	private JTextPane tpOpis;
 	
 	/**
