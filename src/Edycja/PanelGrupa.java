@@ -29,12 +29,16 @@ public class PanelGrupa extends Panel{
 	/**
 	 * Napis informuj¹cy czy nowa grupa, czy edycja istniej¹cej.
 	 */
-	private JLabel lblOpis;
+	private JLabel lblTytul;
 	/**
 	 * Przycisk potwierdzaj¹cy dodanie lub modyfikacjê grupy.
 	 */
 	private JButton btnPotwierdzAkcje;
-	private JTextField textField;
+	private JTextField tfNazwa;
+	private JLabel lblNazwa;
+	private JLabel lblOpis;
+	private JScrollPane scrollOpis;
+	private JTextPane tpOpis;
 	
 	/**
 	 * Konstruktor klasy Grupa - nowa grupa.
@@ -62,43 +66,43 @@ public class PanelGrupa extends Panel{
 	private void inicjujKomponenty() {
 		setPreferredSize(new Dimension(800, 305));
 		
-		lblOpis = new JLabel("Dodaj grup\u0119");
-		lblOpis.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOpis.setFont(new Font("Arial", Font.BOLD, 16));
-		lblOpis.setBounds(0, 15, 800, 25);
-		add(lblOpis);
+		lblTytul = new JLabel("Dodaj grup\u0119");
+		lblTytul.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTytul.setFont(new Font("Arial", Font.BOLD, 16));
+		lblTytul.setBounds(0, 15, 800, 25);
+		add(lblTytul);
 		
 		btnPotwierdzAkcje = new JButton("Dodaj grup\u0119");
 		btnPotwierdzAkcje.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnPotwierdzAkcje.setBounds(630, 260, 150, 30);
 		add(btnPotwierdzAkcje);
 		
-		JLabel lblNewLabel = new JLabel("Nazwa");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setFont(new Font("Arial", Font.ITALIC, 16));
-		lblNewLabel.setBounds(15, 55, 80, 25);
-		add(lblNewLabel);
+		lblNazwa = new JLabel("Nazwa");
+		lblNazwa.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNazwa.setFont(new Font("Arial", Font.ITALIC, 16));
+		lblNazwa.setBounds(15, 55, 80, 25);
+		add(lblNazwa);
 		
-		JLabel lblOpis_1 = new JLabel("Opis");
-		lblOpis_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOpis_1.setFont(new Font("Arial", Font.ITALIC, 16));
-		lblOpis_1.setBounds(15, 95, 85, 150);
-		add(lblOpis_1);
+		lblOpis = new JLabel("Opis");
+		lblOpis.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblOpis.setFont(new Font("Arial", Font.ITALIC, 16));
+		lblOpis.setBounds(15, 95, 85, 150);
+		add(lblOpis);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 16));
-		textField.setBounds(115, 55, 665, 25);
-		add(textField);
-		textField.setColumns(10);
+		tfNazwa = new JTextField();
+		tfNazwa.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfNazwa.setBounds(115, 55, 665, 25);
+		add(tfNazwa);
+		tfNazwa.setColumns(10);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(115, 95, 665, 150);
-		add(scrollPane);
+		scrollOpis = new JScrollPane();
+		scrollOpis.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollOpis.setBounds(115, 95, 665, 150);
+		add(scrollOpis);
 		
-		JTextPane textPane = new JTextPane();
-		scrollPane.setViewportView(textPane);
-		textPane.setFont(new Font("Arial", Font.PLAIN, 16));
+		tpOpis = new JTextPane();
+		scrollOpis.setViewportView(tpOpis);
+		tpOpis.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 	
 	/**
@@ -112,7 +116,7 @@ public class PanelGrupa extends Panel{
 	 * Modyfikuje komponenty na potrzeby edycji grupy.
 	 */
 	private void modyfikujKomponenty() {
-		lblOpis.setText("Modyfikuj grupê o ID: " + id_grupa);
+		lblTytul.setText("Modyfikuj grupê o ID: " + id_grupa);
 		btnPotwierdzAkcje.setText("Modyfikuj grupê");
 		btnPotwierdzAkcje.addActionListener(new ModyfikujGrupe());
 	}
