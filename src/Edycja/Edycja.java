@@ -20,7 +20,7 @@ public class Edycja extends JDialog {
 	 * Utworzenie okienka do dodawania grupy.
 	 */
 	public Edycja() {
-		panel = new Grupa();
+		panel = new PanelGrupa();
 		inicjujKomponenty("Dodaj grupê");
 		inicjujKoniec();
 	}
@@ -37,11 +37,11 @@ public class Edycja extends JDialog {
 	public Edycja(int tryb, int id_grupa) {
 		switch(tryb) {
 		case 0:
-			panel = new Grupa(id_grupa);
+			panel = new PanelGrupa(id_grupa);
 			inicjujKomponenty("Modyfikuj grupê");
 			break;
 		case 1:
-			panel = new Slowo(id_grupa);
+			panel = new PanelSlowo(id_grupa);
 			inicjujKomponenty("Dodaj s³owo");
 			break;
 		default:
@@ -55,7 +55,7 @@ public class Edycja extends JDialog {
 	 * @param id_slowo ID s³owa do modyfikacji
 	 */
 	public Edycja(int id_slowo) {
-		panel = new Slowo(id_slowo, false);
+		panel = new PanelSlowo(id_slowo, false);
 		inicjujKomponenty("Modyfikuj s³owo");
 		inicjujKoniec();
 	}

@@ -10,7 +10,7 @@ import java.awt.Font;
  * Panel do edycji s³ów.
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
-public class Slowo extends Panel {
+public class PanelSlowo extends Panel {
 	
 	/**
 	 * ID s³owa do modyfikacji.
@@ -29,7 +29,7 @@ public class Slowo extends Panel {
 	 * Konstruktor klasy Slowo - nowe s³owo.
 	 * @param id_grupa ID grupy, do której ma nale¿eæ s³owo
 	 */
-	public Slowo(int id_grupa) {
+	public PanelSlowo(int id_grupa) {
 		this.id_grupa = id_grupa;
 		inicjujKomponenty();
 		lblOpis.setText("Dodaj s³owo do grupy o ID: " + this.id_grupa);
@@ -40,7 +40,7 @@ public class Slowo extends Panel {
 	 * @param id_slowo ID s³owa do modyfikacji
 	 * @param tryb true albo false - nie ma znaczenia; tylko do odró¿nienia konstruktora
 	 */
-	public Slowo(int id_slowo, boolean tryb) {
+	public PanelSlowo(int id_slowo, boolean tryb) {
 		this.id_slowo = id_slowo;
 		inicjujKomponenty();
 		modyfikujKomponenty();

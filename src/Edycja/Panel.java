@@ -2,7 +2,11 @@ package Edycja;
 
 import java.awt.Dimension;
 
+
 import javax.swing.JPanel;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import BazaDanych.InterfejsBD;
 
@@ -23,11 +27,31 @@ public abstract class Panel extends JPanel {
 	protected final int PANEL_WYSOKOSC = 600;
 	
 	/**
+	 * Interfejs bazy danych.
+	 */
+	protected InterfejsBD interfejsBD;
+	
+	/**
+	 * Generowanie logów.
+	 */
+	protected Logger log;
+	
+	/**
 	 * Konstruktor klasy abstrakcyjne Panel.
 	 */
 	public Panel() {
 		setPreferredSize(new Dimension(PANEL_SZEROKOSC, PANEL_WYSOKOSC));
 		setLayout(null);
+		inicjujPola();
+	}
+	
+	/**
+	 * Inicjowanie pól w klasie.
+	 */
+	private void inicjujPola() {
+		interfejsBD = new InterfejsBD();
+		interfejsBD.zamknijPolaczenie();
+		log = LoggerFactory.getLogger(Panel.class);
 	}
 
 }

@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import org.slf4j.LoggerFactory;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -13,7 +16,7 @@ import java.awt.event.ActionEvent;
  * Panel do edycji grup.
  * @author MikiWojak (Miko³aj ¯arnowski)
  */
-public class Grupa extends Panel{
+public class PanelGrupa extends Panel{
 	
 	/**
 	 * ID grupy do modyfikacji. 
@@ -31,7 +34,8 @@ public class Grupa extends Panel{
 	/**
 	 * Konstruktor klasy Grupa - nowa grupa.
 	 */
-	public Grupa() {
+	public PanelGrupa() {
+		inicjujPola();
 		inicjujKomponenty();
 		btnPotwierdzAkcje.addActionListener(new DodajGrupe());
 	}
@@ -40,8 +44,9 @@ public class Grupa extends Panel{
 	 * Konstruktor klasy Grupa - edycja grupy.
 	 * @param id_grupa ID grupy do modyfikacji
 	 */
-	public Grupa(int id_grupa) {
+	public PanelGrupa(int id_grupa) {
 		this.id_grupa = id_grupa;
+		inicjujPola();
 		inicjujKomponenty();
 		modyfikujKomponenty();
 	}
@@ -62,6 +67,13 @@ public class Grupa extends Panel{
 		btnPotwierdzAkcje.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnPotwierdzAkcje.setBounds(0, 370, 150, 30);
 		add(btnPotwierdzAkcje);
+	}
+	
+	/**
+	 * Inicjowanie pól w klasie
+	 */
+	private void inicjujPola() {
+		log = LoggerFactory.getLogger(PanelGrupa.class);
 	}
 	
 	/**
@@ -88,7 +100,7 @@ public class Grupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Dodano grupê");			
+			System.out.println("Dodano grupê");
 		}
 	}
 	
