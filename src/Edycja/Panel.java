@@ -53,5 +53,15 @@ public abstract class Panel extends JPanel {
 		interfejsBD.zamknijPolaczenie();
 		log = LoggerFactory.getLogger(Panel.class);
 	}
+	
+	/**
+	 * Sprawdza, czy podane pole ma zawartoœæ.
+	 * @param zawartoscPola zawartoœæ pola do sprawdzenia
+	 * @return true - pole ma zawartoœæ; false - pole jest puste
+	 */
+	protected boolean czyPolePelne(String zawartoscPola) {
+		if(zawartoscPola.equals("")) { return false; }
+		return true;
+	}
 
 }

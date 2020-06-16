@@ -3,8 +3,11 @@ package Edycja;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 import org.slf4j.LoggerFactory;
 
@@ -137,6 +140,19 @@ public class PanelGrupa extends Panel{
 	}
 	
 	/**
+	 * Sprawdza, czy pole "nazwa grupy" ma zawartoœæ.
+	 */
+	private void walidacjaCzyJestNazwaGrupy() {
+		if(!czyPolePelne(tfNazwa.getText())) {
+			JOptionPane.showMessageDialog(
+					null,
+					"Nadaj nazwê grupie!",
+					"Uwaga",
+					JOptionPane.WARNING_MESSAGE);
+		}
+	}
+	
+	/**
 	 * Klasa wewnêtrzna dodania grupy.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
 	 */
@@ -151,7 +167,7 @@ public class PanelGrupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Dodano grupê");
+			walidacjaCzyJestNazwaGrupy();
 		}
 	}
 	
@@ -170,7 +186,7 @@ public class PanelGrupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Zmodyfikowano grupê o ID\t" + id_grupa);
+			walidacjaCzyJestNazwaGrupy();
 		}
 	}
 }
