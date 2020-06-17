@@ -1,7 +1,7 @@
 package Edycja;
 
 import java.awt.Dimension;
-
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -63,5 +63,4 @@ public abstract class Panel extends JPanel {
 		if(zawartoscPola.equals("")) { return false; }
 		return true;
 	}
-
 }

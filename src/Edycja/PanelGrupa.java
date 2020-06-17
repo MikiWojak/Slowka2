@@ -1,5 +1,6 @@
 package Edycja;
 
+import BazaDanych.Grupa;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -13,6 +14,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -57,6 +60,10 @@ public class PanelGrupa extends Panel{
 	 * Pole na opis grupy.
 	 */
 	private JTextPane tpOpis;
+	/**
+	 * Lista grup.
+	 */
+	private List<Grupa>grupy;
 	
 	/**
 	 * Konstruktor klasy Grupa - nowa grupa.
@@ -128,6 +135,8 @@ public class PanelGrupa extends Panel{
 	 */
 	private void inicjujPola() {
 		log = LoggerFactory.getLogger(PanelGrupa.class);
+		grupy = new LinkedList<Grupa>();
+		pobierzGrupy();
 	}
 	
 	/**
@@ -140,6 +149,14 @@ public class PanelGrupa extends Panel{
 	}
 	
 	/**
+	 * Pobranie wszystkich grup z bazy danych.
+	 */
+	private void pobierzGrupy() {
+		interfejsBD.otworzPolaczenie();
+		grupy = interfejsBD.pobierzGrupyWszystkie();
+		interfejsBD.zamknijPolaczenie();
+	}
+	/**
 	 * Sprawdza, czy pole "nazwa grupy" ma zawartoœæ.
 	 */
 	private void walidacjaCzyJestNazwaGrupy() {
@@ -149,6 +166,19 @@ public class PanelGrupa extends Panel{
 					"Nadaj nazwê grupie!",
 					"Uwaga",
 					JOptionPane.WARNING_MESSAGE);
+		}
+	}
+	
+	private void walidacjaCzyNazwaUnikalna() {
+		for(int i = 0; i < grupy.size(); i++) {
+			if(grupy.get(i).pobierzNazwaGrupy().equals(tfNazwa.getText())) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Grupa o podanej nazwie ju¿ istnieje!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+				break;
+			}
 		}
 	}
 	
@@ -168,6 +198,7 @@ public class PanelGrupa extends Panel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			walidacjaCzyJestNazwaGrupy();
+			walidacjaCzyNazwaUnikalna();
 		}
 	}
 	
@@ -187,6 +218,7 @@ public class PanelGrupa extends Panel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			walidacjaCzyJestNazwaGrupy();
+			walidacjaCzyNazwaUnikalna();
 		}
 	}
 }
