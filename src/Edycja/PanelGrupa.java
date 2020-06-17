@@ -158,28 +158,42 @@ public class PanelGrupa extends Panel{
 	}
 	/**
 	 * Sprawdza, czy pole "nazwa grupy" ma zawartoœæ.
+	 * @return true - pole ma zawartoœæ; false - pole jest puste
 	 */
-	private void walidacjaCzyJestNazwaGrupy() {
+	private boolean walidacjaCzyJestNazwaGrupy() {
 		if(!czyPolePelne(tfNazwa.getText())) {
 			JOptionPane.showMessageDialog(
 					null,
 					"Nadaj nazwê grupie!",
 					"Uwaga",
 					JOptionPane.WARNING_MESSAGE);
+			return false;
 		}
+		return true;
 	}
 	
-	private void walidacjaCzyNazwaUnikalna() {
+	/**
+	 * Sprawdza, czy grupa o podanej nazwie ju¿ istnieje.
+	 * Pozwala za zgod¹ u¿ytkownika dodaæ grupê o takiej samej nazwie.
+	 * @return true - nazwa dopuszczona; false - nazwa niedopuszczona
+	 */
+	private boolean walidacjaCzyNazwaUnikalna() {
 		for(int i = 0; i < grupy.size(); i++) {
 			if(grupy.get(i).pobierzNazwaGrupy().equals(tfNazwa.getText())) {
-				JOptionPane.showMessageDialog(
-						null,
-						"Grupa o podanej nazwie ju¿ istnieje!",
-						"Uwaga",
-						JOptionPane.WARNING_MESSAGE);
+				Object nazwaOpcja[] = {"Tak", "Nie"};
+				int opcja = JOptionPane.showOptionDialog(null,
+						"Grupa o podanej nazwie ju¿ istnieje.\nCzy na pewno dodaæ?",
+						"Pytanie",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null, 
+						nazwaOpcja,
+						nazwaOpcja[1]);
+				if(opcja == 1) { return false; }
 				break;
 			}
 		}
+		return true;
 	}
 	
 	/**
