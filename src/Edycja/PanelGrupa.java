@@ -151,7 +151,7 @@ public class PanelGrupa extends Panel{
 		btnPotwierdzAkcje.setText("Modyfikuj grupê");
 		btnPotwierdzAkcje.addActionListener(new ModyfikujGrupe());
 		
-		grupaPrzedMod = wyszukajGrupe();
+		grupaPrzedMod = pobierzGrupeOId();
 		tfNazwa.setText(grupaPrzedMod.pobierzNazwaGrupy());
 		tpOpis.setText(grupaPrzedMod.pobierzOpisGrupy());
 	}
@@ -208,13 +208,26 @@ public class PanelGrupa extends Panel{
 	 * Wyszukiwanie w liœcie grup grupy o podanym wczeœniej ID w bazie danych. 
 	 * @return obiekt klasy Grupa o podanym wczeœniej ID
 	 */
-	private Grupa wyszukajGrupe() {
+	private Grupa pobierzGrupeOId() {
 		for(int i = 0; i < grupy.size(); i++) {
 			if(grupy.get(i).pobierzIdGrupa() == id_grupa) {
 				return grupy.get(i);
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Sprawdza, czy nazwa jest taka sama, jak podano.
+	 * Dla modyfikacji grupy.
+	 * Umo¿liwia zrobienie wyj¹tku w kwestii nazwy grupy.
+	 * @return true - nazwa grupy siê nie zmieni³a; false - nazwa grupy jest inna
+	 */
+	private boolean walidacjaCzyNazwaTakaSama() {
+		if(tfNazwa.getText().equals(grupaPrzedMod.pobierzNazwaGrupy())) {
+			return true;
+		}
+		return false;
 	}
 	/**
 	 * Klasa wewnêtrzna dodania grupy.
@@ -254,7 +267,8 @@ public class PanelGrupa extends Panel{
 			System.out.println(
 					grupaPrzedMod.pobierzIdGrupa() + "\n" +
 					grupaPrzedMod.pobierzNazwaGrupy() + "\n" +
-					grupaPrzedMod.pobierzOpisGrupy() + "\n");
+					grupaPrzedMod.pobierzOpisGrupy());
+			System.out.println(walidacjaCzyNazwaTakaSama() + "\n");
 			
 			walidacjaCzyJestNazwaGrupy();
 			walidacjaCzyNazwaUnikalna();
