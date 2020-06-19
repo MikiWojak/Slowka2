@@ -244,8 +244,10 @@ public class PanelGrupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			walidacjaCzyJestNazwaGrupy();
-			walidacjaCzyNazwaUnikalna();
+			if(walidacjaCzyJestNazwaGrupy() &&
+					walidacjaCzyNazwaUnikalna()) {
+				System.out.println("Dodano rekord do bazy danych");
+			}
 		}
 	}
 	
@@ -264,6 +266,7 @@ public class PanelGrupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			/*
 			System.out.println(
 					grupaPrzedMod.pobierzIdGrupa() + "\n" +
 					grupaPrzedMod.pobierzNazwaGrupy() + "\n" +
@@ -272,6 +275,11 @@ public class PanelGrupa extends Panel{
 			
 			walidacjaCzyJestNazwaGrupy();
 			walidacjaCzyNazwaUnikalna();
+			*/
+			if(walidacjaCzyJestNazwaGrupy() &&
+					(walidacjaCzyNazwaTakaSama() || walidacjaCzyNazwaUnikalna())) {
+				System.out.println("Zmodyfikowano rekord");
+			}
 		}
 	}
 }
