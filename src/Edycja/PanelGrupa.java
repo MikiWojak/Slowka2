@@ -64,6 +64,10 @@ public class PanelGrupa extends Panel{
 	 * Lista grup.
 	 */
 	private List<Grupa>grupy;
+	/**
+	 * Grupa przed modyfikacj¹.
+	 */
+	private Grupa grupaPrzedMod;
 	
 	/**
 	 * Konstruktor klasy Grupa - nowa grupa.
@@ -146,6 +150,10 @@ public class PanelGrupa extends Panel{
 		lblTytul.setText("Modyfikuj grupê o ID: " + id_grupa);
 		btnPotwierdzAkcje.setText("Modyfikuj grupê");
 		btnPotwierdzAkcje.addActionListener(new ModyfikujGrupe());
+		
+		grupaPrzedMod = wyszukajGrupe();
+		tfNazwa.setText(grupaPrzedMod.pobierzNazwaGrupy());
+		tpOpis.setText(grupaPrzedMod.pobierzOpisGrupy());
 	}
 	
 	/**
@@ -197,6 +205,18 @@ public class PanelGrupa extends Panel{
 	}
 	
 	/**
+	 * Wyszukiwanie w liœcie grup grupy o podanym wczeœniej ID w bazie danych. 
+	 * @return obiekt klasy Grupa o podanym wczeœniej ID
+	 */
+	private Grupa wyszukajGrupe() {
+		for(int i = 0; i < grupy.size(); i++) {
+			if(grupy.get(i).pobierzIdGrupa() == id_grupa) {
+				return grupy.get(i);
+			}
+		}
+		return null;
+	}
+	/**
 	 * Klasa wewnêtrzna dodania grupy.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
 	 */
@@ -231,6 +251,11 @@ public class PanelGrupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			System.out.println(
+					grupaPrzedMod.pobierzIdGrupa() + "\n" +
+					grupaPrzedMod.pobierzNazwaGrupy() + "\n" +
+					grupaPrzedMod.pobierzOpisGrupy() + "\n");
+			
 			walidacjaCzyJestNazwaGrupy();
 			walidacjaCzyNazwaUnikalna();
 		}
