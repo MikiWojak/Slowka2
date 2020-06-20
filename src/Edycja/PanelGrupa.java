@@ -190,7 +190,8 @@ public class PanelGrupa extends Panel{
 			if(grupy.get(i).pobierzNazwaGrupy().equals(tfNazwa.getText())) {
 				Object nazwaOpcja[] = {"Tak", "Nie"};
 				int opcja = JOptionPane.showOptionDialog(null,
-						"Grupa o podanej nazwie ju¿ istnieje.\nCzy na pewno dodaæ?",
+						"Grupa o podanej nazwie ju¿ istnieje.\n"
+						+ "Czy na pewno kontynuowaæ?",
 						"Pytanie",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,
@@ -246,7 +247,14 @@ public class PanelGrupa extends Panel{
 		public void actionPerformed(ActionEvent e) {
 			if(walidacjaCzyJestNazwaGrupy() &&
 					walidacjaCzyNazwaUnikalna()) {
-				System.out.println("Dodano rekord do bazy danych");
+				JOptionPane.showMessageDialog(
+						null,
+						"Dodano rekord do bazy danych",
+						"Info",
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				tfNazwa.setText("");
+				tpOpis.setText("");
 			}
 		}
 	}
@@ -266,19 +274,13 @@ public class PanelGrupa extends Panel{
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			/*
-			System.out.println(
-					grupaPrzedMod.pobierzIdGrupa() + "\n" +
-					grupaPrzedMod.pobierzNazwaGrupy() + "\n" +
-					grupaPrzedMod.pobierzOpisGrupy());
-			System.out.println(walidacjaCzyNazwaTakaSama() + "\n");
-			
-			walidacjaCzyJestNazwaGrupy();
-			walidacjaCzyNazwaUnikalna();
-			*/
 			if(walidacjaCzyJestNazwaGrupy() &&
 					(walidacjaCzyNazwaTakaSama() || walidacjaCzyNazwaUnikalna())) {
-				System.out.println("Zmodyfikowano rekord");
+				JOptionPane.showMessageDialog(
+						null,
+						"Zmodyfikowano rekord",
+						"Info",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
