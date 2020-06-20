@@ -251,17 +251,23 @@ public class PanelGrupa extends Panel{
 			if(walidacjaCzyJestNazwaGrupy() &&
 					walidacjaCzyNazwaUnikalna()) {
 				interfejsBD.otworzPolaczenie();
-				interfejsBD.dodajGrupe(tfNazwa.getText(), tpOpis.getText());
+				if(interfejsBD.dodajGrupe(tfNazwa.getText(), tpOpis.getText())) {
+					JOptionPane.showMessageDialog(
+							null,
+							"Dodano grupê",
+							"Info",
+							JOptionPane.INFORMATION_MESSAGE);
+					tfNazwa.setText("");
+					tpOpis.setText("");
+				} else {
+					JOptionPane.showMessageDialog(
+							null,
+							"B³¹d przy dodawaniu grupy!",
+							"B³¹d!",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				
 				interfejsBD.zamknijPolaczenie();
-				
-				JOptionPane.showMessageDialog(
-						null,
-						"Dodano rekord do bazy danych",
-						"Info",
-						JOptionPane.INFORMATION_MESSAGE);
-				
-				tfNazwa.setText("");
-				tpOpis.setText("");
 			}
 		}
 	}
@@ -287,14 +293,20 @@ public class PanelGrupa extends Panel{
 			if(walidacjaCzyJestNazwaGrupy() &&
 					(walidacjaCzyNazwaTakaSama() || walidacjaCzyNazwaUnikalna())) {
 				interfejsBD.otworzPolaczenie();
-				interfejsBD.modyfikujGrupe(id_grupa, tfNazwa.getText(), tpOpis.getText());
+				if(interfejsBD.modyfikujGrupe(id_grupa, tfNazwa.getText(), tpOpis.getText())) {
+					JOptionPane.showMessageDialog(
+							null,
+							"Zmodyfikowano grupê",
+							"Info",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(
+							null,
+							"B³¹d przy modyfikacji grupy!",
+							"B³¹d!",
+							JOptionPane.ERROR_MESSAGE);
+				}
 				interfejsBD.zamknijPolaczenie();
-				
-				JOptionPane.showMessageDialog(
-						null,
-						"Zmodyfikowano rekord",
-						"Info",
-						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
