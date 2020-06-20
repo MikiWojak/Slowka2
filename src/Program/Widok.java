@@ -82,6 +82,10 @@ public class Widok extends Panel {
 	 * Przycisk do modyfikacji s³owa.
 	 */
 	private JButton btnModyfikujSlowo;
+	/**
+	 * Okienko dialogowe do edycji grupy lub s³owa.
+	 */
+	private JDialog edycja;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -191,7 +195,9 @@ public class Widok extends Panel {
 		btnDodajGrupe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Nowa grupa
-				JDialog edycja = new Edycja();
+				edycja = new Edycja();
+				pobierzGrupyBD();
+				listGrupy.setModel(utworzListeGrup());
 			}
 		});
 		btnDodajGrupe.setBounds(0, 516, 150, 30);
@@ -201,7 +207,7 @@ public class Widok extends Panel {
 		btnDodajSlowo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//S³owo do grupy nr 3
-				JDialog edycja = new Edycja(1, 3);
+				edycja = new Edycja(1, 3);
 			}
 		});
 		btnDodajSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -212,7 +218,9 @@ public class Widok extends Panel {
 		btnModyfikujGrupe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Grupa nr 1
-				JDialog edycja = new Edycja(0, 1);
+				edycja = new Edycja(0, 1);
+				pobierzGrupyBD();
+				listGrupy.setModel(utworzListeGrup());
 			}
 		});
 		btnModyfikujGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -223,7 +231,7 @@ public class Widok extends Panel {
 		btnModyfikujSlowo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//S³owo nr 13
-				JDialog edycja = new Edycja(13);			
+				edycja = new Edycja(13);			
 			}
 		});
 		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -274,11 +282,13 @@ public class Widok extends Panel {
 	 */
 	private void zmienGrupe() {
 		int indexLista = listGrupy.getSelectedIndex();
-		//nag³ówek listy s³ów
-		lblGrupa.setText(grupy.get(indexLista).pobierzNazwaGrupy());
-		//tabela
-		aktualizujTabele(grupy.get(indexLista).pobierzIdGrupa());
-		log.debug("Wyœwietlono grupê o ID: " + grupy.get(indexLista).pobierzIdGrupa());
+		if(indexLista >= 0) {
+			//nag³ówek listy s³ów
+			lblGrupa.setText(grupy.get(indexLista).pobierzNazwaGrupy());
+			//tabela
+			aktualizujTabele(grupy.get(indexLista).pobierzIdGrupa());
+			log.debug("Wyœwietlono grupê o ID: " + grupy.get(indexLista).pobierzIdGrupa());
+		}
 	}
 	
 	/**

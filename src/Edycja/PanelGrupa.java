@@ -242,11 +242,18 @@ public class PanelGrupa extends Panel{
 		
 		/**
 		 * Akcja dodania grupy.
+		 * Walidacja danych.
+		 * Walidacja akcji.
+		 * Rezultat.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(walidacjaCzyJestNazwaGrupy() &&
 					walidacjaCzyNazwaUnikalna()) {
+				interfejsBD.otworzPolaczenie();
+				interfejsBD.dodajGrupe(tfNazwa.getText(), tpOpis.getText());
+				interfejsBD.zamknijPolaczenie();
+				
 				JOptionPane.showMessageDialog(
 						null,
 						"Dodano rekord do bazy danych",
@@ -271,11 +278,18 @@ public class PanelGrupa extends Panel{
 		
 		/**
 		 * Akcja modyfikacji grupy.
+		 * Walidacja danych.
+		 * Walidacja akcji.
+		 * Rezultat.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(walidacjaCzyJestNazwaGrupy() &&
 					(walidacjaCzyNazwaTakaSama() || walidacjaCzyNazwaUnikalna())) {
+				interfejsBD.otworzPolaczenie();
+				interfejsBD.modyfikujGrupe(id_grupa, tfNazwa.getText(), tpOpis.getText());
+				interfejsBD.zamknijPolaczenie();
+				
 				JOptionPane.showMessageDialog(
 						null,
 						"Zmodyfikowano rekord",
