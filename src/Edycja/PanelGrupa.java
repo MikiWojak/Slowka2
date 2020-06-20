@@ -232,6 +232,7 @@ public class PanelGrupa extends Panel{
 	}
 	/**
 	 * Klasa wewnêtrzna dodania grupy.
+	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
 	 */
 	private class DodajGrupe implements ActionListener {
@@ -274,6 +275,7 @@ public class PanelGrupa extends Panel{
 	
 	/**
 	 * Klasa wewnêtrzna modyfikacji grupy.
+	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
 	 */
 	private class ModyfikujGrupe implements ActionListener {

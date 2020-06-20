@@ -192,14 +192,7 @@ public class Widok extends Panel {
 		
 		btnDodajGrupe = new JButton("Dodaj grup\u0119");
 		btnDodajGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnDodajGrupe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Nowa grupa
-				edycja = new Edycja();
-				pobierzGrupyBD();
-				listGrupy.setModel(utworzListeGrup());
-			}
-		});
+		btnDodajGrupe.addActionListener(new DodajGrupe());
 		btnDodajGrupe.setBounds(0, 516, 150, 30);
 		add(btnDodajGrupe);
 		
@@ -215,23 +208,17 @@ public class Widok extends Panel {
 		add(btnDodajSlowo);
 		
 		btnModyfikujGrupe = new JButton("Modyfikuj grup\u0119");
-		btnModyfikujGrupe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Grupa nr 1
-				edycja = new Edycja(0, 1);
-				pobierzGrupyBD();
-				listGrupy.setModel(utworzListeGrup());
-			}
-		});
+		btnModyfikujGrupe.addActionListener(new ModyfikujGrupe());
 		btnModyfikujGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnModyfikujGrupe.setBounds(0, 554, 150, 30);
 		add(btnModyfikujGrupe);
 		
 		btnModyfikujSlowo = new JButton("Modyfikuj s\u0142owo");
 		btnModyfikujSlowo.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				//S³owo nr 13
-				edycja = new Edycja(13);			
+				edycja = new Edycja(13);
 			}
 		});
 		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -327,5 +314,50 @@ public class Widok extends Panel {
 		tableSlowa.setModel(daneDoTabeli);
 		//ignorowanie takich samych danych
 		daneDoTabeli.fireTableDataChanged();
+	}
+	
+	/**
+	 * Klasa wewnêtrzna do dodawania grupy do bazy danych.
+	 * Do wywo³ywania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class DodajGrupe implements ActionListener {
+		/**
+		 * Konstruktor klasy DodajGrupe. 
+		 */
+		public DodajGrupe() {}
+		
+		/**
+		 * Akcja dodawania grupy.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			edycja = new Edycja();
+			pobierzGrupyBD();
+			listGrupy.setModel(utworzListeGrup());
+			
+		}
+	}
+	
+	/**
+	 * Klasa wewnêtrzna do modyfikacji grup do bazy danych.
+	 * Do wywo³ywania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class ModyfikujGrupe implements ActionListener {
+		/**
+		 * Konstruktor klasy ModyfikujGrupe. 
+		 */
+		public ModyfikujGrupe() {}
+		/**
+		 * Akcja modyfikacji grupy.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//Grupa nr 1
+			edycja = new Edycja(0, 1);
+			pobierzGrupyBD();
+			listGrupy.setModel(utworzListeGrup());
+		}
 	}
 }
