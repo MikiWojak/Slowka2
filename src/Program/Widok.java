@@ -22,6 +22,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -329,13 +330,14 @@ public class Widok extends Panel {
 		
 		/**
 		 * Akcja dodawania grupy.
+		 * Odœwie¿enie listy grup i tabeli.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			log.debug("Uruchomienie okienka do dodawania grupy.");
 			edycja = new Edycja();
 			pobierzGrupyBD();
 			listGrupy.setModel(utworzListeGrup());
-			
 		}
 	}
 	
@@ -349,15 +351,29 @@ public class Widok extends Panel {
 		 * Konstruktor klasy ModyfikujGrupe. 
 		 */
 		public ModyfikujGrupe() {}
+		
 		/**
 		 * Akcja modyfikacji grupy.
+		 * Pobranie ID grupy w BD tylko, gdy wybrana grupa.
+		 * Odœwie¿enie listy grup i tabeli.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//Grupa nr 1
-			edycja = new Edycja(0, 1);
-			pobierzGrupyBD();
-			listGrupy.setModel(utworzListeGrup());
+			int indexGrupa = listGrupy.getSelectedIndex();
+			if(indexGrupa >= 0) {
+				int idGrupa = grupy.get(indexGrupa).pobierzIdGrupa();
+				log.debug("Uruchomienie okienka do modyfikacji grupy.");
+				edycja = new Edycja(0, idGrupa);
+				pobierzGrupyBD();
+				listGrupy.setModel(utworzListeGrup());
+				//zmienGrupe();
+			} else {
+				JOptionPane.showMessageDialog(
+						null,
+						"Wybierz grupê z listy!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			}
 		}
 	}
 }

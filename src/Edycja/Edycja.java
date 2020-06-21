@@ -32,7 +32,7 @@ public class Edycja extends JDialog {
 	 * <li>0 - Modyfikuj grupê</li>
 	 * <li>1 - Dodaj s³owo</li>
 	 * </ul>
-	 * @param id_grupa ID grupy niezale¿nie od trybu
+	 * @param id_grupa ID grupy w BD niezale¿nie od trybu
 	 */
 	public Edycja(int tryb, int id_grupa) {
 		switch(tryb) {
@@ -52,7 +52,7 @@ public class Edycja extends JDialog {
 	
 	/**
 	 * Utworzenie okienka do modyfikacji s³owa.
-	 * @param id_slowo ID s³owa do modyfikacji
+	 * @param id_slowo ID s³owa w BD do modyfikacji
 	 */
 	public Edycja(int id_slowo) {
 		panel = new PanelSlowo(id_slowo, false);
