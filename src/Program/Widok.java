@@ -116,6 +116,16 @@ public class Widok extends Panel {
 		lblGrupa.setBounds(400, 0, 800, 50);
 		add(lblGrupa);
 		
+		lblIloscGrup = new JLabel("Ilo\u015B\u0107 grup:");
+		lblIloscGrup.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblIloscGrup.setBounds(0, 570, 400, 30);
+		add(lblIloscGrup);
+		
+		lblIloscSlow = new JLabel("Ilo\u015B\u0107 wy\u015Bwietlonych s\u0142\u00F3w:");
+		lblIloscSlow.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblIloscSlow.setBounds(400, 570, 800, 30);
+		add(lblIloscSlow);
+		
 		scrollGrupy = new JScrollPane();
 		scrollGrupy.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollGrupy.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -133,6 +143,7 @@ public class Widok extends Panel {
 		//grupy do listy
 		pobierzGrupyBD();
 		listGrupy.setModel(utworzListeGrup());
+		lblIloscGrup.setText("Iloœæ grup: " + iloscGrup);
 		
 		scrollSlowa = new JScrollPane();
 		scrollSlowa.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -231,16 +242,6 @@ public class Widok extends Panel {
 		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnModyfikujSlowo.setBounds(400, 505, 150, 30);
 		add(btnModyfikujSlowo);
-		
-		lblIloscGrup = new JLabel("Ilo\u015B\u0107 grup:");
-		lblIloscGrup.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblIloscGrup.setBounds(0, 570, 400, 30);
-		add(lblIloscGrup);
-		
-		lblIloscSlow = new JLabel("Ilo\u015B\u0107 wy\u015Bwietlonych s\u0142\u00F3w:");
-		lblIloscSlow.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblIloscSlow.setBounds(400, 570, 800, 30);
-		add(lblIloscSlow);
 	}
 	
 	/**
@@ -256,11 +257,13 @@ public class Widok extends Panel {
 	
 	/**
 	 * Pobranie wszystkich grup z bazy danych. Grupy nie s¹ sortowane.
+	 * Iloœæ grup w bazie danych na podstawie iloœci rekordów w liœcie.
 	 */
 	private void pobierzGrupyBD() {
 		interfejsBD.otworzPolaczenie();
 		grupy = interfejsBD.pobierzGrupyWszystkie();
 		interfejsBD.zamknijPolaczenie();
+		iloscGrup = grupy.size();
 	}
 	
 	/**
@@ -354,6 +357,7 @@ public class Widok extends Panel {
 			edycja = new Edycja();
 			pobierzGrupyBD();
 			listGrupy.setModel(utworzListeGrup());
+			lblIloscGrup.setText("Iloœæ grup: " + iloscGrup);
 		}
 	}
 	
@@ -382,6 +386,7 @@ public class Widok extends Panel {
 				edycja = new Edycja(0, idGrupa);
 				pobierzGrupyBD();
 				listGrupy.setModel(utworzListeGrup());
+				lblIloscGrup.setText("Iloœæ grup: " + iloscGrup);
 				zmienGrupe(indexGrupa);
 			} else {
 				JOptionPane.showMessageDialog(

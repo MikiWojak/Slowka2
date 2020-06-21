@@ -1,7 +1,5 @@
 package Program;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,16 +35,22 @@ public abstract class Panel extends JPanel {
 	 * Generowanie logów.
 	 */
 	protected Logger log;
-	
 	/**
 	 * Lista grup na s³owa.
 	 */
 	protected List<Grupa>grupy;
-	
 	/**
 	 * Lista s³ów. 
 	 */
 	protected List<Slowo>slowa;
+	/**
+	 * Iloœæ grup w bazie dancyh.
+	 */
+	protected int iloscGrup;
+	/**
+	 * Iloœæ s³ów w wybranej grupie.
+	 */
+	protected int iloscSlow;
 	
 	/**
 	 * Utworzenie panelu g³ównego.
