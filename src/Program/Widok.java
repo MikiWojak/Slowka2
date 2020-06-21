@@ -3,8 +3,6 @@ package Program;
 import java.awt.Color;
 import java.awt.Component;
 
-import javax.swing.JPanel;
-
 import org.slf4j.LoggerFactory;
 
 import Edycja.Edycja;
@@ -87,6 +85,14 @@ public class Widok extends Panel {
 	 * Okienko dialogowe do edycji grupy lub s³owa.
 	 */
 	private JDialog edycja;
+	/**
+	 * Napis do pokazania iloœci grup w bazie danych.
+	 */
+	private JLabel lblIloscGrup;
+	/**
+	 * Napis do pokazania iloœci s³ów w wybranej grupie.
+	 */
+	private JLabel lblIloscSlow;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -113,7 +119,7 @@ public class Widok extends Panel {
 		scrollGrupy = new JScrollPane();
 		scrollGrupy.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollGrupy.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollGrupy.setBounds(0, 0, 350, 500);
+		scrollGrupy.setBounds(0, 0, 350, 450);
 		add(scrollGrupy);
 		
 		listGrupy = new JList();
@@ -131,7 +137,7 @@ public class Widok extends Panel {
 		scrollSlowa = new JScrollPane();
 		scrollSlowa.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollSlowa.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollSlowa.setBounds(400, 50, 800, 450);
+		scrollSlowa.setBounds(400, 50, 800, 400);
 		add(scrollSlowa);
 		
 		//nazwy kolumn
@@ -194,7 +200,7 @@ public class Widok extends Panel {
 		btnDodajGrupe = new JButton("Dodaj grup\u0119");
 		btnDodajGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDodajGrupe.addActionListener(new DodajGrupe());
-		btnDodajGrupe.setBounds(0, 516, 150, 30);
+		btnDodajGrupe.setBounds(0, 466, 150, 30);
 		add(btnDodajGrupe);
 		
 		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
@@ -205,13 +211,13 @@ public class Widok extends Panel {
 			}
 		});
 		btnDodajSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnDodajSlowo.setBounds(400, 516, 150, 30);
+		btnDodajSlowo.setBounds(400, 466, 150, 30);
 		add(btnDodajSlowo);
 		
 		btnModyfikujGrupe = new JButton("Modyfikuj grup\u0119");
 		btnModyfikujGrupe.addActionListener(new ModyfikujGrupe());
 		btnModyfikujGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnModyfikujGrupe.setBounds(0, 554, 150, 30);
+		btnModyfikujGrupe.setBounds(0, 504, 150, 30);
 		add(btnModyfikujGrupe);
 		
 		btnModyfikujSlowo = new JButton("Modyfikuj s\u0142owo");
@@ -223,8 +229,18 @@ public class Widok extends Panel {
 			}
 		});
 		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnModyfikujSlowo.setBounds(400, 555, 150, 30);
+		btnModyfikujSlowo.setBounds(400, 505, 150, 30);
 		add(btnModyfikujSlowo);
+		
+		lblIloscGrup = new JLabel("Ilo\u015B\u0107 grup:");
+		lblIloscGrup.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblIloscGrup.setBounds(0, 570, 400, 30);
+		add(lblIloscGrup);
+		
+		lblIloscSlow = new JLabel("Ilo\u015B\u0107 wy\u015Bwietlonych s\u0142\u00F3w:");
+		lblIloscSlow.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblIloscSlow.setBounds(400, 570, 800, 30);
+		add(lblIloscSlow);
 	}
 	
 	/**
