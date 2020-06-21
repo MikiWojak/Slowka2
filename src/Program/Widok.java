@@ -119,7 +119,7 @@ public class Widok extends Panel {
 		listGrupy = new JList();
 		listGrupy.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				zmienGrupe();
+				zmienGrupe(listGrupy.getSelectedIndex());
 			}
 		});
 		listGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -267,15 +267,15 @@ public class Widok extends Panel {
 	
 	/**
 	 * Zmiana aktualnie wyœwietlanej grupy. Do zastosowania z listenerem listy grup.
+	 * @param indexGrupa indeks grupy na liœcie
 	 */
-	private void zmienGrupe() {
-		int indexLista = listGrupy.getSelectedIndex();
-		if(indexLista >= 0) {
+	private void zmienGrupe(int indexGrupa) {
+		if(indexGrupa >= 0) {
 			//nag³ówek listy s³ów
-			lblGrupa.setText(grupy.get(indexLista).pobierzNazwaGrupy());
+			lblGrupa.setText(grupy.get(indexGrupa).pobierzNazwaGrupy());
 			//tabela
-			aktualizujTabele(grupy.get(indexLista).pobierzIdGrupa());
-			log.debug("Wyœwietlono grupê o ID: " + grupy.get(indexLista).pobierzIdGrupa());
+			aktualizujTabele(grupy.get(indexGrupa).pobierzIdGrupa());
+			log.debug("Wyœwietlono grupê o ID: " + grupy.get(indexGrupa).pobierzIdGrupa());
 		}
 	}
 	
@@ -366,7 +366,7 @@ public class Widok extends Panel {
 				edycja = new Edycja(0, idGrupa);
 				pobierzGrupyBD();
 				listGrupy.setModel(utworzListeGrup());
-				//zmienGrupe();
+				zmienGrupe(indexGrupa);
 			} else {
 				JOptionPane.showMessageDialog(
 						null,
