@@ -286,6 +286,7 @@ public class Widok extends Panel {
 	
 	/**
 	 * Zmiana aktualnie wyœwietlanej grupy. Do zastosowania z listenerem listy grup.
+	 * Aktualizacja iloœci wyœwietlonych s³ów.
 	 * @param indexGrupa indeks grupy na liœcie
 	 */
 	private void zmienGrupe(int indexGrupa) {
@@ -294,6 +295,7 @@ public class Widok extends Panel {
 			lblGrupa.setText(grupy.get(indexGrupa).pobierzNazwaGrupy());
 			//tabela
 			aktualizujTabele(grupy.get(indexGrupa).pobierzIdGrupa());
+			lblIloscSlow.setText("Iloœæ wyœwietlonych s³ów: " + iloscSlow);
 			log.debug("Wyœwietlono grupê o ID: " + grupy.get(indexGrupa).pobierzIdGrupa());
 		}
 	}
@@ -309,6 +311,7 @@ public class Widok extends Panel {
 	
 	/**
 	 * Utworzenie listy s³ów do tabeli.
+	 * Pobranie iloœci s³ow z danej grupy. 
 	 * @param id_grupa ID wybranej grupy.
 	 */
 	private void aktualizujTabele(int id_grupa) {
@@ -319,6 +322,7 @@ public class Widok extends Panel {
 		interfejsBD.otworzPolaczenie();
 		slowa = interfejsBD.pobierzSlowaZGrupy(id_grupa);
 		interfejsBD.zamknijPolaczenie();
+		iloscSlow = slowa.size();
 		//wyczyszczenie wektora
 		daneTabelaSlow.clear();
 		//dane do wektora
