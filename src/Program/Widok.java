@@ -93,6 +93,10 @@ public class Widok extends Panel {
 	 * Napis do pokazania iloœci s³ów w wybranej grupie.
 	 */
 	private JLabel lblIloscSlow;
+	/**
+	 * Przycisk do usuwania grupy lub grup.
+	 */
+	private JButton btnUsunGrupy;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -178,27 +182,6 @@ public class Widok extends Panel {
 				return component;
 			}
 		};
-		tableSlowa.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				/*
-				int index = tableSlowa.getSelectedRow();
-				System.out.println(index);
-				*/
-				
-				/*
-				int index[] = tableSlowa.getSelectedRows();
-				int size = tableSlowa.getSelectedRowCount();
-				
-				System.out.println(size);
-				for(int i = 0; i < size; i++) {
-					System.out.print(index[i] + "\t");
-				}
-				System.out.println();
-				*/
-			}
-		});
 		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 		tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
 		tableSlowa.setRowHeight(25);
@@ -242,6 +225,12 @@ public class Widok extends Panel {
 		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnModyfikujSlowo.setBounds(400, 505, 150, 30);
 		add(btnModyfikujSlowo);
+		
+		btnUsunGrupy = new JButton("Usu\u0144 grup\u0119/y");
+		btnUsunGrupy.addActionListener(new UsunGrupy());
+		btnUsunGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnUsunGrupy.setBounds(200, 466, 150, 30);
+		add(btnUsunGrupy);
 	}
 	
 	/**
@@ -400,5 +389,27 @@ public class Widok extends Panel {
 						JOptionPane.WARNING_MESSAGE);
 			}
 		}
+	}
+	
+	/**
+	 * Klasa wewnêtrzna do usuwania grup z bazy danych.
+	 * Do wywo³ywania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class UsunGrupy implements ActionListener {
+		/**
+		 * Konstruktor klasy UsunGrupe.
+		 */
+		public UsunGrupy() {}
+		
+		/**
+		 * Akcja usuwania grupy lub grup.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.println("Usuwanie grupy...");
+		}
+		
 	}
 }
