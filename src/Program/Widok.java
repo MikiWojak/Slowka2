@@ -408,7 +408,15 @@ public class Widok extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("Usuwanie grupy...");
+			int indexy[] = listGrupy.getSelectedIndices();
+			try {
+				for(int i = 0; i < grupy.size(); i++) {
+					System.out.println(indexy[i] + "\t" + "Usuwanie...");
+				}
+			} catch (IndexOutOfBoundsException e2) {
+				//B³¹d - wykroczenie poza zakres tablicy
+				// TODO: handle exception
+			}
 		}
 		
 	}
