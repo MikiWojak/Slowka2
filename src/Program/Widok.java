@@ -410,10 +410,33 @@ public class Widok extends Panel {
 			// TODO Auto-generated method stub
 			if(usunGrupyZgoda()) {
 				int indexy[] = listGrupy.getSelectedIndices();
+				boolean flaga = true;
 				try {
+					interfejsBD.otworzPolaczenie();
+					
 					for(int i = 0; i < grupy.size(); i++) {
-						System.out.println(indexy[i] + "\t" + "Usuwanie...");
+						//System.out.println(indexy[i] + "\t" + "Usuwanie...");
+						flaga = interfejsBD.usunGrupe(
+								grupy.get(indexy[i]).pobierzIdGrupa());
+						if(!flaga) {
+							JOptionPane.showMessageDialog(
+									null,
+									"B³¹d przy usuwaniu grup",
+									"B³¹d",
+									JOptionPane.ERROR_MESSAGE);
+							break;
+						}
 					}
+					
+					if(flaga) {
+						JOptionPane.showMessageDialog(
+								null,
+								"Pomyœlnie usuniêto wybrane grupy",
+								"Info",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+					interfejsBD.zamknijPolaczenie();
 				} catch (IndexOutOfBoundsException e2) {
 					//B³¹d - wykroczenie poza zakres tablicy
 				}
@@ -428,7 +451,7 @@ public class Widok extends Panel {
 			Object nazwaOpcja[] = {"Tak", "Nie"};
 			int opcja = JOptionPane.showOptionDialog(
 					null,
-					"Czy na pewno usun¹æ zaznaczone elementy?",
+					"Czy na pewno usun¹æ zaznaczone grupy?",
 					"Pytanie",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
