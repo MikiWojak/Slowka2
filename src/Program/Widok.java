@@ -416,14 +416,19 @@ public class Widok extends Panel {
 					
 					for(int i = 0; i < grupy.size(); i++) {
 						//System.out.println(indexy[i] + "\t" + "Usuwanie...");
-						flaga = interfejsBD.usunGrupe(
-								grupy.get(indexy[i]).pobierzIdGrupa());
-						if(!flaga) {
-							JOptionPane.showMessageDialog(
-									null,
-									"B³¹d przy usuwaniu grup",
-									"B³¹d",
-									JOptionPane.ERROR_MESSAGE);
+						try {
+							flaga = interfejsBD.usunGrupe(
+									grupy.get(indexy[i]).pobierzIdGrupa());
+							if(!flaga) {
+								JOptionPane.showMessageDialog(
+										null,
+										"B³¹d przy usuwaniu grup",
+										"B³¹d",
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+						} catch (IndexOutOfBoundsException e2) {
+							// TODO: handle exception
 							break;
 						}
 					}
@@ -435,6 +440,10 @@ public class Widok extends Panel {
 								"Info",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
+					
+					pobierzGrupyBD();
+					listGrupy.setModel(utworzListeGrup());
+					lblIloscGrup.setText("Iloœæ grup: " + iloscGrup);
 					
 					interfejsBD.zamknijPolaczenie();
 				} catch (IndexOutOfBoundsException e2) {
