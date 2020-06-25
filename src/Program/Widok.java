@@ -408,15 +408,35 @@ public class Widok extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			int indexy[] = listGrupy.getSelectedIndices();
-			try {
-				for(int i = 0; i < grupy.size(); i++) {
-					System.out.println(indexy[i] + "\t" + "Usuwanie...");
+			if(usunGrupyZgoda()) {
+				int indexy[] = listGrupy.getSelectedIndices();
+				try {
+					for(int i = 0; i < grupy.size(); i++) {
+						System.out.println(indexy[i] + "\t" + "Usuwanie...");
+					}
+				} catch (IndexOutOfBoundsException e2) {
+					//B³¹d - wykroczenie poza zakres tablicy
 				}
-			} catch (IndexOutOfBoundsException e2) {
-				//B³¹d - wykroczenie poza zakres tablicy
-				// TODO: handle exception
 			}
+		}
+		
+		/**
+		 * Okno dialogowe z pytaniem, czy na pewno usun¹æ zaznaczone grupy.
+		 * @return true - tak; false - nie
+		 */
+		private boolean usunGrupyZgoda() {
+			Object nazwaOpcja[] = {"Tak", "Nie"};
+			int opcja = JOptionPane.showOptionDialog(
+					null,
+					"Czy na pewno usun¹æ zaznaczone elementy?",
+					"Pytanie",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,
+					nazwaOpcja,
+					nazwaOpcja[1]);
+			if(opcja == 0) { return true; }
+			return false;
 		}
 		
 	}
