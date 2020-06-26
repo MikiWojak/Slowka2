@@ -410,6 +410,8 @@ public class Widok extends Panel {
 		
 		/**
 		 * Akcja usuwania grupy lub grup.
+		 * Potwierdzenie akcji.
+		 * Weryfikacja i rezultat.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -472,6 +474,27 @@ public class Widok extends Panel {
 					nazwaOpcja[1]);
 			if(opcja == 0) { return true; }
 			return false;
+		}
+		
+	}
+	
+	/**
+	 * Klasa wewnêtrzna do dodawania s³ów do bazy danych.
+	 * Do wywo³ywania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class DodajSlowo implements ActionListener {
+		/**
+		 * Konstruktor klasy DodajSlowo.
+		 */
+		public DodajSlowo() {}
+		/**
+		 * Akcja dodawania s³owa.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 		
 	}
