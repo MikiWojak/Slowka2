@@ -330,6 +330,16 @@ public class Widok extends Panel {
 	}
 	
 	/**
+	 * Aktualizacja listy i iloœci grup.
+	 * Do dodawania, modyfikacji i usuwania grup.
+	 */
+	private void aktualizujGrupy() {
+		pobierzGrupyBD();
+		listGrupy.setModel(utworzListeGrup());
+		lblIloscGrup.setText("Iloœæ grup: " + iloscGrup);
+	}
+	
+	/**
 	 * Klasa wewnêtrzna do dodawania grupy do bazy danych.
 	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
@@ -348,9 +358,7 @@ public class Widok extends Panel {
 		public void actionPerformed(ActionEvent e) {
 			log.debug("Uruchomienie okienka do dodawania grupy.");
 			edycja = new Edycja();
-			pobierzGrupyBD();
-			listGrupy.setModel(utworzListeGrup());
-			lblIloscGrup.setText("Iloœæ grup: " + iloscGrup);
+			aktualizujGrupy();
 		}
 	}
 	
@@ -377,9 +385,7 @@ public class Widok extends Panel {
 				int idGrupa = grupy.get(indexGrupa).pobierzIdGrupa();
 				log.debug("Uruchomienie okienka do modyfikacji grupy.");
 				edycja = new Edycja(0, idGrupa);
-				pobierzGrupyBD();
-				listGrupy.setModel(utworzListeGrup());
-				lblIloscGrup.setText("Iloœæ grup: " + iloscGrup);
+				aktualizujGrupy();
 				zmienGrupe(indexGrupa);
 			} else {
 				JOptionPane.showMessageDialog(
@@ -422,7 +428,7 @@ public class Widok extends Panel {
 							if(!flaga) {
 								JOptionPane.showMessageDialog(
 										null,
-										"B³¹d przy usuwaniu grup",
+										"B³¹d przy usuwaniu grup!",
 										"B³¹d",
 										JOptionPane.ERROR_MESSAGE);
 								break;
@@ -436,14 +442,11 @@ public class Widok extends Panel {
 					if(flaga) {
 						JOptionPane.showMessageDialog(
 								null,
-								"Pomyœlnie usuniêto wybrane grupy",
+								"Pomyœlnie usuniêto wybrane grupy i powi¹zane z nimi s³owa.",
 								"Info",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
-					
-					pobierzGrupyBD();
-					listGrupy.setModel(utworzListeGrup());
-					lblIloscGrup.setText("Iloœæ grup: " + iloscGrup);
+					aktualizujGrupy();
 					
 					interfejsBD.zamknijPolaczenie();
 				} catch (IndexOutOfBoundsException e2) {
@@ -460,7 +463,7 @@ public class Widok extends Panel {
 			Object nazwaOpcja[] = {"Tak", "Nie"};
 			int opcja = JOptionPane.showOptionDialog(
 					null,
-					"Czy na pewno usun¹æ zaznaczone grupy?",
+					"Czy na pewno usun¹æ zaznaczone grupy i powi¹zane z nimi s³owa?",
 					"Pytanie",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
