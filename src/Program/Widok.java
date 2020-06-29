@@ -482,8 +482,10 @@ public class Widok extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			//S這wo do grupy nr 3
-			edycja = new Edycja(1, 3);
+			int indexGrupa = listGrupy.getSelectedIndex();
+			int id_grupa = grupy.get(indexGrupa).pobierzIdGrupa();
+			log.debug("Uruchomiono okienko do dodawania s這wa.");
+			edycja = new Edycja(1, id_grupa);
 		}
 		
 	}
@@ -504,8 +506,10 @@ public class Widok extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			//S這wo nr 13
-			edycja = new Edycja(13);
+			int indexSlowo = tableSlowa.getSelectedRow();
+			int id_slowo = slowa.get(indexSlowo).pobierzIdSlowo();
+			log.debug("Uruchomiono okienko do modyfikacji s這wa.");
+			edycja = new Edycja(id_slowo);
 		}
 		
 	}
