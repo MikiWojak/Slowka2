@@ -198,12 +198,7 @@ public class Widok extends Panel {
 		add(btnDodajGrupe);
 		
 		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
-		btnDodajSlowo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//S這wo do grupy nr 3
-				edycja = new Edycja(1, 3);
-			}
-		});
+		btnDodajSlowo.addActionListener(new DodajSlowo());
 		btnDodajSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDodajSlowo.setBounds(400, 466, 150, 30);
 		add(btnDodajSlowo);
@@ -215,13 +210,7 @@ public class Widok extends Panel {
 		add(btnModyfikujGrupe);
 		
 		btnModyfikujSlowo = new JButton("Modyfikuj s\u0142owo");
-		btnModyfikujSlowo.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//S這wo nr 13
-				edycja = new Edycja(13);
-			}
-		});
+		btnModyfikujSlowo.addActionListener(new ModyfikujSlowo());
 		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnModyfikujSlowo.setBounds(400, 505, 150, 30);
 		add(btnModyfikujSlowo);
@@ -415,7 +404,6 @@ public class Widok extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			if(usunGrupyZgoda()) {
 				int indexy[] = listGrupy.getSelectedIndices();
 				boolean flaga = true;
@@ -436,7 +424,7 @@ public class Widok extends Panel {
 								break;
 							}
 						} catch (IndexOutOfBoundsException e2) {
-							// TODO: handle exception
+							//B章d - wykroczenie poza zakres tablicy
 							break;
 						}
 					}
@@ -494,7 +482,30 @@ public class Widok extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			//S這wo do grupy nr 3
+			edycja = new Edycja(1, 3);
+		}
+		
+	}
+	
+	/**
+	 * Klasa wewn皻rzna do modyfikacji s堯w do bazy danych.
+	 * Do wywo造wania akcji.
+	 * @author MikiWojak (Miko豉j 畝rnowski)
+	 */
+	private class ModyfikujSlowo implements ActionListener {
+		/**
+		 * Konstruktor klasy ModyfikujSlowo.
+		 */
+		public ModyfikujSlowo() {}
+		/**
+		 * Akcja modyfikacji grupy.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			//S這wo nr 13
+			edycja = new Edycja(13);
 		}
 		
 	}
