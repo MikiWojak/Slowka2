@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -145,5 +148,37 @@ public class PanelSlowo extends Panel {
 	private void modyfikujSlowoKomponenty() {
 		lblOpis.setText("Modyfikuj s這wo");
 		btnPotwierdzAkcje.setText("Modyfikuj s這wo");
+	}
+	
+	/**
+	 * Klasa wewn皻rzna dodania s這wa.
+	 * Do wywo造wania akcji.
+	 * @author MikiWojak (Miko豉j 畝rnowski)
+	 */
+	private class DodajSlowo implements ActionListener {
+		
+		public DodajSlowo() {}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	/**
+	 * Klasa wewn皻rzna modyfikacji s這wa.
+	 * Do wywo造wania akcji.
+	 * @author MikiWojak (Miko豉j 畝rnowski)
+	 */
+	private class ModyfikujSlowo implements ActionListener {
+		
+		public ModyfikujSlowo() {}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 }
