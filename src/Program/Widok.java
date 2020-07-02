@@ -486,14 +486,26 @@ public class Widok extends Panel {
 		public DodajSlowo() {}
 		/**
 		 * Akcja dodawania s³owa.
+		 * Sprawdzenie, czy grupa zosta³a wybrana.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int indexGrupa = listGrupy.getSelectedIndex();
-			int id_grupa = grupy.get(indexGrupa).pobierzIdGrupa();
-			log.debug("Uruchomiono okienko do dodawania s³owa.");
-			edycja = new Edycja(1, id_grupa);
+			//Grupa nie jest wybrana
+			if(indexGrupa < 0) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Wybierz grupê z listy!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			//Wybrano grupê
+			else {
+				int id_grupa = grupy.get(indexGrupa).pobierzIdGrupa();
+				log.debug("Uruchomiono okienko do dodawania s³owa.");
+				edycja = new Edycja(1, id_grupa);
+			}
 		}
 		
 	}
