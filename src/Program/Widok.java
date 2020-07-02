@@ -404,43 +404,51 @@ public class Widok extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(usunGrupyZgoda()) {
-				int indexy[] = listGrupy.getSelectedIndices();
-				boolean flaga = true;
-				try {
-					interfejsBD.otworzPolaczenie();
-					
-					for(int i = 0; i < grupy.size(); i++) {
-						//System.out.println(indexy[i] + "\t" + "Usuwanie...");
-						try {
-							flaga = interfejsBD.usunGrupe(
-									grupy.get(indexy[i]).pobierzIdGrupa());
-							if(!flaga) {
-								JOptionPane.showMessageDialog(
-										null,
-										"B³¹d przy usuwaniu grup!",
-										"B³¹d",
-										JOptionPane.ERROR_MESSAGE);
+			if(listGrupy.getSelectedIndex() < 0) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Wybierz grupê lub grupy z listy!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
+				if(usunGrupyZgoda()) {
+					int indexy[] = listGrupy.getSelectedIndices();
+					boolean flaga = true;
+					try {
+						interfejsBD.otworzPolaczenie();
+						
+						for(int i = 0; i < grupy.size(); i++) {
+							//System.out.println(indexy[i] + "\t" + "Usuwanie...");
+							try {
+								flaga = interfejsBD.usunGrupe(
+										grupy.get(indexy[i]).pobierzIdGrupa());
+								if(!flaga) {
+									JOptionPane.showMessageDialog(
+											null,
+											"B³¹d przy usuwaniu grup!",
+											"B³¹d",
+											JOptionPane.ERROR_MESSAGE);
+									break;
+								}
+							} catch (IndexOutOfBoundsException e2) {
+								//B³¹d - wykroczenie poza zakres tablicy
 								break;
 							}
-						} catch (IndexOutOfBoundsException e2) {
-							//B³¹d - wykroczenie poza zakres tablicy
-							break;
 						}
+						
+						if(flaga) {
+							JOptionPane.showMessageDialog(
+									null,
+									"Pomyœlnie usuniêto wybrane grupy i powi¹zane z nimi s³owa.",
+									"Info",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+						aktualizujGrupy();
+						
+						interfejsBD.zamknijPolaczenie();
+					} catch (IndexOutOfBoundsException e2) {
+						//B³¹d - wykroczenie poza zakres tablicy
 					}
-					
-					if(flaga) {
-						JOptionPane.showMessageDialog(
-								null,
-								"Pomyœlnie usuniêto wybrane grupy i powi¹zane z nimi s³owa.",
-								"Info",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
-					aktualizujGrupy();
-					
-					interfejsBD.zamknijPolaczenie();
-				} catch (IndexOutOfBoundsException e2) {
-					//B³¹d - wykroczenie poza zakres tablicy
 				}
 			}
 		}
