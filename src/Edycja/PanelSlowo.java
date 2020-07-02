@@ -63,6 +63,7 @@ public class PanelSlowo extends Panel {
 	public PanelSlowo(int id_grupa) {
 		this.id_grupa = id_grupa;
 		inicjujKomponenty();
+		dodajSlowoKomponenty();
 	}
 	
 	/**
@@ -73,16 +74,17 @@ public class PanelSlowo extends Panel {
 	public PanelSlowo(int id_slowo, boolean tryb) {
 		this.id_slowo = id_slowo;
 		inicjujKomponenty();
-		modyfikujKomponenty();
+		modyfikujSlowoKomponenty();
 	}
 
 	/**
 	 * Inicjuje komponenty.
+	 * Surowa forma.
 	 */
 	private void inicjujKomponenty() {
 		setPreferredSize(new Dimension(800, 225));
 		
-		lblOpis = new JLabel("Dodaj s\u0142owo do grupy");
+		lblOpis = new JLabel("");
 		lblOpis.setFont(new Font("Arial", Font.BOLD, 16));
 		lblOpis.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOpis.setBounds(0, 15, 800, 25);
@@ -124,16 +126,24 @@ public class PanelSlowo extends Panel {
 		tfCzescMowy.setBounds(145, 138, 640, 25);
 		add(tfCzescMowy);
 		
-		btnPotwierdzAkcje = new JButton("Dodaj s\u0142owo");
+		btnPotwierdzAkcje = new JButton("");
 		btnPotwierdzAkcje.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnPotwierdzAkcje.setBounds(635, 179, 150, 30);
 		add(btnPotwierdzAkcje);
 	}
 	
 	/**
-	 * Modyfikuje komponenty na potrzeby edycji s這wa.
+	 * Zmiany w komponentach na potrzeby dodawania s這wa.
 	 */
-	private void modyfikujKomponenty() {
-		//lblOpis.setText("Modyfikuj s這wo o ID: " + id_slowo);
+	private void dodajSlowoKomponenty() {
+		lblOpis.setText("Dodaj s這wo do grupy");
+		btnPotwierdzAkcje.setText("Dodaj s這wo");
+	}
+	/**
+	 * Zmiany w komponentach na potrzeby modyfikacji s這wa.
+	 */
+	private void modyfikujSlowoKomponenty() {
+		lblOpis.setText("Modyfikuj s這wo");
+		btnPotwierdzAkcje.setText("Modyfikuj s這wo");
 	}
 }
