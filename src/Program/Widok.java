@@ -527,9 +527,20 @@ public class Widok extends Panel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int indexSlowo = tableSlowa.getSelectedRow();
-			int id_slowo = slowa.get(indexSlowo).pobierzIdSlowo();
-			log.debug("Uruchomiono okienko do modyfikacji s³owa.");
-			edycja = new Edycja(id_slowo);
+			//S³owo nie jest wybrane
+			if(indexSlowo < 0) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Wybierz rekord z tabeli!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			//Wybrano slowo
+			else {
+				int id_slowo = slowa.get(indexSlowo).pobierzIdSlowo();
+				log.debug("Uruchomiono okienko do modyfikacji s³owa.");
+				edycja = new Edycja(id_slowo);
+			}
 		}
 		
 	}
