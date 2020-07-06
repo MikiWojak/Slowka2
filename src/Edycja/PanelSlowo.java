@@ -283,7 +283,21 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("Zmodyfikowano s³owo");
+			interfejsBD.otworzPolaczenie();
+			interfejsBD.modyfikujSlowo(
+					id_slowo,
+					slowoPrzedMod.pobierzIdGrupy(),
+					tfSlowo.getText(),
+					tfTlumaczenie.getText(),
+					tfCzescMowy.getText(),
+					false);
+			interfejsBD.zamknijPolaczenie();
+			
+			JOptionPane.showMessageDialog(
+					null,
+					"Zmodyfikowano s³owo",
+					"Info",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }
