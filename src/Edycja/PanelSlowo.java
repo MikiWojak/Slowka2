@@ -3,6 +3,7 @@ package Edycja;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import org.slf4j.LoggerFactory;
@@ -233,13 +234,35 @@ public class PanelSlowo extends Panel {
 	 * @author MikiWojak (Miko豉j 畝rnowski)
 	 */
 	private class DodajSlowo implements ActionListener {
-		
+		/**
+		 * Konstruktor klasy DodajSlowo.
+		 */
 		public DodajSlowo() {}
 		
+		/**
+		 * Akcja dodania s這wa do bazy danych.
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("Dodano s這wo");
+			interfejsBD.otworzPolaczenie();
+			interfejsBD.dodajSlowo(
+					id_grupa,
+					tfSlowo.getText(),
+					tfTlumaczenie.getText(),
+					tfCzescMowy.getText(),
+					false);
+			interfejsBD.zamknijPolaczenie();
+			
+			JOptionPane.showMessageDialog(
+					null,
+					"Dodano s這wo",
+					"Info",
+					JOptionPane.INFORMATION_MESSAGE);
+			
+			tfSlowo.setText("");
+			tfTlumaczenie.setText("");
+			tfCzescMowy.setText("");
 		}
 	}
 	
@@ -249,9 +272,14 @@ public class PanelSlowo extends Panel {
 	 * @author MikiWojak (Miko豉j 畝rnowski)
 	 */
 	private class ModyfikujSlowo implements ActionListener {
-		
+		/**
+		 * Konstruktor klasy ModyfikujSlowo. 
+		 */
 		public ModyfikujSlowo() {}
 		
+		/**
+		 * Akcja modyfikacji s這wa w bazie danych.
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
