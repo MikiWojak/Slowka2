@@ -4,12 +4,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import org.slf4j.LoggerFactory;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import BazaDanych.Slowo;
 
 /**
  * Panel do edycji s³ów.
@@ -25,6 +32,14 @@ public class PanelSlowo extends Panel {
 	 * ID grupy, do której ma nale¿eæ s³owo.
 	 */
 	private int id_grupa;
+	/**
+	 * Lista na s³owa.
+	 */
+	private List<Slowo>slowa;
+	/**
+	 * Rekord przed modyfikacj¹.
+	 */
+	private Slowo slowoPrzedMod;
 	/**
 	 * Napis informuj¹cy czy nowe s³owo, czy edycja istniej¹cego.
 	 */
@@ -65,6 +80,8 @@ public class PanelSlowo extends Panel {
 	 */
 	public PanelSlowo(int id_grupa) {
 		this.id_grupa = id_grupa;
+		inicjujPola();
+		pobierzSlowa(id_grupa);
 		inicjujKomponenty();
 		dodajSlowoKomponenty();
 	}
@@ -76,6 +93,9 @@ public class PanelSlowo extends Panel {
 	 */
 	public PanelSlowo(int id_slowo, boolean tryb) {
 		this.id_slowo = id_slowo;
+		inicjujPola();
+		slowoPrzedMod = pobierzSlowo(id_slowo);
+		pobierzSlowa(slowoPrzedMod.pobierzIdGrupy());
 		inicjujKomponenty();
 		modyfikujSlowoKomponenty();
 	}
@@ -136,11 +156,20 @@ public class PanelSlowo extends Panel {
 	}
 	
 	/**
+	 * Inicjacja pól w klasie.
+	 */
+	private void inicjujPola() {
+		log = LoggerFactory.getLogger(PanelSlowo.class);
+		slowa = new LinkedList<Slowo>();
+	}
+	
+	/**
 	 * Zmiany w komponentach na potrzeby dodawania s³owa.
 	 */
 	private void dodajSlowoKomponenty() {
 		lblOpis.setText("Dodaj s³owo do grupy");
 		btnPotwierdzAkcje.setText("Dodaj s³owo");
+		btnPotwierdzAkcje.addActionListener(new DodajSlowo());
 	}
 	/**
 	 * Zmiany w komponentach na potrzeby modyfikacji s³owa.
@@ -148,6 +177,34 @@ public class PanelSlowo extends Panel {
 	private void modyfikujSlowoKomponenty() {
 		lblOpis.setText("Modyfikuj s³owo");
 		btnPotwierdzAkcje.setText("Modyfikuj s³owo");
+		btnPotwierdzAkcje.addActionListener(new ModyfikujSlowo());
+		
+		tfSlowo.setText(slowoPrzedMod.pobierzSlowo());
+		tfTlumaczenie.setText(slowoPrzedMod.pobierzTlumaczenie());
+		tfCzescMowy.setText(slowoPrzedMod.pobierzCzescMowy());
+	}
+	
+	/**
+	 * Pobierz z bazy danych s³owa o podanym ID.
+	 * @param id_grupa ID grupy w bazie danych, do którego maj¹ nale¿eæ s³owa
+	 */
+	private void pobierzSlowa(int id_grupa){
+		interfejsBD.otworzPolaczenie();
+		slowa = interfejsBD.pobierzSlowaZGrupy(id_grupa);
+		interfejsBD.zamknijPolaczenie();
+	}
+	
+	/**
+	 * Pobranie jednego s³owa z bazy danych.
+	 * @param id_slowo ID s³owa w bazie danych
+	 * @return rekord klasy Slowo
+	 */
+	private Slowo pobierzSlowo(int id_slowo) {
+		interfejsBD.otworzPolaczenie();
+		List<Slowo>lista = new LinkedList<Slowo>();
+		lista = interfejsBD.pobierzSlowo(id_slowo);
+		interfejsBD.zamknijPolaczenie();
+		return lista.get(0);
 	}
 	
 	/**
@@ -162,7 +219,7 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			System.out.println("Dodaj s³owo");
 		}
 	}
 	
@@ -178,7 +235,7 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			System.out.println("Modyfikuj s³owo");
 		}
 	}
 }
