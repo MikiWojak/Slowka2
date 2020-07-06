@@ -84,6 +84,10 @@ public class PanelSlowo extends Panel {
 		pobierzSlowa(id_grupa);
 		inicjujKomponenty();
 		dodajSlowoKomponenty();
+		
+		//DEBUG
+		System.out.println("Dodaj s³owo");
+		wyswietlSlowa();
 	}
 	
 	/**
@@ -98,6 +102,11 @@ public class PanelSlowo extends Panel {
 		pobierzSlowa(slowoPrzedMod.pobierzIdGrupy());
 		inicjujKomponenty();
 		modyfikujSlowoKomponenty();
+		
+		//DEBUG
+		System.out.println("Modyfikuj s³owo");
+		wyswietlSlowa();
+		System.out.println(slowoPrzedMod);
 	}
 
 	/**
@@ -208,6 +217,17 @@ public class PanelSlowo extends Panel {
 	}
 	
 	/**
+	 * Wyœwietlenie listy slów.
+	 * Do debugu.
+	 */
+	private void wyswietlSlowa() {
+		for(int i = 0; i < slowa.size(); i++) {
+			System.out.print(slowa.get(i));
+		}
+		System.out.println();
+	}
+	
+	/**
 	 * Klasa wewnêtrzna dodania s³owa.
 	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
@@ -219,7 +239,7 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("Dodaj s³owo");
+			System.out.println("Dodano s³owo");
 		}
 	}
 	
@@ -235,7 +255,7 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("Modyfikuj s³owo");
+			System.out.println("Zmodyfikowano s³owo");
 		}
 	}
 }
