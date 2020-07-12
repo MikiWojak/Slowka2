@@ -229,6 +229,23 @@ public class PanelSlowo extends Panel {
 	}
 	
 	/**
+	 * Sprawdza, czy pole "s³owo" i "t³umaczenie" maj¹ zawartoœæ.
+	 * @return true - obydwa pola maj¹ zawartoœæ; false - jedno z pól jest puste
+	 */
+	private boolean walidacjaCzyJestSlowoTlumaczenie() {
+		if(!czyPolePelne(tfSlowo.getText()) || 
+				!czyPolePelne(tfTlumaczenie.getText())) {
+			JOptionPane.showMessageDialog(
+					null,
+					"Pole 'S³owo' lub 'T³umaczenie' jest puste!",
+					"Uwaga",
+					JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		return true;
+	}
+	
+	/**
 	 * Klasa wewnêtrzna dodania s³owa.
 	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
@@ -241,28 +258,31 @@ public class PanelSlowo extends Panel {
 		
 		/**
 		 * Akcja dodania s³owa do bazy danych.
+		 * Walidacja danych.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			interfejsBD.otworzPolaczenie();
-			interfejsBD.dodajSlowo(
-					id_grupa,
-					tfSlowo.getText(),
-					tfTlumaczenie.getText(),
-					tfCzescMowy.getText(),
-					false);
-			interfejsBD.zamknijPolaczenie();
-			
-			JOptionPane.showMessageDialog(
-					null,
-					"Dodano s³owo",
-					"Info",
-					JOptionPane.INFORMATION_MESSAGE);
-			
-			tfSlowo.setText("");
-			tfTlumaczenie.setText("");
-			tfCzescMowy.setText("");
+			if(walidacjaCzyJestSlowoTlumaczenie()) {
+				interfejsBD.otworzPolaczenie();
+				interfejsBD.dodajSlowo(
+						id_grupa,
+						tfSlowo.getText(),
+						tfTlumaczenie.getText(),
+						tfCzescMowy.getText(),
+						false);
+				interfejsBD.zamknijPolaczenie();
+				
+				JOptionPane.showMessageDialog(
+						null,
+						"Dodano s³owo",
+						"Info",
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				tfSlowo.setText("");
+				tfTlumaczenie.setText("");
+				tfCzescMowy.setText("");
+			}
 		}
 	}
 	
