@@ -232,7 +232,7 @@ public class PanelSlowo extends Panel {
 	 * Sprawdza, czy pole "s³owo" i "t³umaczenie" maj¹ zawartoœæ.
 	 * @return true - obydwa pola maj¹ zawartoœæ; false - jedno z pól jest puste
 	 */
-	private boolean walidacjaCzyJestSlowoTlumaczenie() {
+	private boolean walidacjaCzyJestZawartosc() {
 		if(!czyPolePelne(tfSlowo.getText()) || 
 				!czyPolePelne(tfTlumaczenie.getText())) {
 			JOptionPane.showMessageDialog(
@@ -242,6 +242,16 @@ public class PanelSlowo extends Panel {
 					JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
+		return true;
+	}
+	
+	/**
+	 * Sprawdza, czy rekord nie powtarza siê.
+	 * Sprawdza, czy nie powtarza siê s³owo lub t³umaczenie.
+	 * Dopuszczenie dodania rekordu podobnego lub duplikatu do BD.
+	 * @return
+	 */
+	private boolean walidacjaCzyRekordUnikalny() {
 		return true;
 	}
 	
@@ -263,7 +273,7 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if(walidacjaCzyJestSlowoTlumaczenie()) {
+			if(walidacjaCzyJestZawartosc()) {
 				interfejsBD.otworzPolaczenie();
 				interfejsBD.dodajSlowo(
 						id_grupa,
