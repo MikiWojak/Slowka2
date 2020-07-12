@@ -505,6 +505,7 @@ public class Widok extends Panel {
 				int id_grupa = grupy.get(indexGrupa).pobierzIdGrupa();
 				log.debug("Uruchomiono okienko do dodawania s³owa.");
 				edycja = new Edycja(1, id_grupa);
+				zmienGrupe(indexGrupa);
 			}
 		}
 		
@@ -540,6 +541,7 @@ public class Widok extends Panel {
 				int id_slowo = slowa.get(indexSlowo).pobierzIdSlowo();
 				log.debug("Uruchomiono okienko do modyfikacji s³owa.");
 				edycja = new Edycja(id_slowo);
+				zmienGrupe(listGrupy.getSelectedIndex());
 			}
 		}
 		
