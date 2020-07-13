@@ -249,9 +249,27 @@ public class PanelSlowo extends Panel {
 	 * Sprawdza, czy rekord nie powtarza siê.
 	 * Sprawdza, czy nie powtarza siê s³owo lub t³umaczenie.
 	 * Dopuszczenie dodania rekordu podobnego lub duplikatu do BD.
-	 * @return
+	 * @return true - mo¿na dodaæ rekord; false - nie mo¿na dodaæ rekordu
 	 */
 	private boolean walidacjaCzyRekordUnikalny() {
+		for(int i = 0; i < slowa.size(); i++) {
+			if(slowa.get(i).pobierzSlowo().equals(tfSlowo.getText()) ||
+					slowa.get(i).pobierzTlumaczenie().equals(tfTlumaczenie.getText())) {
+				Object nazwaOpcja[] = {"Tak", "Nie"};
+				int opcja = JOptionPane.showOptionDialog(
+						null,
+						"Taki sam lub podobny rekord ju¿ istnieje\n"
+						+ "Czy na pewno chcesz go dodaæ?",
+						"Pytanie",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,
+						nazwaOpcja,
+					    nazwaOpcja[1]);
+				if(opcja == 1) { return false; }
+				break;
+			}
+		}
 		return true;
 	}
 	
@@ -273,7 +291,8 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if(walidacjaCzyJestZawartosc()) {
+			if(walidacjaCzyJestZawartosc() ||
+					walidacjaCzyRekordUnikalny()) {
 				interfejsBD.otworzPolaczenie();
 				interfejsBD.dodajSlowo(
 						id_grupa,

@@ -189,7 +189,7 @@ public class PanelGrupa extends Panel{
 				Object nazwaOpcja[] = {"Tak", "Nie"};
 				int opcja = JOptionPane.showOptionDialog(null,
 						"Grupa o podanej nazwie ju¿ istnieje.\n"
-						+ "Czy na pewno kontynuowaæ?",
+						+ "Czy na pewno chcesz j¹ dodaæ?",
 						"Pytanie",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,
