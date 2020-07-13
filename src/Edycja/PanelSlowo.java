@@ -266,8 +266,8 @@ public class PanelSlowo extends Panel {
 						null,
 						nazwaOpcja,
 					    nazwaOpcja[1]);
-				if(opcja == 1) { return false; }
-				break;
+				if(opcja == 0) { return true; }
+				else { return false; }
 			}
 		}
 		return true;
@@ -291,7 +291,7 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if(walidacjaCzyJestZawartosc() ||
+			if(walidacjaCzyJestZawartosc() &&
 					walidacjaCzyRekordUnikalny()) {
 				interfejsBD.otworzPolaczenie();
 				interfejsBD.dodajSlowo(

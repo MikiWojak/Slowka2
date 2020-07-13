@@ -196,8 +196,9 @@ public class PanelGrupa extends Panel{
 						null, 
 						nazwaOpcja,
 						nazwaOpcja[1]);
-				if(opcja == 1) { return false; }
-				break;
+				if(opcja == 0) { return true; }
+				else { return false; }
+				
 			}
 		}
 		return true;
