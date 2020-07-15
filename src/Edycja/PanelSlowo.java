@@ -294,23 +294,29 @@ public class PanelSlowo extends Panel {
 			if(walidacjaCzyJestZawartosc() &&
 					walidacjaCzyRekordUnikalny()) {
 				interfejsBD.otworzPolaczenie();
-				interfejsBD.dodajSlowo(
+				if(interfejsBD.dodajSlowo(
 						id_grupa,
 						tfSlowo.getText(),
 						tfTlumaczenie.getText(),
 						tfCzescMowy.getText(),
-						false);
+						false)) {
+					JOptionPane.showMessageDialog(
+							null,
+							"Dodano s³owo",
+							"Info",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+					tfSlowo.setText("");
+					tfTlumaczenie.setText("");
+					tfCzescMowy.setText("");
+				} else {
+					JOptionPane.showMessageDialog(
+							null,
+							"B³¹d przy dodawaniu s³owa!",
+							"B³¹d!",
+							JOptionPane.ERROR_MESSAGE);
+				}
 				interfejsBD.zamknijPolaczenie();
-				
-				JOptionPane.showMessageDialog(
-						null,
-						"Dodano s³owo",
-						"Info",
-						JOptionPane.INFORMATION_MESSAGE);
-				
-				tfSlowo.setText("");
-				tfTlumaczenie.setText("");
-				tfCzescMowy.setText("");
 			}
 		}
 	}
