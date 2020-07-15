@@ -274,6 +274,20 @@ public class PanelSlowo extends Panel {
 	}
 	
 	/**
+	 * Sprawdza, czy 's³owo' i 't³umaczenie' s¹ takie, jak podano.
+	 * Dla modyfikacji s³owo.
+	 * Umo¿lwia zrobienie wyj¹tku w kwestii rekordu.
+	 * @return true - rekord siê nie zmieni³; false - zmieniono 's³owo' lub 't³umaczenie' 
+	 */
+	private boolean walidacjaCzyRekordTakiSam() {
+		if(tfSlowo.getText().equals(slowoPrzedMod.pobierzIdSlowo()) &&
+				tfTlumaczenie.getText().equals(slowoPrzedMod.pobierzTlumaczenie())) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * Klasa wewnêtrzna dodania s³owa.
 	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
@@ -340,7 +354,8 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if(walidacjaCzyJestZawartosc()) {
+			if(walidacjaCzyJestZawartosc() &&
+					walidacjaCzyRekordTakiSam() || walidacjaCzyRekordUnikalny()) {
 				interfejsBD.otworzPolaczenie();
 				interfejsBD.modyfikujSlowo(
 						id_slowo,
