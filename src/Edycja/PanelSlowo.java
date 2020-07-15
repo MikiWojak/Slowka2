@@ -280,7 +280,7 @@ public class PanelSlowo extends Panel {
 	 * @return true - rekord siê nie zmieni³; false - zmieniono 's³owo' lub 't³umaczenie' 
 	 */
 	private boolean walidacjaCzyRekordTakiSam() {
-		if(tfSlowo.getText().equals(slowoPrzedMod.pobierzIdSlowo()) &&
+		if(tfSlowo.getText().equals(slowoPrzedMod.pobierzSlowo()) &&
 				tfTlumaczenie.getText().equals(slowoPrzedMod.pobierzTlumaczenie())) {
 			return true;
 		}
