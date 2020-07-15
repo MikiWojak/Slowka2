@@ -287,6 +287,8 @@ public class PanelSlowo extends Panel {
 		/**
 		 * Akcja dodania s³owa do bazy danych.
 		 * Walidacja danych.
+		 * Walidacja akcji.
+		 * Rezultat
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -338,21 +340,23 @@ public class PanelSlowo extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			interfejsBD.otworzPolaczenie();
-			interfejsBD.modyfikujSlowo(
-					id_slowo,
-					slowoPrzedMod.pobierzIdGrupy(),
-					tfSlowo.getText(),
-					tfTlumaczenie.getText(),
-					tfCzescMowy.getText(),
-					false);
-			interfejsBD.zamknijPolaczenie();
-			
-			JOptionPane.showMessageDialog(
-					null,
-					"Zmodyfikowano s³owo",
-					"Info",
-					JOptionPane.INFORMATION_MESSAGE);
+			if(walidacjaCzyJestZawartosc()) {
+				interfejsBD.otworzPolaczenie();
+				interfejsBD.modyfikujSlowo(
+						id_slowo,
+						slowoPrzedMod.pobierzIdGrupy(),
+						tfSlowo.getText(),
+						tfTlumaczenie.getText(),
+						tfCzescMowy.getText(),
+						false);
+				interfejsBD.zamknijPolaczenie();
+				
+				JOptionPane.showMessageDialog(
+						null,
+						"Zmodyfikowano s³owo",
+						"Info",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	}
 }
