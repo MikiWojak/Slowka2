@@ -355,24 +355,23 @@ public class PanelSlowo extends Panel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(walidacjaCzyJestZawartosc()) {
-				if(walidacjaCzyRekordTakiSam()) {
-					if(walidacjaCzyRekordUnikalny()) {
-						interfejsBD.otworzPolaczenie();
-						interfejsBD.modyfikujSlowo(
-								id_slowo,
-								slowoPrzedMod.pobierzIdGrupy(),
-								tfSlowo.getText(),
-								tfTlumaczenie.getText(),
-								tfCzescMowy.getText(),
-								false);
-						interfejsBD.zamknijPolaczenie();
+				if(walidacjaCzyRekordTakiSam() ||
+						walidacjaCzyRekordUnikalny()) { 
+					interfejsBD.otworzPolaczenie();
+					interfejsBD.modyfikujSlowo(
+							id_slowo,
+							slowoPrzedMod.pobierzIdGrupy(),
+							tfSlowo.getText(),
+							tfTlumaczenie.getText(),
+							tfCzescMowy.getText(),
+							false);
+					interfejsBD.zamknijPolaczenie();
 						
-						JOptionPane.showMessageDialog(
-								null,
-								"Zmodyfikowano s³owo",
-								"Info",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
+					JOptionPane.showMessageDialog(
+							null,
+							"Zmodyfikowano s³owo",
+							"Info",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}
