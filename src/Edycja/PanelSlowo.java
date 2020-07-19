@@ -358,26 +358,42 @@ public class PanelSlowo extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			if(walidacjaCzyJestZawartosc()) {
-				if(walidacjaCzyRekordTakiSam() ||
-						walidacjaCzyRekordPodobny()) { 
-					interfejsBD.otworzPolaczenie();
-					interfejsBD.modyfikujSlowo(
-							id_slowo,
-							slowoPrzedMod.pobierzIdGrupy(),
-							tfSlowo.getText(),
-							tfTlumaczenie.getText(),
-							tfCzescMowy.getText(),
-							false);
-					interfejsBD.zamknijPolaczenie();
-						
-					JOptionPane.showMessageDialog(
-							null,
-							"Zmodyfikowano s³owo",
-							"Info",
-							JOptionPane.INFORMATION_MESSAGE);
-				}
+			//Walidacja danych
+			boolean walidacja = true;
+			if(!walidacjaCzyJestZawartosc()) { walidacja = false; }
+			else if(walidacjaCzyRekordTakiSam()) {}
+			else if(walidacjaCzyRekordPodobny()) {
+				Object nazwaOpcja[] = {"Tak", "Nie"};
+				int opcja = JOptionPane.showOptionDialog(
+						null,
+						"Taki sam lub podobny rekord ju¿ istnieje\n"
+						+ "Czy na pewno chcesz go dodaæ?",
+						"Pytanie",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,
+						nazwaOpcja,
+					    nazwaOpcja[1]);
+				if(opcja == 1) { walidacja = false; }
+			}
+			
+			//Walidacja akcji
+			if(walidacja) { 					
+				interfejsBD.otworzPolaczenie();
+				interfejsBD.modyfikujSlowo(
+						id_slowo,
+						slowoPrzedMod.pobierzIdGrupy(),
+						tfSlowo.getText(),
+						tfTlumaczenie.getText(),
+						tfCzescMowy.getText(),
+						false);
+				interfejsBD.zamknijPolaczenie();
+					
+				JOptionPane.showMessageDialog(
+						null,
+						"Zmodyfikowano s³owo",
+						"Info",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
