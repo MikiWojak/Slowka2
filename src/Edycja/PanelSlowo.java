@@ -251,26 +251,14 @@ public class PanelSlowo extends Panel {
 	 * Dopuszczenie dodania rekordu podobnego lub duplikatu do BD.
 	 * @return true - mo¿na dodaæ rekord; false - nie mo¿na dodaæ rekordu
 	 */
-	private boolean walidacjaCzyRekordUnikalny() {
+	private boolean walidacjaCzyRekordPodobny() {
 		for(int i = 0; i < slowa.size(); i++) {
 			if(slowa.get(i).pobierzSlowo().equals(tfSlowo.getText()) ||
 					slowa.get(i).pobierzTlumaczenie().equals(tfTlumaczenie.getText())) {
-				Object nazwaOpcja[] = {"Tak", "Nie"};
-				int opcja = JOptionPane.showOptionDialog(
-						null,
-						"Taki sam lub podobny rekord ju¿ istnieje\n"
-						+ "Czy na pewno chcesz go dodaæ?",
-						"Pytanie",
-						JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null,
-						nazwaOpcja,
-					    nazwaOpcja[1]);
-				if(opcja == 0) { return true; }
-				else { return false; }
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	/**
@@ -306,9 +294,26 @@ public class PanelSlowo extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			if(walidacjaCzyJestZawartosc() &&
-					walidacjaCzyRekordUnikalny()) {
+			//Walidacja danych
+			boolean walidacja = true;
+			if(!walidacjaCzyJestZawartosc()) { walidacja = false; }
+			else if(walidacjaCzyRekordPodobny()) {
+				Object nazwaOpcja[] = {"Tak", "Nie"};
+				int opcja = JOptionPane.showOptionDialog(
+						null,
+						"Taki sam lub podobny rekord ju¿ istnieje\n"
+						+ "Czy na pewno chcesz go dodaæ?",
+						"Pytanie",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,
+						nazwaOpcja,
+					    nazwaOpcja[1]);
+				if(opcja == 1) { walidacja = false; }
+			}
+			
+			//Walidacja akcji
+			if(walidacja) {
 				interfejsBD.otworzPolaczenie();
 				if(interfejsBD.dodajSlowo(
 						id_grupa,
@@ -356,7 +361,7 @@ public class PanelSlowo extends Panel {
 			// TODO Auto-generated method stub
 			if(walidacjaCzyJestZawartosc()) {
 				if(walidacjaCzyRekordTakiSam() ||
-						walidacjaCzyRekordUnikalny()) { 
+						walidacjaCzyRekordPodobny()) { 
 					interfejsBD.otworzPolaczenie();
 					interfejsBD.modyfikujSlowo(
 							id_slowo,
