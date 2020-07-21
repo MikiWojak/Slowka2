@@ -265,21 +265,6 @@ public class PanelSlowo extends Panel {
 	}
 	
 	/**
-	 * Sprawdza, czy 's³owo' i 't³umaczenie' s¹ takie, jak podano.
-	 * Dla modyfikacji s³owo.
-	 * Umo¿lwia zrobienie wyj¹tku w kwestii rekordu.
-	 * @return true - rekord siê nie zmieni³; false - zmieniono 's³owo' lub 't³umaczenie'
-	 * @deprecated
-	 */
-	private boolean walidacjaCzyRekordTakiSam() {
-		if(tfSlowo.getText().equals(slowoPrzedMod.pobierzSlowo()) &&
-				tfTlumaczenie.getText().equals(slowoPrzedMod.pobierzTlumaczenie())) {
-			return true;
-		}
-		return false;
-	}
-	
-	/**
 	 * Klasa wewnêtrzna dodania s³owa.
 	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
@@ -365,13 +350,12 @@ public class PanelSlowo extends Panel {
 			//Walidacja danych
 			boolean walidacja = true;
 			if(!walidacjaCzyJestZawartosc()) { walidacja = false; }
-			//else if(walidacjaCzyRekordTakiSam()) {}
 			else if(walidacjaCzyRekordPodobny()) {
 				Object nazwaOpcja[] = {"Tak", "Nie"};
 				int opcja = JOptionPane.showOptionDialog(
 						null,
 						"Taki sam lub podobny rekord ju¿ istnieje\n"
-						+ "Czy na pewno chcesz go dodaæ?",
+						+ "Czy na pewno chcesz go tak zmodyfikowaæ?",
 						"Pytanie",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,
@@ -384,20 +368,26 @@ public class PanelSlowo extends Panel {
 			//Walidacja akcji
 			if(walidacja) { 					
 				interfejsBD.otworzPolaczenie();
-				interfejsBD.modyfikujSlowo(
+				if(interfejsBD.modyfikujSlowo(
 						id_slowo,
 						slowoPrzedMod.pobierzIdGrupy(),
 						tfSlowo.getText(),
 						tfTlumaczenie.getText(),
 						tfCzescMowy.getText(),
-						false);
+						false)) {
+					JOptionPane.showMessageDialog(
+							null,
+							"Zmodyfikowano s³owo",
+							"Info",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(
+							null,
+							"B³¹d podczas modyfikacji s³owa!",
+							"B³¹d!",
+							JOptionPane.ERROR_MESSAGE);
+				}
 				interfejsBD.zamknijPolaczenie();
-					
-				JOptionPane.showMessageDialog(
-						null,
-						"Zmodyfikowano s³owo",
-						"Info",
-						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
