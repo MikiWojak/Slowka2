@@ -81,6 +81,7 @@ public class PanelSlowo extends Panel {
 	 */
 	public PanelSlowo(int id_grupa) {
 		this.id_grupa = id_grupa;
+		this.id_slowo = -1;
 		inicjujPola();
 		pobierzSlowa(id_grupa);
 		inicjujKomponenty();
@@ -248,12 +249,14 @@ public class PanelSlowo extends Panel {
 	/**
 	 * Sprawdza, czy rekord nie powtarza siê.
 	 * Sprawdza, czy nie powtarza siê s³owo lub t³umaczenie.
+	 * Wyj¹tek w przypadku modyfikacji s³owa.
 	 * Dopuszczenie dodania rekordu podobnego lub duplikatu do BD.
 	 * @return true - mo¿na dodaæ rekord; false - nie mo¿na dodaæ rekordu
 	 */
 	private boolean walidacjaCzyRekordPodobny() {
 		for(int i = 0; i < slowa.size(); i++) {
-			if(slowa.get(i).pobierzSlowo().equals(tfSlowo.getText()) ||
+			if(slowa.get(i).pobierzIdSlowo() == id_slowo) { continue; }
+			else if(slowa.get(i).pobierzSlowo().equals(tfSlowo.getText()) ||
 					slowa.get(i).pobierzTlumaczenie().equals(tfTlumaczenie.getText())) {
 				return true;
 			}
@@ -265,7 +268,8 @@ public class PanelSlowo extends Panel {
 	 * Sprawdza, czy 's³owo' i 't³umaczenie' s¹ takie, jak podano.
 	 * Dla modyfikacji s³owo.
 	 * Umo¿lwia zrobienie wyj¹tku w kwestii rekordu.
-	 * @return true - rekord siê nie zmieni³; false - zmieniono 's³owo' lub 't³umaczenie' 
+	 * @return true - rekord siê nie zmieni³; false - zmieniono 's³owo' lub 't³umaczenie'
+	 * @deprecated
 	 */
 	private boolean walidacjaCzyRekordTakiSam() {
 		if(tfSlowo.getText().equals(slowoPrzedMod.pobierzSlowo()) &&
@@ -361,7 +365,7 @@ public class PanelSlowo extends Panel {
 			//Walidacja danych
 			boolean walidacja = true;
 			if(!walidacjaCzyJestZawartosc()) { walidacja = false; }
-			else if(walidacjaCzyRekordTakiSam()) {}
+			//else if(walidacjaCzyRekordTakiSam()) {}
 			else if(walidacjaCzyRekordPodobny()) {
 				Object nazwaOpcja[] = {"Tak", "Nie"};
 				int opcja = JOptionPane.showOptionDialog(
