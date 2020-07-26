@@ -97,6 +97,10 @@ public class Widok extends Panel {
 	 * Przycisk do usuwania grupy lub grup.
 	 */
 	private JButton btnUsunGrupy;
+	/**
+	 * Przycisk do usuwania s³owa lub s³ów.
+	 */
+	private JButton btnUsunSlowa;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -220,6 +224,12 @@ public class Widok extends Panel {
 		btnUsunGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnUsunGrupy.setBounds(200, 466, 150, 30);
 		add(btnUsunGrupy);
+		
+		btnUsunSlowa = new JButton("Usu\u0144 s\u0142owo/a");
+		btnUsunSlowa.addActionListener(new UsunSlowa());
+		btnUsunSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnUsunSlowa.setBounds(565, 466, 150, 30);
+		add(btnUsunSlowa);
 	}
 	
 	/**
@@ -490,7 +500,6 @@ public class Widok extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			int indexGrupa = listGrupy.getSelectedIndex();
 			//Grupa nie jest wybrana
 			if(indexGrupa < 0) {
@@ -526,7 +535,6 @@ public class Widok extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			int indexSlowo = tableSlowa.getSelectedRow();
 			//S³owo nie jest wybrane
 			if(indexSlowo < 0) {
@@ -544,6 +552,25 @@ public class Widok extends Panel {
 				zmienGrupe(listGrupy.getSelectedIndex());
 			}
 		}
-		
+	}
+	
+	/**
+	 * Klasa wewnêtrzna do usuwania s³ów z bazy danych.
+	 * Do wywo³ywania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class UsunSlowa implements ActionListener {
+		/**
+		 * Konstruktor klasy UsunSlowa. 
+		 */
+		public UsunSlowa() {}
+		/**
+		 * Akcja usuwania s³ów.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.println("Usuñ s³owa");
+		}
 	}
 }
