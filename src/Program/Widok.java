@@ -428,7 +428,6 @@ public class Widok extends Panel {
 						interfejsBD.otworzPolaczenie();
 						
 						for(int i = 0; i < grupy.size(); i++) {
-							//System.out.println(indexy[i] + "\t" + "Usuwanie...");
 							try {
 								flaga = interfejsBD.usunGrupe(
 										grupy.get(indexy[i]).pobierzIdGrupa());
@@ -570,7 +569,24 @@ public class Widok extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("Usuñ s³owa");
+			if(tableSlowa.getSelectedRow() < 0) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Wybierz s³owo lub s³owa z tabeli!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
+				int indexy[] = tableSlowa.getSelectedRows();
+				for(int i = 0; i < slowa.size(); i++) {
+					try {
+						System.out.print(indexy[i] + "\t");
+					} catch (Exception e1) {
+						// TODO: handle exception
+						break;
+					}
+				}
+				System.out.println("\n");
+			}
 		}
 	}
 }
