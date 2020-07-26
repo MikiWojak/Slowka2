@@ -560,10 +560,11 @@ public class Widok extends Panel {
 		public UsunSlowa() {}
 		/**
 		 * Akcja usuwania s³ów.
+		 * Potwierdzenie akcji.
+		 * Weryfikacja i rezultat.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			if(tableSlowa.getSelectedRow() < 0) {
 				JOptionPane.showMessageDialog(
 						null,
@@ -585,6 +586,7 @@ public class Widok extends Panel {
 									"B³¹d przy usuwaniu s³ów!",
 									"B³¹d",
 									JOptionPane.ERROR_MESSAGE);
+							break;
 						}
 					} catch (Exception e1) {
 						//B³¹d - wykroczenie poza zakres tablicy
