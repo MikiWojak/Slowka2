@@ -572,15 +572,35 @@ public class Widok extends Panel {
 						JOptionPane.WARNING_MESSAGE);
 			} else if(usunSlowaZgoda()){
 				int indexy[] = tableSlowa.getSelectedRows();
+				boolean flaga = true;
+				interfejsBD.otworzPolaczenie();
+				
 				for(int i = 0; i < slowa.size(); i++) {
 					try {
-						System.out.print(indexy[i] + "\t");
+						flaga = interfejsBD.usunSlowo(slowa.get(indexy[i]).pobierzIdSlowo());
+						
+						if(!flaga) {
+							JOptionPane.showMessageDialog(
+									null,
+									"B³¹d przy usuwaniu s³ów!",
+									"B³¹d",
+									JOptionPane.ERROR_MESSAGE);
+						}
 					} catch (Exception e1) {
-						// TODO: handle exception
+						//B³¹d - wykroczenie poza zakres tablicy
 						break;
 					}
 				}
-				System.out.println("\n");
+				
+				if(flaga) {
+					JOptionPane.showMessageDialog(
+							null,
+							"Pomyœlnie usuniêto zaznaczone s³owa",
+							"Info",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+				zmienGrupe(listGrupy.getSelectedIndex());
+				interfejsBD.zamknijPolaczenie();
 			}
 		}
 		
