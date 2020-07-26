@@ -570,7 +570,7 @@ public class Widok extends Panel {
 						"Wybierz s³owo lub s³owa z tabeli!",
 						"Uwaga",
 						JOptionPane.WARNING_MESSAGE);
-			} else {
+			} else if(usunSlowaZgoda()){
 				int indexy[] = tableSlowa.getSelectedRows();
 				for(int i = 0; i < slowa.size(); i++) {
 					try {
@@ -582,6 +582,25 @@ public class Widok extends Panel {
 				}
 				System.out.println("\n");
 			}
+		}
+		
+		/**
+		 * Okno dialogowe z pytaniem, czy na pewno usun¹æ wybrane s³owa.
+		 * @return true, jeœli chcesz usun¹æ wybrane s³owa
+		 */
+		private boolean usunSlowaZgoda() {
+			Object nazwaOpcja[] = {"Tak", "Nie"};
+			int opcja = JOptionPane.showOptionDialog(
+					null,
+					"Czy na pewno usun¹æ zaznaczone s³owa?",
+					"Pytanie",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,
+					nazwaOpcja,
+					nazwaOpcja[1]);
+			if(opcja == 0) { return true; }
+			return false;
 		}
 	}
 }
