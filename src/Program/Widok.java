@@ -420,45 +420,40 @@ public class Widok extends Panel {
 						"Wybierz grupê lub grupy z listy!",
 						"Uwaga",
 						JOptionPane.WARNING_MESSAGE);
-			} else {
-				if(usunGrupyZgoda()) {
-					int indexy[] = listGrupy.getSelectedIndices();
-					boolean flaga = true;
+			} else if(usunGrupyZgoda()) {
+				int indexy[] = listGrupy.getSelectedIndices();
+				boolean flaga = true;
+				
+				interfejsBD.otworzPolaczenie();
+				
+				for(int i = 0; i < grupy.size(); i++) {
 					try {
-						interfejsBD.otworzPolaczenie();
-						
-						for(int i = 0; i < grupy.size(); i++) {
-							try {
-								flaga = interfejsBD.usunGrupe(
-										grupy.get(indexy[i]).pobierzIdGrupa());
-								if(!flaga) {
-									JOptionPane.showMessageDialog(
-											null,
-											"B³¹d przy usuwaniu grup!",
-											"B³¹d",
-											JOptionPane.ERROR_MESSAGE);
-									break;
-								}
-							} catch (IndexOutOfBoundsException e2) {
-								//B³¹d - wykroczenie poza zakres tablicy
-								break;
-							}
-						}
-						
-						if(flaga) {
+						flaga = interfejsBD.usunGrupe(
+								grupy.get(indexy[i]).pobierzIdGrupa());
+						if(!flaga) {
 							JOptionPane.showMessageDialog(
 									null,
-									"Pomyœlnie usuniêto wybrane grupy i powi¹zane z nimi s³owa.",
-									"Info",
-									JOptionPane.INFORMATION_MESSAGE);
+									"B³¹d przy usuwaniu grup!",
+									"B³¹d",
+									JOptionPane.ERROR_MESSAGE);
+							break;
 						}
-						aktualizujGrupy();
-						
-						interfejsBD.zamknijPolaczenie();
 					} catch (IndexOutOfBoundsException e2) {
 						//B³¹d - wykroczenie poza zakres tablicy
+						break;
 					}
 				}
+				
+				if(flaga) {
+					JOptionPane.showMessageDialog(
+							null,
+							"Pomyœlnie usuniêto wybrane grupy i powi¹zane z nimi s³owa.",
+							"Info",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+				aktualizujGrupy();
+				
+				interfejsBD.zamknijPolaczenie();
 			}
 		}
 		
