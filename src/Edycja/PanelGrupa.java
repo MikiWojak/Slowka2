@@ -145,7 +145,7 @@ public class PanelGrupa extends Panel{
 	 * Modyfikuje komponenty na potrzeby edycji grupy.
 	 */
 	private void modyfikujKomponenty() {
-		lblTytul.setText("Modyfikuj grupê o ID: " + id_grupa);
+		lblTytul.setText("Modyfikuj grupê");
 		btnPotwierdzAkcje.setText("Modyfikuj grupê");
 		btnPotwierdzAkcje.addActionListener(new ModyfikujGrupe());
 		

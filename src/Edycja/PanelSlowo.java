@@ -86,10 +86,6 @@ public class PanelSlowo extends Panel {
 		pobierzSlowa(id_grupa);
 		inicjujKomponenty();
 		dodajSlowoKomponenty();
-		
-		//DEBUG
-		System.out.println("Dodaj s³owo");
-		wyswietlSlowa();
 	}
 	
 	/**
@@ -104,11 +100,6 @@ public class PanelSlowo extends Panel {
 		pobierzSlowa(slowoPrzedMod.pobierzIdGrupy());
 		inicjujKomponenty();
 		modyfikujSlowoKomponenty();
-		
-		//DEBUG
-		System.out.println("Modyfikuj s³owo");
-		wyswietlSlowa();
-		System.out.println(slowoPrzedMod);
 	}
 
 	/**
@@ -221,6 +212,7 @@ public class PanelSlowo extends Panel {
 	/**
 	 * Wyœwietlenie listy slów.
 	 * Do debugu.
+	 * @deprecated
 	 */
 	private void wyswietlSlowa() {
 		for(int i = 0; i < slowa.size(); i++) {
