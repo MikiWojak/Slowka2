@@ -107,10 +107,7 @@ public class Program extends JFrame {
 		
 		//mnWidok
 		mnWidok = new JMenu("Widok");
-		mnWidok.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) { zmienPanelNaWidok(); }
-		});
+		mnWidok.addMouseListener(new PanelWidok());
 		mnWidok.setEnabled(false);
 		mnBarMenu.add(mnWidok);
 		
@@ -161,17 +158,6 @@ public class Program extends JFrame {
 	}
 	
 	/**
-	 * Zmiana panelu na widok.
-	 * Do wykorzystania w opcji Widok oraz w skrótach klawiszowych.
-	 */
-	private void zmienPanelNaWidok() {
-		zmienPanel(widok);
-		mnWidok.setEnabled(false);
-		mnTest.setEnabled(true);
-		log.debug("Zmiana panelu na 'widok'.");
-	}
-	
-	/**
 	 * Zmiana panelu na test.
 	 * Do wykorzystania w opcji Widok oraz w skrótach klawiszowych.
 	 */
@@ -180,5 +166,17 @@ public class Program extends JFrame {
 		mnWidok.setEnabled(true);
 		mnTest.setEnabled(false);
 		log.debug("Zmiana panelu na 'test'.");
+	}
+	
+	private class PanelWidok extends MouseAdapter {
+		public  PanelWidok() {}
+		
+		@Override
+		public void mouseClicked(MouseEvent e) { 
+			zmienPanel(widok);
+			mnWidok.setEnabled(false);
+			mnTest.setEnabled(true);
+			log.debug("Zmiana panelu na 'widok'.");
+		}
 	}
 }
