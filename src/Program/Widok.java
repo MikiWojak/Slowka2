@@ -196,36 +196,42 @@ public class Widok extends Panel {
 		scrollSlowa.setViewportView(tableSlowa);
 		
 		btnDodajGrupe = new JButton("Dodaj grup\u0119");
+		btnDodajGrupe.setBackground(new Color(60, 179, 113));
 		btnDodajGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDodajGrupe.addActionListener(new DodajGrupe());
 		btnDodajGrupe.setBounds(0, 466, 150, 30);
 		add(btnDodajGrupe);
 		
 		btnDodajSlowo = new JButton("Dodaj s\u0142owo");
+		btnDodajSlowo.setBackground(new Color(60, 179, 113));
 		btnDodajSlowo.addActionListener(new DodajSlowo());
 		btnDodajSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDodajSlowo.setBounds(400, 466, 150, 30);
 		add(btnDodajSlowo);
 		
 		btnModyfikujGrupe = new JButton("Modyfikuj grup\u0119");
+		btnModyfikujGrupe.setBackground(new Color(30, 144, 255));
 		btnModyfikujGrupe.addActionListener(new ModyfikujGrupe());
 		btnModyfikujGrupe.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnModyfikujGrupe.setBounds(0, 504, 150, 30);
 		add(btnModyfikujGrupe);
 		
 		btnModyfikujSlowo = new JButton("Modyfikuj s\u0142owo");
+		btnModyfikujSlowo.setBackground(new Color(30, 144, 255));
 		btnModyfikujSlowo.addActionListener(new ModyfikujSlowo());
 		btnModyfikujSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnModyfikujSlowo.setBounds(400, 505, 150, 30);
 		add(btnModyfikujSlowo);
 		
 		btnUsunGrupy = new JButton("Usu\u0144 grup\u0119/y");
+		btnUsunGrupy.setBackground(new Color(255, 69, 0));
 		btnUsunGrupy.addActionListener(new UsunGrupy());
 		btnUsunGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnUsunGrupy.setBounds(200, 466, 150, 30);
 		add(btnUsunGrupy);
 		
 		btnUsunSlowa = new JButton("Usu\u0144 s\u0142owo/a");
+		btnUsunSlowa.setBackground(new Color(255, 69, 0));
 		btnUsunSlowa.addActionListener(new UsunSlowa());
 		btnUsunSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnUsunSlowa.setBounds(565, 466, 150, 30);
