@@ -113,10 +113,7 @@ public class Program extends JFrame {
 		
 		//mnTest
 		mnTest = new JMenu("Test");
-		mnTest.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) { zmienPanelNaTest(); }
-		});
+		mnTest.addMouseListener(new PanelTest());
 		mnBarMenu.add(mnTest);
 		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -158,25 +155,48 @@ public class Program extends JFrame {
 	}
 	
 	/**
-	 * Zmiana panelu na test.
-	 * Do wykorzystania w opcji Widok oraz w skrótach klawiszowych.
+	 * Klasa wewnêtrzna pokazania panelu Widok.
+	 * Do wywo³ania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
 	 */
-	private void zmienPanelNaTest() {
-		zmienPanel(test);			
-		mnWidok.setEnabled(true);
-		mnTest.setEnabled(false);
-		log.debug("Zmiana panelu na 'test'.");
-	}
-	
 	private class PanelWidok extends MouseAdapter {
+		/**
+		 * Konstruktor klasy PanelWidok
+		 */
 		public  PanelWidok() {}
 		
+		/**
+		 * Zmiana panelu na Widok.
+		 */
 		@Override
 		public void mouseClicked(MouseEvent e) { 
 			zmienPanel(widok);
 			mnWidok.setEnabled(false);
 			mnTest.setEnabled(true);
 			log.debug("Zmiana panelu na 'widok'.");
+		}
+	}
+	
+	/**
+	 * Klasa wewnêtrzna pokazania panelu Test.
+	 * Do wywo³ania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class PanelTest extends MouseAdapter {
+		/**
+		 * Konstruktor klasy PanelTest
+		 */
+		public PanelTest() {}
+		
+		/**
+		 * Zmiana panelu na Test.
+		 */
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			zmienPanel(test);			
+			mnWidok.setEnabled(true);
+			mnTest.setEnabled(false);
+			log.debug("Zmiana panelu na 'test'.");
 		}
 	}
 }
