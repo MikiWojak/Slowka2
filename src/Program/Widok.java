@@ -141,11 +141,7 @@ public class Widok extends Panel {
 		add(scrollGrupy);
 		
 		listGrupy = new JList();
-		listGrupy.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				zmienGrupe(listGrupy.getSelectedIndex());
-			}
-		});
+		listGrupy.addListSelectionListener(new ZmienGrupe());
 		listGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
 		scrollGrupy.setViewportView(listGrupy);
 		//grupy do listy
@@ -629,6 +625,28 @@ public class Widok extends Panel {
 					nazwaOpcja[1]);
 			if(opcja == 0) { return true; }
 			return false;
+		}
+	}
+	
+	/**
+	 * Klasa wewnêtrzna do wywo³ania akcji wybrania rekordu z listy
+	 * Do wywo³ywania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class ZmienGrupe implements ListSelectionListener {
+		/**
+		 * Konstruktor klasy ZmienGrupe
+		 */
+		public ZmienGrupe() {}
+		
+		/**
+		 * Akcja zw. z wybraniem grupy z listy.
+		 * Wyœwietlenie s³ów przypisanych do danej listy.
+		 */
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			// TODO Auto-generated method stub
+			zmienGrupe(listGrupy.getSelectedIndex());
 		}
 	}
 }
