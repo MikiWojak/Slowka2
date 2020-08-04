@@ -77,6 +77,7 @@ public class PanelSlowo extends Panel {
 	/**
 	 * Konstruktor klasy Slowo - nowe s³owo.
 	 * @param id_grupa ID grupy, do której ma nale¿eæ s³owo
+	 * @wbp.parser.constructor
 	 */
 	public PanelSlowo(int id_grupa) {
 		this.id_grupa = id_grupa;
