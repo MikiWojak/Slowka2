@@ -156,32 +156,8 @@ public class Widok extends Panel {
 		add(scrollSlowa);
 		
 		//nazwy kolumn
-		utworzNazwyKolumnTabebaSlow();																
-		tableSlowa = new JTable(daneTabelaSlow, nazwyKolumnTabelaSlow) {
-			@Override
-			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-				Component component = super.prepareRenderer(renderer, row, column);
-				JComponent jcomponent = (JComponent)component;
-				//Do granic
-				Border outside = new MatteBorder(2, 0, 2, 0, Color.RED);
-				Border inside = new EmptyBorder(0, 2, 0, 2);
-				Border highlight = new CompoundBorder(outside, inside);
-				//Czcionka
-				component.setFont(getFont());
-				boolean type = slowa.get(row).pobierzCzyZapamietane();
-				if (false == type) { component.setFont(new Font("Arial", Font.PLAIN, 16)); }
-				if (true == type) { component.setFont(new Font("Arial", Font.BOLD, 16)); }
-				//Kolor t³a
-				component.setBackground(getBackground());
-				type = slowa.get(row).pobierzCzyZapamietane();
-				if (false == type) { component.setBackground(Color.LIGHT_GRAY); }
-				if (true == type) { component.setBackground(Color.GREEN); }
-				//Wybrany rekord
-				if (isRowSelected(row)) { jcomponent.setBorder(highlight); }
-					
-				return component;
-			}
-		};
+		utworzNazwyKolumnTabebaSlow();
+		tableSlowa = new TabelaSlowa(daneTabelaSlow, nazwyKolumnTabelaSlow);
 		tableSlowa.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 		tableSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
 		tableSlowa.setRowHeight(25);
@@ -647,6 +623,54 @@ public class Widok extends Panel {
 		public void valueChanged(ListSelectionEvent e) {
 			// TODO Auto-generated method stub
 			zmienGrupe(listGrupy.getSelectedIndex());
+		}
+	}
+	
+	/**
+	 * Klasa wewnêtrzna przeznaczona na tabelê ze s³owami.
+	 * Dziedziczy po klasie JTable.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class TabelaSlowa extends JTable {
+		/**
+		 * Konstruktor klasy TabelaSlowa.
+		 * Dzia³anie dziedziczy po konstruktorze klasy JTable
+		 * @param rowData podwójny wektor z danymi do tabeli
+		 * @param columnNames wektor z nazwami kolumn
+		 */
+		public TabelaSlowa(Vector<? extends Vector> rowData, Vector<?> columnNames) {
+			super(rowData, columnNames);
+		}
+		
+		/**
+		 * Przygotowanie tabeli do wyrenderowania.
+		 */
+		@Override
+		public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+			Component component = super.prepareRenderer(renderer, row, column);
+			JComponent jcomponent = (JComponent)component;
+			
+			//Do granic
+			Border outside = new MatteBorder(2, 0, 2, 0, Color.RED);
+			Border inside = new EmptyBorder(0, 2, 0, 2);
+			Border highlight = new CompoundBorder(outside, inside);
+			
+			//Czcionka
+			component.setFont(getFont());
+			boolean type = slowa.get(row).pobierzCzyZapamietane();
+			if (false == type) { component.setFont(new Font("Arial", Font.PLAIN, 16)); }
+			if (true == type) { component.setFont(new Font("Arial", Font.BOLD, 16)); }
+			
+			//Kolor t³a
+			component.setBackground(getBackground());
+			type = slowa.get(row).pobierzCzyZapamietane();
+			if (false == type) { component.setBackground(Color.LIGHT_GRAY); }
+			if (true == type) { component.setBackground(Color.GREEN); }
+			
+			//Wybrany rekord
+			if (isRowSelected(row)) { jcomponent.setBorder(highlight); }
+				
+			return component;
 		}
 	}
 }
