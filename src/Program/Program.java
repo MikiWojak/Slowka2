@@ -68,12 +68,12 @@ public class Program extends JFrame {
 	 * Panel widok.
 	 * Lista grup i s³ów.
 	 */
-	private Panel widok;
+	private Widok widok;
 	/**
 	 * Panel test.
 	 * Nauka s³ów metod¹ wielokrotnych powtórzeñ.
 	 */
-	private Panel test;
+	private Test test;
 	
 	/**
 	 * Utworzenie g³ównego programu.
@@ -193,7 +193,8 @@ public class Program extends JFrame {
 		 */
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			zmienPanel(test);			
+			zmienPanel(test);
+			test.ustawIdGrupa(widok.pobierzIdGrupa());
 			mnWidok.setEnabled(true);
 			mnTest.setEnabled(false);
 			log.debug("Zmiana panelu na 'test'.");

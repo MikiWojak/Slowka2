@@ -78,5 +78,4 @@ public abstract class Panel extends JPanel {
 		grupy = new LinkedList<Grupa>();
 		slowa = new LinkedList<Slowo>();
 	}
-
 }

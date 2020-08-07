@@ -23,6 +23,11 @@ import javax.swing.JProgressBar;
  */
 public class Test extends Panel {
 	/**
+	 * Do pobrania s³ów z grupy do testu.
+	 * ID grupy w BD.
+	 */
+	private int id_grupa; 	
+	/**
 	 * Napis z informacj¹ o trybach testu.
 	 */
 	private JLabel lblTryby;
@@ -228,5 +233,14 @@ public class Test extends Panel {
 	private void inicjujPola() {
 		//log
 		log = LoggerFactory.getLogger(Test.class);
+	}
+	
+	/**
+	 * Ustawienie ID grupy w BD do uzyskania rekordów z po¿¹danej grupy.
+	 * @param id_grupa ID grupy w BD
+	 */
+	public void ustawIdGrupa(int id_grupa) {
+		this.id_grupa = id_grupa;
+		lblWynk.setText("" + id_grupa);
 	}
 }

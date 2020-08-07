@@ -317,6 +317,17 @@ public class Widok extends Panel {
 	}
 	
 	/**
+	 * Pobranie ID grupy w BD. Na potrzeby przeprowadzenia testu w programie.
+	 * Pobranie ID grupy z <code>List</code>, na podstawie której zosta³a wygenerowana lista w okienku.
+	 * @return ID grupy w BD
+	 */
+	public int pobierzIdGrupa() {
+		int id_grupa = grupy.get(listGrupy.getSelectedIndex()).pobierzIdGrupa();
+		if(id_grupa >= 0) { return id_grupa; }
+		return 0;
+	}
+	
+	/**
 	 * Klasa wewnêtrzna do dodawania grupy do bazy danych.
 	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)
