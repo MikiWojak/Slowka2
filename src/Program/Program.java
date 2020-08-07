@@ -194,7 +194,7 @@ public class Program extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			zmienPanel(test);
-			test.ustawIdGrupa(widok.pobierzIdGrupa());
+			test.ustawListeSlow(widok.pobierzIdGrupa());
 			mnWidok.setEnabled(true);
 			mnTest.setEnabled(false);
 			log.debug("Zmiana panelu na 'test'.");

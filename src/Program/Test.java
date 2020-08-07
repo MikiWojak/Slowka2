@@ -240,11 +240,38 @@ public class Test extends Panel {
 	}
 	
 	/**
+	 * Ustawienie listy przy prze³¹czaniu siê na tryb testu.
 	 * Ustawienie ID grupy w BD do uzyskania rekordów z po¿¹danej grupy.
+	 * Pobranie listy s³ów z danej grupy z BD.
 	 * @param id_grupa ID grupy w BD
 	 */
-	public void ustawIdGrupa(int id_grupa) {
+	public void ustawListeSlow(int id_grupa) {
 		this.id_grupa = id_grupa;
 		lblWynk.setText("" + id_grupa);
+		
+		pobierzSlowaZBazyDanych();
+		
+		debugListaSlow();
+	}
+	
+	/**
+	 * Pobranie s³ów z podanej grupy z bazy danych.
+	 */
+	private void pobierzSlowaZBazyDanych() {
+		interfejsBD.otworzPolaczenie();
+		slowa = interfejsBD.pobierzSlowaZGrupy(id_grupa);
+		interfejsBD.zamknijPolaczenie();
+	}
+	
+	/**
+	 * Wyswietlanie listy pobranych s³ów.
+	 * Do debugu.
+	 */
+	private void debugListaSlow() {
+		System.out.println("ID grupy:\t" + id_grupa);
+				
+		for(int i = 0; i < slowa.size(); i++) {
+			System.out.print(slowa.get(i));
+		}
 	}
 }
