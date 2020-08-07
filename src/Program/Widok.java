@@ -322,9 +322,14 @@ public class Widok extends Panel {
 	 * @return ID grupy w BD
 	 */
 	public int pobierzIdGrupa() {
-		int id_grupa = grupy.get(listGrupy.getSelectedIndex()).pobierzIdGrupa();
-		if(id_grupa >= 0) { return id_grupa; }
-		return 0;
+		int id_grupa;
+		
+		try {
+			id_grupa = grupy.get(listGrupy.getSelectedIndex()).pobierzIdGrupa();
+			return id_grupa;
+		} catch (IndexOutOfBoundsException e) {
+			return -1;
+		}
 	}
 	
 	/**

@@ -25,6 +25,7 @@ public class Test extends Panel {
 	/**
 	 * Do pobrania s³ów z grupy do testu.
 	 * ID grupy w BD.
+	 * Domyœlnie -1, co oznacza brak wybranej BD.
 	 */
 	private int id_grupa; 	
 	/**
@@ -231,6 +232,9 @@ public class Test extends Panel {
 	 * Inicjacja pól klasy.
 	 */
 	private void inicjujPola() {
+		//W³asne
+		id_grupa = -1;
+		//Odziedziczone
 		//log
 		log = LoggerFactory.getLogger(Test.class);
 	}
