@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 
 import org.slf4j.LoggerFactory;
 
+import BazaDanych.Grupa;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -30,6 +32,10 @@ public class Test extends Panel {
 	 * Domyœlnie -1, co oznacza brak wybranej BD.
 	 */
 	private int id_grupa;
+	/**
+	 * Rekord z bazy danych reprezentuj¹cy grupê.
+	 */
+	private Grupa grupa;
 	/**
 	 * Flaga - test bêdzie aktywny, jeœli s¹ jakieœ s³owa na liœcie.
 	 */
@@ -275,6 +281,7 @@ public class Test extends Panel {
 		this.id_grupa = id_grupa;
 		//Przygotowanie listy s³ów
 		pobierzSlowaZBazyDanych();
+		pobierzGrupeZBazyDanych();
 		
 		wyczyscListy();
 		oddzielPrzerobione();
@@ -294,13 +301,29 @@ public class Test extends Panel {
 		interfejsBD.otworzPolaczenie();
 		slowa = interfejsBD.pobierzSlowaZGrupy(id_grupa);
 		interfejsBD.zamknijPolaczenie();
-		
 		if(slowa.size() > 0) { 
 			czySaSlowa = true;
 		} else {
 			czySaSlowa = false;
-			lblWynk.setForeground(Color.RED);
-			lblWynk.setText("Nie wybrano grupy albo grupa nie ma s³ów!");
+		}
+	}
+	
+	/**
+	 * Pobranie z BD grupy, na której bêdzie przeprowadzony test.
+	 * Wyœwietlenie komunikatu, ¿e na danej grupie jest test.
+	 * Jeœli dana grupa nie istnieje lub nie zawiera danych, wyœwietlony zostanie odpowiedni komunikat.
+	 */
+	private void pobierzGrupeZBazyDanych() {
+		if(czySaSlowa) {
+			interfejsBD.otworzPolaczenie();
+			List<Grupa>listaGrup = interfejsBD.pobierzGrupe(id_grupa);
+			grupa = listaGrup.get(0);
+			
+			lblTest.setForeground(Color.BLACK);
+			lblTest.setText(grupa.pobierzNazwaGrupy() + " - test");
+		} else {
+			lblTest.setForeground(Color.RED);
+			lblTest.setText("Nie wybrano grupy albo grupa nie ma s³ów!");
 		}
 	}
 	
