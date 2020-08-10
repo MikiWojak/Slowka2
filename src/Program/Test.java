@@ -14,6 +14,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 
@@ -32,6 +34,21 @@ public class Test extends Panel {
 	 * Flaga - test bêdzie aktywny, jeœli s¹ jakieœ s³owa na liœcie.
 	 */
 	private boolean czySaSlowa;
+	/**
+	 * Lista s³ów, które s¹ do przerobienia.
+	 * Indexy do listy s³ów.
+	 */
+	private List<Integer> indexyDoZrobienia;
+	/**
+	 * Lista s³ów, które s¹ poprawne.
+	 * Indexy do listy s³ów.
+	 */
+	private List<Integer> indexyPoprawne;
+	/**
+	 * Lista s³ów, które s¹ b³êdne.
+	 * Indexy do listy s³ów.
+	 */
+	private List<Integer> indexyBledne;
 	
 	/**
 	 * Napis z informacj¹ o trybach testu.
@@ -239,6 +256,10 @@ public class Test extends Panel {
 	private void inicjujPola() {
 		//W³asne
 		id_grupa = -1;
+		indexyDoZrobienia = new ArrayList<Integer>();
+		indexyPoprawne = new ArrayList<Integer>();
+		indexyBledne = new ArrayList<Integer>();
+		
 		//Odziedziczone
 		//log
 		log = LoggerFactory.getLogger(Test.class);
