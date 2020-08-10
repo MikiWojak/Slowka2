@@ -276,7 +276,14 @@ public class Test extends Panel {
 		//Przygotowanie listy s³ów
 		pobierzSlowaZBazyDanych();
 		
-		debugListaSlow();
+		wyczyscListy();
+		oddzielPrzerobione();
+		
+		System.out.println("ID grupy:\t" + id_grupa);
+		System.out.println("Do zrobienia");
+		debugListaSlow(indexyDoZrobienia);
+		System.out.println("Poprawne");
+		debugListaSlow(indexyPoprawne);
 	}
 	
 	/**
@@ -298,15 +305,40 @@ public class Test extends Panel {
 	}
 	
 	/**
+	 * S³owa, które s¹ przerobione, daje na inn¹ listê.
+	 * Lista indexów.
+	 */
+	private void oddzielPrzerobione() {
+		for(int i = 0; i < slowa.size(); i++) {
+			if(slowa.get(i).pobierzCzyZapamietane()) {
+				indexyPoprawne.add(i);
+			} else {
+				indexyDoZrobienia.add(i);
+			}
+		}
+	}
+	
+	/**
+	 * Czyœci listy indexów z zawartoœci.
+	 * Zapobiega zapychaniu siê list.
+	 */
+	private void wyczyscListy() {
+		indexyDoZrobienia.clear();
+		indexyPoprawne.clear();
+		indexyBledne.clear();
+	}
+	
+	/**
 	 * Wyswietlanie listy pobranych s³ów.
 	 * Do debugu.
+	 * @param lista indexów (do zrobienia, poprawne, b³êdne)
 	 */
-	private void debugListaSlow() {
+	private void debugListaSlow(List<Integer>lista) {
 		if(czySaSlowa) {
-			System.out.println("ID grupy:\t" + id_grupa);
+			System.out.println("Iloœæ rekordów\t" + lista.size());
 			
-			for(int i = 0; i < slowa.size(); i++) {
-				System.out.print(slowa.get(i));
+			for(int i = 0; i < lista.size(); i++) {
+				System.out.print(slowa.get(lista.get(i)));
 			}
 		}
 	}
