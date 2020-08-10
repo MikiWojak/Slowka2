@@ -27,7 +27,12 @@ public class Test extends Panel {
 	 * ID grupy w BD.
 	 * Domyœlnie -1, co oznacza brak wybranej BD.
 	 */
-	private int id_grupa; 	
+	private int id_grupa;
+	/**
+	 * Flaga - test bêdzie aktywny, jeœli s¹ jakieœ s³owa na liœcie.
+	 */
+	private boolean czySaSlowa;
+	
 	/**
 	 * Napis z informacj¹ o trybach testu.
 	 */
@@ -172,13 +177,13 @@ public class Test extends Panel {
 		btnDalej.setBounds(1085, 268, 100, 30);
 		add(btnDalej);
 		
-		lblWynk = new JLabel("Lorem ipsum");
+		lblWynk = new JLabel("");
 		lblWynk.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWynk.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblWynk.setBounds(0, 314, 1200, 20);
 		add(lblWynk);
 		
-		lblPoprawnaOdp = new JLabel("Lorem ipsum");
+		lblPoprawnaOdp = new JLabel("");
 		lblPoprawnaOdp.setForeground(Color.BLUE);
 		lblPoprawnaOdp.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPoprawnaOdp.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -240,15 +245,14 @@ public class Test extends Panel {
 	}
 	
 	/**
-	 * Ustawienie listy przy prze³¹czaniu siê na tryb testu.
+	 * Przygotowanie testu s³ówek. Do wywo³ania przy zmianie panelu na test.
 	 * Ustawienie ID grupy w BD do uzyskania rekordów z po¿¹danej grupy.
 	 * Pobranie listy s³ów z danej grupy z BD.
 	 * @param id_grupa ID grupy w BD
 	 */
-	public void ustawListeSlow(int id_grupa) {
+	public void przygotujTest(int id_grupa) {
 		this.id_grupa = id_grupa;
-		lblWynk.setText("" + id_grupa);
-		
+		//Przygotowanie listy s³ów
 		pobierzSlowaZBazyDanych();
 		
 		debugListaSlow();
@@ -256,11 +260,20 @@ public class Test extends Panel {
 	
 	/**
 	 * Pobranie s³ów z podanej grupy z bazy danych.
+	 * Sprawdzenie, czy lista zawiera jakieœ s³owa.
 	 */
 	private void pobierzSlowaZBazyDanych() {
 		interfejsBD.otworzPolaczenie();
 		slowa = interfejsBD.pobierzSlowaZGrupy(id_grupa);
 		interfejsBD.zamknijPolaczenie();
+		
+		if(slowa.size() > 0) { 
+			czySaSlowa = true;
+		} else {
+			czySaSlowa = false;
+			lblWynk.setForeground(Color.RED);
+			lblWynk.setText("Nie wybrano grupy albo grupa nie ma s³ów!");
+		}
 	}
 	
 	/**
@@ -268,10 +281,12 @@ public class Test extends Panel {
 	 * Do debugu.
 	 */
 	private void debugListaSlow() {
-		System.out.println("ID grupy:\t" + id_grupa);
-				
-		for(int i = 0; i < slowa.size(); i++) {
-			System.out.print(slowa.get(i));
+		if(czySaSlowa) {
+			System.out.println("ID grupy:\t" + id_grupa);
+			
+			for(int i = 0; i < slowa.size(); i++) {
+				System.out.print(slowa.get(i));
+			}
 		}
 	}
 }
