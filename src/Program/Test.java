@@ -38,6 +38,7 @@ public class Test extends Panel {
 	private Grupa grupa;
 	/**
 	 * Flaga - test bêdzie aktywny, jeœli s¹ jakieœ s³owa na liœcie.
+	 * W przypadku, gdy sprawdzanie przy prze³¹czaniu na tryb testu nie wychwyci b³êdu.
 	 */
 	private boolean czySaSlowa;
 	/**
@@ -286,12 +287,14 @@ public class Test extends Panel {
 		wyczyscListy();
 		oddzielPrzerobione();
 		
-		//DEBUG
+		
+		/**DEBUG
 		System.out.println("ID grupy:\t" + id_grupa);
 		System.out.println("Do zrobienia");
 		debugListaSlow(indexyDoZrobienia);
 		System.out.println("Poprawne");
 		debugListaSlow(indexyPoprawne);
+		*/
 	}
 	
 	/**
@@ -350,6 +353,21 @@ public class Test extends Panel {
 		indexyDoZrobienia.clear();
 		indexyPoprawne.clear();
 		indexyBledne.clear();
+	}
+	
+	/**
+	 * Generowanie pseudolosowych list indexów do zrobienia i poprawnych.
+	 */
+	private void losowanie() {
+		int iloscSlow = slowa.size();
+		
+		for(int i = 0; i < iloscSlow; i++) {
+			
+		}
+	}
+	
+	private boolean czyWylosowana() {
+		return true;
 	}
 	
 	/**
