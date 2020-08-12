@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import BazaDanych.InterfejsBD;
 
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import java.awt.FlowLayout;
@@ -190,14 +191,32 @@ public class Program extends JFrame {
 		
 		/**
 		 * Zmiana panelu na Test.
+		 * Sprawdzenie, czy zosta³a wybrana grupa i czy w grupie s¹ s³owa.
+		 * Uruchomienie trybu testu.
 		 */
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			zmienPanel(test);
-			test.przygotujTest(widok.pobierzIdGrupa());
-			mnWidok.setEnabled(true);
-			mnTest.setEnabled(false);
-			log.debug("Zmiana panelu na 'test'.");
+			if(!widok.czyWybranoGrupe()) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Nie wybrano grupy!\n"
+						+ "Nie mo¿na uruchomiæ testu!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			} else if(!widok.czySaSlowaWGrupie()){
+				JOptionPane.showMessageDialog(
+						null,
+						"Brak s³ów w wybranej grupie!\n"
+						+ "Nie mo¿na uruchomiæ testu!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
+				zmienPanel(test);
+				test.przygotujTest(widok.pobierzIdGrupa());
+				mnWidok.setEnabled(true);
+				mnTest.setEnabled(false);
+				log.debug("Zmiana panelu na 'test'.");
+			}
 		}
 	}
 }

@@ -333,6 +333,24 @@ public class Widok extends Panel {
 	}
 	
 	/**
+	 * Sprawdza, czy u¿ytkownik wybra³ grupê s³ów.
+	 * @return true, jeœli jest wybrana grupa s³ów
+	 */
+	public boolean czyWybranoGrupe() {
+		if(listGrupy.getSelectedIndex() >= 0) { return true; }
+		return false;
+	}
+	
+	/**
+	 * Sprawdza, czy wybrana grupa zawiera s³owa.
+	 * @return true, jeœli grupa zawiera s³owa
+	 */
+	public boolean czySaSlowaWGrupie() {
+		if(slowa.size() > 0) { return true; }
+		return false;
+	}
+	
+	/**
 	 * Klasa wewnêtrzna do dodawania grupy do bazy danych.
 	 * Do wywo³ywania akcji.
 	 * @author MikiWojak (Miko³aj ¯arnowski)

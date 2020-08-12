@@ -286,6 +286,7 @@ public class Test extends Panel {
 		wyczyscListy();
 		oddzielPrzerobione();
 		
+		//DEBUG
 		System.out.println("ID grupy:\t" + id_grupa);
 		System.out.println("Do zrobienia");
 		debugListaSlow(indexyDoZrobienia);
@@ -323,7 +324,7 @@ public class Test extends Panel {
 			lblTest.setText(grupa.pobierzNazwaGrupy() + " - test");
 		} else {
 			lblTest.setForeground(Color.RED);
-			lblTest.setText("Nie wybrano grupy albo grupa nie ma s³ów!");
+			lblTest.setText("Problem z wczytaniem grupy s³ów!");
 		}
 	}
 	
