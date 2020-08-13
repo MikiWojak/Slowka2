@@ -285,10 +285,16 @@ public class Test extends Panel {
 		pobierzGrupeZBazyDanych();
 		
 		wyczyscListy();
-		oddzielPrzerobione();
+		//oddzielPrzerobione();
+		losowanie();
 		
+		//DEBUG - Losowana lista s³ów do zrobienia i poprawnych
+		System.out.println("Do zrobienia:");
+		debugListaIndexow(this.indexyDoZrobienia);
+		System.out.println("\nPoprawne:");
+		debugListaIndexow(this.indexyPoprawne);
 		
-		/**DEBUG
+		/*DEBUG - Lista s³ów do zrobienia i poprawnych bez losowania 
 		System.out.println("ID grupy:\t" + id_grupa);
 		System.out.println("Do zrobienia");
 		debugListaSlow(indexyDoZrobienia);
@@ -334,6 +340,7 @@ public class Test extends Panel {
 	/**
 	 * S³owa, które s¹ przerobione, daje na inn¹ listê.
 	 * Lista indexów.
+	 * @deprecated
 	 */
 	private void oddzielPrzerobione() {
 		for(int i = 0; i < slowa.size(); i++) {
@@ -360,14 +367,34 @@ public class Test extends Panel {
 	 */
 	private void losowanie() {
 		int iloscSlow = slowa.size();
+		int wylosowane;
 		
 		for(int i = 0; i < iloscSlow; i++) {
+			do {
+				wylosowane = (int)(Math.random() * iloscSlow);
+			} while(czyWylosowana(wylosowane, this.indexyPoprawne) || 
+					czyWylosowana(wylosowane, this.indexyPoprawne));
+			
+			if(slowa.get(wylosowane).pobierzCzyZapamietane()) {
+				indexyPoprawne.add(wylosowane);
+			} else {
+				indexyDoZrobienia.add(wylosowane);
+			}
 			
 		}
 	}
 	
-	private boolean czyWylosowana() {
-		return true;
+	/**
+	 * Sprawdza, czy podana liczba jest ju¿ w danej liœcie.
+	 * @param liczba poszukiwana liczba
+	 * @param lista lista liczb, która ma zostaæ przeszukana
+	 * @return true, jeœli <code>liczba</code> jest ju¿ w liœcie 
+	 */
+	private boolean czyWylosowana(int liczba, List<Integer> lista) {
+		for(int i = 0; i < lista.size(); i++) {
+			if(liczba == lista.get(i)) { return true; }
+		}
+		return false;
 	}
 	
 	/**
@@ -383,5 +410,18 @@ public class Test extends Panel {
 				System.out.print(slowa.get(lista.get(i)));
 			}
 		}
+	}
+	
+	/**
+	 * Generuje listê indexów do s³ów.
+	 * Do debugu.
+	 * @param lista lista indexów (do zrobienia, poprawne, b³êdne) 
+	 */
+	private void debugListaIndexow(List<Integer>lista) {
+		System.out.println("Rozmiar:\t" + lista.size());
+		for(int i = 0; i < lista.size(); i++) {
+			System.out.print(lista.get(i) + "\t");
+		}
+		System.out.println();
 	}
 }
