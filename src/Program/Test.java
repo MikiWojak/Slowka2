@@ -288,19 +288,24 @@ public class Test extends Panel {
 		//oddzielPrzerobione();
 		losowanie();
 		
+		/*
 		//DEBUG - Losowana lista s³ów do zrobienia i poprawnych
 		System.out.println("Do zrobienia:");
 		debugListaIndexow(this.indexyDoZrobienia);
 		System.out.println("\nPoprawne:");
 		debugListaIndexow(this.indexyPoprawne);
+		*/
 		
-		/*DEBUG - Lista s³ów do zrobienia i poprawnych bez losowania 
+		/*
+		//DEBUG - Lista s³ów do zrobienia i poprawnych bez losowania 
 		System.out.println("ID grupy:\t" + id_grupa);
 		System.out.println("Do zrobienia");
 		debugListaSlow(indexyDoZrobienia);
 		System.out.println("Poprawne");
 		debugListaSlow(indexyPoprawne);
 		*/
+		
+		ustawienieStatystyk();
 	}
 	
 	/**
@@ -395,6 +400,14 @@ public class Test extends Panel {
 			if(liczba == lista.get(i)) { return true; }
 		}
 		return false;
+	}
+	
+	/**
+	 * 
+	 */
+	private void ustawienieStatystyk() {
+		float poprawneFloat = indexyPoprawne.size() * 100f / slowa.size();
+		System.out.println(poprawneFloat);
 	}
 	
 	/**
