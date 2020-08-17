@@ -372,7 +372,7 @@ public class Test extends Panel {
 		for(int i = 0; i < iloscSlow; i++) {
 			do {
 				wylosowane = (int)(Math.random() * iloscSlow);
-			} while(czyWylosowana(wylosowane, this.indexyPoprawne) || 
+			} while(czyWylosowana(wylosowane, this.indexyDoZrobienia) || 
 					czyWylosowana(wylosowane, this.indexyPoprawne));
 			
 			if(slowa.get(wylosowane).pobierzCzyZapamietane()) {
