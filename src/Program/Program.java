@@ -75,6 +75,16 @@ public class Program extends JFrame {
 	 * Nauka s³ów metod¹ wielokrotnych powtórzeñ.
 	 */
 	private Test test;
+	/**
+	 * Zmiana panelu na widok.
+	 * Rozszerzenie klasy MouseListener.
+	 */
+	private PanelWidok listenerWidok;
+	/**
+	 * Zmiana panelu na test.
+	 * Rozszerzenie klasy MouseListener.
+	 */
+	private PanelTest listenerTest;
 	
 	/**
 	 * Utworzenie g³ównego programu.
@@ -86,8 +96,8 @@ public class Program extends JFrame {
 		setBounds(100, 100, 0, 0);
 		
 		//inicjacje
-		inicjujKomponenty();
 		inicjujPola();
+		inicjujKomponenty();
 		
 		//operacje koñcowe
 		pack();
@@ -108,13 +118,12 @@ public class Program extends JFrame {
 		
 		//mnWidok
 		mnWidok = new JMenu("Widok");
-		mnWidok.addMouseListener(new PanelWidok());
 		mnWidok.setEnabled(false);
 		mnBarMenu.add(mnWidok);
 		
 		//mnTest
 		mnTest = new JMenu("Test");
-		mnTest.addMouseListener(new PanelTest());
+		mnTest.addMouseListener(listenerTest);
 		mnBarMenu.add(mnTest);
 		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -142,6 +151,9 @@ public class Program extends JFrame {
 		interfejsBD.zamknijPolaczenie();
 		//log
 		log = LoggerFactory.getLogger(Program.class);
+		//listenery
+		listenerWidok = new PanelWidok();
+		listenerTest = new PanelTest();
 	}
 	
 	/**
@@ -172,8 +184,12 @@ public class Program extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) { 
 			zmienPanel(widok);
+			
+			mnWidok.removeMouseListener(listenerWidok);
 			mnWidok.setEnabled(false);
+			mnTest.addMouseListener(listenerTest);
 			mnTest.setEnabled(true);
+			
 			log.debug("Zmiana panelu na 'widok'.");
 		}
 	}
@@ -213,8 +229,12 @@ public class Program extends JFrame {
 			} else {
 				zmienPanel(test);
 				test.przygotujTest(widok.pobierzIdGrupa());
+				
+				mnWidok.addMouseListener(listenerWidok);
 				mnWidok.setEnabled(true);
+				mnTest.removeMouseListener(listenerTest);
 				mnTest.setEnabled(false);
+				
 				log.debug("Zmiana panelu na 'test'.");
 			}
 		}
