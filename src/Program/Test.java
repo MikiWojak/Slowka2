@@ -60,7 +60,10 @@ public class Test extends Panel {
 	 * £¹czna iloœæ prób odgadniêcia s³owa przy aktualnym podejœciu.
 	 */
 	private int proby;
-	
+	/**
+	 * Obecnie przetwarzany index z listy indexów do zrobienia.
+	 */
+	private int index;
 	/**
 	 * Napis z informacj¹ o trybach testu.
 	 */
@@ -183,6 +186,7 @@ public class Test extends Panel {
 		add(lblSlowo);
 		
 		tfSlowo = new JTextField();
+		tfSlowo.setEditable(false);
 		tfSlowo.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfSlowo.setColumns(10);
 		tfSlowo.setBounds(145, 186, 1040, 25);
@@ -294,11 +298,16 @@ public class Test extends Panel {
 		wyczyscListy();
 		losowanie();
 		
-		//Iloœæ prób - iloœæ ju¿ zaliczonych s³ów lub 0.
-		proby = indexyZaliczone.size();
+		//Ustawienie wartoœci dla zmiennych.
+		proby = indexyZaliczone.size();		//Iloœæ prób - iloœæ ju¿ zaliczonych s³ów lub 0.
+		index = 0;
 		
 		//Ustawienie wartoœci dla pasków postêpu.
 		ustawWartosciPaskiPostepu();
+		
+		//Ustawienie pierwszego s³owa.
+		tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
+		tfTlumaczenie.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzSlowo());
 	}
 	
 	/**
