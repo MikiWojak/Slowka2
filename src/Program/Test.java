@@ -47,10 +47,10 @@ public class Test extends Panel {
 	 */
 	private List<Integer> indexyDoZrobienia;
 	/**
-	 * Lista s³ów, które s¹ poprawne.
+	 * Lista s³ów, które s¹ zaliczone.
 	 * Indexy do listy s³ów.
 	 */
-	private List<Integer> indexyPoprawne;
+	private List<Integer> indexyZaliczone;
 	/**
 	 * Lista s³ów, które s¹ b³êdne.
 	 * Indexy do listy s³ów.
@@ -108,7 +108,7 @@ public class Test extends Panel {
 	/**
 	 * Informacja o pasku postêpu obrazuj¹cym odsetek zaliczonych s³ów.
 	 */
-	private JLabel lblPoprawne;
+	private JLabel lblZaliczone;
 	/**
 	 * Infomacja o pasku postêpu obrazuj¹cym skutecznoœæ w teœcie.
 	 */
@@ -117,7 +117,7 @@ public class Test extends Panel {
 	 * Informacja o odsetku zaliczonych s³ów.
 	 * Pasek postêpu.
 	 */
-	private JProgressBar pbPoprawne;
+	private JProgressBar pbZaliczone;
 	/**
 	 * Informacja o stosunku poprawnych odpowiedzi do udzielonych odpowiedzi.
 	 * Pasek postêpu.
@@ -220,11 +220,11 @@ public class Test extends Panel {
 		lblTest.setBounds(0, 150, 1200, 20);
 		add(lblTest);
 		
-		lblPoprawne = new JLabel("Poprawne");
-		lblPoprawne.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPoprawne.setFont(new Font("Arial", Font.ITALIC, 16));
-		lblPoprawne.setBounds(10, 477, 120, 25);
-		add(lblPoprawne);
+		lblZaliczone = new JLabel("Zaliczone");
+		lblZaliczone.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblZaliczone.setFont(new Font("Arial", Font.ITALIC, 16));
+		lblZaliczone.setBounds(10, 477, 120, 25);
+		add(lblZaliczone);
 		
 		lblSkutecznosc = new JLabel("Skuteczno\u015B\u0107");
 		lblSkutecznosc.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -232,11 +232,11 @@ public class Test extends Panel {
 		lblSkutecznosc.setBounds(10, 559, 120, 25);
 		add(lblSkutecznosc);
 		
-		pbPoprawne = new JProgressBar();
-		pbPoprawne.setForeground(Color.GREEN);
-		pbPoprawne.setStringPainted(true);
-		pbPoprawne.setBounds(145, 477, 1040, 25);
-		add(pbPoprawne);
+		pbZaliczone = new JProgressBar();
+		pbZaliczone.setForeground(Color.GREEN);
+		pbZaliczone.setStringPainted(true);
+		pbZaliczone.setBounds(145, 477, 1040, 25);
+		add(pbZaliczone);
 		
 		pbSkutecznosc = new JProgressBar();
 		pbSkutecznosc.setStringPainted(true);
@@ -264,7 +264,7 @@ public class Test extends Panel {
 		//W³asne
 		id_grupa = -1;
 		indexyDoZrobienia = new ArrayList<Integer>();
-		indexyPoprawne = new ArrayList<Integer>();
+		indexyZaliczone = new ArrayList<Integer>();
 		indexyBledne = new ArrayList<Integer>();
 		
 		//Odziedziczone
@@ -350,7 +350,7 @@ public class Test extends Panel {
 	private void oddzielPrzerobione() {
 		for(int i = 0; i < slowa.size(); i++) {
 			if(slowa.get(i).pobierzCzyZapamietane()) {
-				indexyPoprawne.add(i);
+				indexyZaliczone.add(i);
 			} else {
 				indexyDoZrobienia.add(i);
 			}
@@ -363,7 +363,7 @@ public class Test extends Panel {
 	 */
 	private void wyczyscListy() {
 		indexyDoZrobienia.clear();
-		indexyPoprawne.clear();
+		indexyZaliczone.clear();
 		indexyBledne.clear();
 	}
 	
@@ -378,10 +378,10 @@ public class Test extends Panel {
 			do {
 				wylosowane = (int)(Math.random() * iloscSlow);
 			} while(czyWylosowana(wylosowane, this.indexyDoZrobienia) || 
-					czyWylosowana(wylosowane, this.indexyPoprawne));
+					czyWylosowana(wylosowane, this.indexyZaliczone));
 			
 			if(slowa.get(wylosowane).pobierzCzyZapamietane()) {
-				indexyPoprawne.add(wylosowane);
+				indexyZaliczone.add(wylosowane);
 			} else {
 				indexyDoZrobienia.add(wylosowane);
 			}
@@ -406,8 +406,9 @@ public class Test extends Panel {
 	 * 
 	 */
 	private void ustawienieStatystyk() {
-		float poprawneFloat = indexyPoprawne.size() * 100f / slowa.size();
-		System.out.println(poprawneFloat);
+		//Poprawne - stosunek zaliczonych s³ów do wszystkich s³ów
+		float zaliczoneFloat = indexyZaliczone.size() * 100f / slowa.size();
+		System.out.println(zaliczoneFloat);
 	}
 	
 	/**
