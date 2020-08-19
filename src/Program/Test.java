@@ -56,6 +56,10 @@ public class Test extends Panel {
 	 * Indexy do listy s³ów.
 	 */
 	private List<Integer> indexyBledne;
+	/**
+	 * £¹czna iloœæ prób odgadniêcia s³owa przy aktualnym podejœciu.
+	 */
+	private int proby;
 	
 	/**
 	 * Napis z informacj¹ o trybach testu.
@@ -287,6 +291,7 @@ public class Test extends Panel {
 		wyczyscListy();
 		//oddzielPrzerobione();
 		losowanie();
+		proby = indexyZaliczone.size();
 		
 		/*
 		//DEBUG - Losowana lista s³ów do zrobienia i poprawnych
@@ -306,6 +311,7 @@ public class Test extends Panel {
 		*/
 		
 		ustawienieStatystyk();
+		System.out.println();
 	}
 	
 	/**
@@ -403,12 +409,38 @@ public class Test extends Panel {
 	}
 	
 	/**
-	 * 
+	 * Ustawienie wartoœci dla pasków postêpu.
 	 */
 	private void ustawienieStatystyk() {
-		//Poprawne - stosunek zaliczonych s³ów do wszystkich s³ów
-		float zaliczoneFloat = indexyZaliczone.size() * 100f / slowa.size();
-		System.out.println(zaliczoneFloat);
+		System.out.println("Zaliczone:\t" +
+					przeliczStosunekProcentowy(
+							indexyZaliczone.size(),
+							slowa.size()));
+		System.out.println("B³êdne:\t" +
+						przeliczStosunekProcentowy(
+								indexyBledne.size(), 
+								indexyDoZrobienia.size()));
+		System.out.println("Skutecznoœæ:\t" +
+						przeliczStosunekProcentowy(
+								indexyZaliczone.size(),
+								proby));
+	}
+	
+	/**
+	 * Przeliczenie stosunku jednego parametru do drugiego.
+	 * Do ustawienia wartoœci dla pasków postêpu
+	 * @param stosunekCzego wartoœæ do stosunku
+	 * @param stosunekDoCzego punkt odniesienia
+	 * @return wartoœæ stosunku w procentach; 0, jeœci punkt odniesienia jest równy zero
+	 */
+	private int przeliczStosunekProcentowy(int stosunekCzego, int stosunekDoCzego) {
+		if(stosunekDoCzego == 0) { return 0; }
+		else {
+			float stosunekFloat = stosunekCzego * 100f / stosunekDoCzego;
+			int stosunekInt = Math.round(stosunekFloat);
+			System.out.println(stosunekFloat + "\t" + stosunekInt);
+			return stosunekInt;
+		}
 	}
 	
 	/**
