@@ -283,35 +283,22 @@ public class Test extends Panel {
 	 * @param id_grupa ID grupy w BD
 	 */
 	public void przygotujTest(int id_grupa) {
+		//Ustawienie ID grupy
 		this.id_grupa = id_grupa;
-		//Przygotowanie listy s³ów
+		
+		//Przygotowanie listy s³ów i grupy
 		pobierzSlowaZBazyDanych();
 		pobierzGrupeZBazyDanych();
 		
+		//Przygotowanie list indexów do zrobienia i zaliczonych.
 		wyczyscListy();
-		//oddzielPrzerobione();
 		losowanie();
+		
+		//Iloœæ prób - iloœæ ju¿ zaliczonych s³ów lub 0.
 		proby = indexyZaliczone.size();
 		
-		/*
-		//DEBUG - Losowana lista s³ów do zrobienia i poprawnych
-		System.out.println("Do zrobienia:");
-		debugListaIndexow(this.indexyDoZrobienia);
-		System.out.println("\nPoprawne:");
-		debugListaIndexow(this.indexyPoprawne);
-		*/
-		
-		/*
-		//DEBUG - Lista s³ów do zrobienia i poprawnych bez losowania 
-		System.out.println("ID grupy:\t" + id_grupa);
-		System.out.println("Do zrobienia");
-		debugListaSlow(indexyDoZrobienia);
-		System.out.println("Poprawne");
-		debugListaSlow(indexyPoprawne);
-		*/
-		
-		ustawienieStatystyk();
-		System.out.println();
+		//Ustawienie wartoœci dla pasków postêpu.
+		ustawWartosciPaskiPostepu();
 	}
 	
 	/**
@@ -409,24 +396,6 @@ public class Test extends Panel {
 	}
 	
 	/**
-	 * Ustawienie wartoœci dla pasków postêpu.
-	 */
-	private void ustawienieStatystyk() {
-		System.out.println("Zaliczone:\t" +
-					przeliczStosunekProcentowy(
-							indexyZaliczone.size(),
-							slowa.size()));
-		System.out.println("B³êdne:\t" +
-						przeliczStosunekProcentowy(
-								indexyBledne.size(), 
-								indexyDoZrobienia.size()));
-		System.out.println("Skutecznoœæ:\t" +
-						przeliczStosunekProcentowy(
-								indexyZaliczone.size(),
-								proby));
-	}
-	
-	/**
 	 * Przeliczenie stosunku jednego parametru do drugiego.
 	 * Do ustawienia wartoœci dla pasków postêpu
 	 * @param stosunekCzego wartoœæ do stosunku
@@ -438,9 +407,24 @@ public class Test extends Panel {
 		else {
 			float stosunekFloat = stosunekCzego * 100f / stosunekDoCzego;
 			int stosunekInt = Math.round(stosunekFloat);
-			System.out.println(stosunekFloat + "\t" + stosunekInt);
+			//System.out.println(stosunekFloat + "\t" + stosunekInt);
 			return stosunekInt;
 		}
+	}
+	
+	/**
+	 * Ustawienie wartoœci w paskach postêpu.
+	 */
+	private void ustawWartosciPaskiPostepu() {
+		pbZaliczone.setValue(przeliczStosunekProcentowy(
+								indexyZaliczone.size(),
+								slowa.size()));
+		pbBledne.setValue(przeliczStosunekProcentowy(
+								indexyBledne.size(), 
+								indexyDoZrobienia.size()));
+		pbSkutecznosc.setValue(przeliczStosunekProcentowy(
+								indexyZaliczone.size(),
+								proby));
 	}
 	
 	/**
@@ -469,5 +453,25 @@ public class Test extends Panel {
 			System.out.print(lista.get(i) + "\t");
 		}
 		System.out.println();
+	}
+	
+
+	/**
+	 * Ustawienie wartoœci dla pasków postêpu.
+	 * Do debugu
+	 */
+	private void debugUstawienieStatystyk() {
+		System.out.println("Zaliczone:\t" +
+					przeliczStosunekProcentowy(
+							indexyZaliczone.size(),
+							slowa.size()));
+		System.out.println("B³êdne:\t" +
+						przeliczStosunekProcentowy(
+								indexyBledne.size(), 
+								indexyDoZrobienia.size()));
+		System.out.println("Skutecznoœæ:\t" +
+						przeliczStosunekProcentowy(
+								indexyZaliczone.size(),
+								proby));
 	}
 }
