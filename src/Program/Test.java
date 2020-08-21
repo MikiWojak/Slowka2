@@ -65,6 +65,16 @@ public class Test extends Panel {
 	 */
 	private int index;
 	/**
+	 * Obiekt do wywo³ania akcji sprawdzenia t³umaczenia s³owa.
+	 * Obiekt nas³uchuj¹cy - ActionListener
+	 */
+	private AkcjaSprawdz akcjaSprawdz;
+	/**
+	 * Obiekt do wywo³ania akcji przejœcia dalej w teœcie.
+	 * Obiekt nas³uchuj¹cy - ActionListener
+	 */
+	private AkcjaDalej akcjaDalej;
+	/**
 	 * Napis z informacj¹ o trybach testu.
 	 */
 	private JLabel lblTryby;
@@ -147,8 +157,8 @@ public class Test extends Panel {
 	 * Konstruktor klasy Test.
 	 */
 	public Test() {
-		inicjujKomponenty();
 		inicjujPola();
+		inicjujKomponenty();
 		
 		log.debug("Utworzono obiekt klasy Test.");
 	}
@@ -204,9 +214,10 @@ public class Test extends Panel {
 		tfTlumaczenie.setBounds(145, 227, 1040, 25);
 		add(tfTlumaczenie);
 		
-		btnDalej = new JButton("Dalej");
+		btnDalej = new JButton("Sprawd\u017A");
 		btnDalej.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDalej.setBounds(1085, 268, 100, 30);
+		btnDalej.addActionListener(akcjaSprawdz);
 		add(btnDalej);
 		
 		lblWynk = new JLabel("");
@@ -275,6 +286,9 @@ public class Test extends Panel {
 		indexyZaliczone = new ArrayList<Integer>();
 		indexyBledne = new ArrayList<Integer>();
 		
+		akcjaSprawdz = new AkcjaSprawdz();
+		akcjaDalej = new AkcjaDalej();
+		
 		//Odziedziczone
 		//log
 		log = LoggerFactory.getLogger(Test.class);
@@ -302,12 +316,15 @@ public class Test extends Panel {
 		proby = indexyZaliczone.size();		//Iloœæ prób - iloœæ ju¿ zaliczonych s³ów lub 0.
 		index = 0;
 		
+		//Przypisanie akcji do przycisków.
+		
+		
 		//Ustawienie wartoœci dla pasków postêpu.
 		ustawWartosciPaskiPostepu();
 		
 		//Ustawienie pierwszego s³owa.
 		tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
-		tfTlumaczenie.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzSlowo());
+		tfTlumaczenie.setText("");
 	}
 	
 	/**
@@ -482,5 +499,48 @@ public class Test extends Panel {
 						przeliczStosunekProcentowy(
 								indexyZaliczone.size(),
 								proby));
+	}
+	
+	/**
+	 * Akcja zw. ze sprawdzeniem t³umaczenia s³owa w teœcie.
+	 * Klasa wewnêtrzna.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class AkcjaSprawdz implements ActionListener {
+		/**
+		 * Konstruktor klasy AkcjaSprawdz.
+		 */
+		public AkcjaSprawdz() {}
+		
+		/**
+		 * Akcja sprawdzenia t³umaczenia s³owa w teœcie.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.println("Sprawdzam...");
+		}
+		
+	}
+	
+	/**
+	 * Akcja zw. z przejœciem dalej w teœcie s³ówek.
+	 * Klasa wewnêtrzna.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class AkcjaDalej implements ActionListener {
+		/**
+		 * Konstuktor klasy AkcjaDalej.
+		 */
+		public AkcjaDalej() {}
+		
+		/**
+		 * Akcja przejœcia dalej w teœcie. 
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.println("Przechodzê dalej...");
+		}
 	}
 }
