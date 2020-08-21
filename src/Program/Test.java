@@ -517,8 +517,12 @@ public class Test extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			System.out.println("Sprawdzam...");
+			
+			btnDalej.removeActionListener(akcjaSprawdz);
+			btnDalej.addActionListener(akcjaDalej);
+			btnDalej.setText("Dalej");
+			// TODO Auto-generated method stub
 		}
 		
 	}
@@ -539,8 +543,12 @@ public class Test extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			System.out.println("Przechodzê dalej...");
+			
+			btnDalej.removeActionListener(akcjaDalej);
+			btnDalej.addActionListener(akcjaSprawdz);
+			btnDalej.setText("SprawdŸ");
+			// TODO Auto-generated method stub
 		}
 	}
 }
