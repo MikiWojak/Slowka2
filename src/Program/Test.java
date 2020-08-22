@@ -113,7 +113,7 @@ public class Test extends Panel {
 	/**
 	 * Informacja o wyniku - czy odpowiedü jest poprawna, czy nie.
 	 */
-	private JLabel lblWynk;
+	private JLabel lblWynik;
 	/**
 	 * Wyúwietla poprawnπ odpowiedü, jeúli podana nie by≥a poprawna.
 	 */
@@ -220,11 +220,11 @@ public class Test extends Panel {
 		btnDalej.addActionListener(akcjaSprawdz);
 		add(btnDalej);
 		
-		lblWynk = new JLabel("");
-		lblWynk.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWynk.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblWynk.setBounds(0, 314, 1200, 20);
-		add(lblWynk);
+		lblWynik = new JLabel("");
+		lblWynik.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWynik.setFont(new Font("Arial", Font.PLAIN, 16));
+		lblWynik.setBounds(0, 314, 1200, 20);
+		add(lblWynik);
 		
 		lblPoprawnaOdp = new JLabel("");
 		lblPoprawnaOdp.setForeground(Color.BLUE);
@@ -517,12 +517,49 @@ public class Test extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Sprawdzam...");
+			//Pobranie poprawnej odpowiedzi
+			String poprawnaOdp = slowa.get(indexyDoZrobienia.get(index)).pobierzSlowo();
 			
+			//Sprawdzanie
+			tfTlumaczenie.setEditable(false);
+			if(czyOdpowiedzPoprawna(tfTlumaczenie.getText(), poprawnaOdp)) {
+				lblWynik.setForeground(Color.GREEN);
+				lblWynik.setText("Dobra odpowiedü!");
+				
+				//Dodanie indexu do zaliczonych
+			}
+			else {
+				lblWynik.setForeground(Color.RED);
+				lblWynik.setText("Z≥a odpowiedü!");
+				
+				lblPoprawnaOdp.setForeground(Color.BLUE);
+				lblPoprawnaOdp.setText("Poprawna odpowiedü: " + poprawnaOdp);
+				
+				//Dodanie indexu do b≥Ídnych
+			}
+			
+			//Aktualizacja statystyk
+			
+			//Zmiana zachowania przycisku na przejúcie dalej.
 			btnDalej.removeActionListener(akcjaSprawdz);
 			btnDalej.addActionListener(akcjaDalej);
 			btnDalej.setText("Dalej");
+			
 			// TODO Auto-generated method stub
+		}
+		
+		/**
+		 * Sprawdza, czy podane t≥umaczenie jest poprawne.
+		 * Na podstawie listy t≥umaczeÒ.
+		 * @param tlumaczenie podana przez uøytkownika odpowiedü
+		 * @param odpowiedz prawid≥owa odpowiedü
+		 * @return true, jeúli podana przez uøytkownika odpowiedü by≥a poprawna
+		 */
+		private boolean czyOdpowiedzPoprawna(
+				String tlumaczenie,
+				String odpowiedz) {
+			if(tlumaczenie.equals(odpowiedz)) { return true; }
+			return false;
 		}
 		
 	}
@@ -543,8 +580,17 @@ public class Test extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("PrzechodzÍ dalej...");
+			//Wyczyszczenie zawartoúci informacji
+			tfTlumaczenie.setText("");
+			tfTlumaczenie.setEditable(true);
 			
+			lblWynik.setForeground(Color.BLACK);
+			lblWynik.setText("");
+			
+			lblPoprawnaOdp.setForeground(Color.BLUE);
+			lblPoprawnaOdp.setText("");
+			
+			//Zmiana zachowania przycisku na sprawdzenie.
 			btnDalej.removeActionListener(akcjaDalej);
 			btnDalej.addActionListener(akcjaSprawdz);
 			btnDalej.setText("Sprawdü");
