@@ -330,7 +330,7 @@ public class Test extends Panel {
 		
 		//DEBUG
 		System.err.println("Próba:\t" + proby);
-		System.out.println("Index:\t" + index);
+		System.out.println("Index:\t" + index + indexyDoZrobienia.get(index));
 		System.out.print(slowa.get(indexyDoZrobienia.get(index)));
 		System.out.println("Do zrobienia:");
 		debugListaIndexow(indexyDoZrobienia);
@@ -532,7 +532,8 @@ public class Test extends Panel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//Pobranie poprawnej odpowiedzi
-			String poprawnaOdp = slowa.get(indexyDoZrobienia.get(index)).pobierzSlowo();
+			int indexSlowa = indexyDoZrobienia.get(index);
+			String poprawnaOdp = slowa.get(indexSlowa).pobierzSlowo();
 			
 			//Sprawdzanie
 			tfTlumaczenie.setEditable(false);
@@ -541,7 +542,7 @@ public class Test extends Panel {
 				lblWynik.setText("Dobra odpowiedŸ!");
 				
 				//Dodanie indexu do zaliczonych
-				indexyZaliczone.add(index);
+				indexyZaliczone.add(indexSlowa);
 			}
 			else {
 				lblWynik.setForeground(Color.RED);
@@ -551,7 +552,7 @@ public class Test extends Panel {
 				lblPoprawnaOdp.setText("Poprawna odpowiedŸ: " + poprawnaOdp);
 				
 				//Dodanie indexu do b³êdnych
-				indexyBledne.add(index);
+				indexyBledne.add(indexSlowa);
 			}
 			
 			//Aktualizacja indexu i statystyk
@@ -622,7 +623,7 @@ public class Test extends Panel {
 			}
 			//DEBUG
 			System.err.println("Próba:\t" + proby);
-			System.out.println("Index:\t" + index);
+			System.out.println("Index:\t" + index + "\t\t" + indexyDoZrobienia.get(index));
 			System.out.print(slowa.get(indexyDoZrobienia.get(index)));
 			System.out.println("Do zrobienia:");
 			debugListaIndexow(indexyDoZrobienia);
