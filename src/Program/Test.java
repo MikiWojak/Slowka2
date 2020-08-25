@@ -329,7 +329,7 @@ public class Test extends Panel {
 		tfTlumaczenie.setText("");
 		
 		//DEBUG
-		System.out.println("Próba:\t" + proby);
+		System.err.println("Próba:\t" + proby);
 		System.out.println("Index:\t" + index);
 		System.out.print(slowa.get(indexyDoZrobienia.get(index)));
 		System.out.println("Do zrobienia:");
@@ -338,6 +338,7 @@ public class Test extends Panel {
 		debugListaIndexow(indexyZaliczone);
 		System.out.println("B³êdne:");
 		debugListaIndexow(indexyBledne);
+		System.out.println("\n\n");
 	}
 	
 	/**
@@ -620,7 +621,7 @@ public class Test extends Panel {
 				}
 			}
 			//DEBUG
-			System.out.println("Próba:\t" + proby);
+			System.err.println("Próba:\t" + proby);
 			System.out.println("Index:\t" + index);
 			System.out.print(slowa.get(indexyDoZrobienia.get(index)));
 			System.out.println("Do zrobienia:");
@@ -629,6 +630,7 @@ public class Test extends Panel {
 			debugListaIndexow(indexyZaliczone);
 			System.out.println("B³êdne:");
 			debugListaIndexow(indexyBledne);
+			System.out.println("\n\n");
 			
 			//Wyczyszczenie zawartoœci informacji
 			tfTlumaczenie.setText("");
