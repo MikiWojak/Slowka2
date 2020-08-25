@@ -10,6 +10,8 @@ import BazaDanych.Grupa;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
@@ -325,6 +327,17 @@ public class Test extends Panel {
 		//Ustawienie pierwszego s³owa.
 		tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
 		tfTlumaczenie.setText("");
+		
+		//DEBUG
+		System.out.println("Próba:\t" + proby);
+		System.out.println("Index:\t" + index);
+		System.out.print(slowa.get(indexyDoZrobienia.get(index)));
+		System.out.println("Do zrobienia:");
+		debugListaIndexow(indexyDoZrobienia);
+		System.out.println("Zaliczone:");
+		debugListaIndexow(indexyZaliczone);
+		System.out.println("B³êdne:");
+		debugListaIndexow(indexyBledne);
 	}
 	
 	/**
@@ -527,6 +540,7 @@ public class Test extends Panel {
 				lblWynik.setText("Dobra odpowiedŸ!");
 				
 				//Dodanie indexu do zaliczonych
+				indexyZaliczone.add(index);
 			}
 			else {
 				lblWynik.setForeground(Color.RED);
@@ -536,9 +550,12 @@ public class Test extends Panel {
 				lblPoprawnaOdp.setText("Poprawna odpowiedŸ: " + poprawnaOdp);
 				
 				//Dodanie indexu do b³êdnych
+				indexyBledne.add(index);
 			}
 			
-			//Aktualizacja statystyk
+			//Aktualizacja indexu i statystyk
+			proby++;
+			ustawWartosciPaskiPostepu();
 			
 			//Zmiana zachowania przycisku na przejœcie dalej.
 			btnDalej.removeActionListener(akcjaSprawdz);
@@ -580,6 +597,39 @@ public class Test extends Panel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			//Aktualizacja indexu i ew. listy do zrobienia.
+			index++;
+			if(index < indexyDoZrobienia.size()) {
+				tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
+			}
+			else {
+				if(indexyBledne.size() > 0) {
+					index = 0;
+					indexyDoZrobienia.clear();
+					indexyDoZrobienia.addAll(indexyBledne);
+					indexyBledne.clear();
+					
+					tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
+				}
+				else {
+					JOptionPane.showMessageDialog(
+							null,
+							"Koniec testu",
+							"Info",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+			//DEBUG
+			System.out.println("Próba:\t" + proby);
+			System.out.println("Index:\t" + index);
+			System.out.print(slowa.get(indexyDoZrobienia.get(index)));
+			System.out.println("Do zrobienia:");
+			debugListaIndexow(indexyDoZrobienia);
+			System.out.println("Zaliczone:");
+			debugListaIndexow(indexyZaliczone);
+			System.out.println("B³êdne:");
+			debugListaIndexow(indexyBledne);
+			
 			//Wyczyszczenie zawartoœci informacji
 			tfTlumaczenie.setText("");
 			tfTlumaczenie.setEditable(true);
