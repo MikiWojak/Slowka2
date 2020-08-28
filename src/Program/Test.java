@@ -337,9 +337,11 @@ public class Test extends Panel {
 		lblPoprawnaOdp.setForeground(Color.BLACK);
 		lblPoprawnaOdp.setText("");
 		
+		/*
 		//DEBUG
-		//debugStanListyIndexow();
-		//debugListaListenerow();
+		debugStanListyIndexow();
+		debugListaListenerow();
+		*/
 	}
 	
 	/**
@@ -565,8 +567,10 @@ public class Test extends Panel {
 			btnDalej.addActionListener(akcjaDalej);
 			btnDalej.setText("Dalej");
 			
+			/*
 			//DEBUG
 			debugListaListenerow();
+			*/
 			
 			// TODO Auto-generated method stub
 		}
@@ -625,9 +629,6 @@ public class Test extends Panel {
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
-			//DEBUG
-			debugStanListyIndexow();
-			debugListaListenerow();
 			
 			//Wyczyszczenie zawartoúci informacji
 			tfTlumaczenie.setText("");
@@ -646,6 +647,12 @@ public class Test extends Panel {
 			btnDalej.removeActionListener(akcjaDalej);
 			btnDalej.addActionListener(akcjaSprawdz);
 			btnDalej.setText("Sprawdü");
+			
+			/*
+			//DEBUG
+			debugStanListyIndexow();
+			debugListaListenerow();
+			*/
 			
 			// TODO Auto-generated method stub
 		}
