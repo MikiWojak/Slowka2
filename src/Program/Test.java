@@ -329,16 +329,8 @@ public class Test extends Panel {
 		tfTlumaczenie.setText("");
 		
 		//DEBUG
-		System.err.println("Próba:\t" + proby);
-		System.out.println("Index:\t" + index + indexyDoZrobienia.get(index));
-		System.out.print(slowa.get(indexyDoZrobienia.get(index)));
-		System.out.println("Do zrobienia:");
-		debugListaIndexow(indexyDoZrobienia);
-		System.out.println("Zaliczone:");
-		debugListaIndexow(indexyZaliczone);
-		System.out.println("B³êdne:");
-		debugListaIndexow(indexyBledne);
-		System.out.println("\n\n");
+		debugStanListyIndexow();
+		debugListaListenerow();
 	}
 	
 	/**
@@ -564,6 +556,9 @@ public class Test extends Panel {
 			btnDalej.addActionListener(akcjaDalej);
 			btnDalej.setText("Dalej");
 			
+			//DEBUG
+			debugListaListenerow();
+			
 			// TODO Auto-generated method stub
 		}
 		
@@ -622,16 +617,8 @@ public class Test extends Panel {
 				}
 			}
 			//DEBUG
-			System.err.println("Próba:\t" + proby);
-			System.out.println("Index:\t" + index + "\t\t" + indexyDoZrobienia.get(index));
-			System.out.print(slowa.get(indexyDoZrobienia.get(index)));
-			System.out.println("Do zrobienia:");
-			debugListaIndexow(indexyDoZrobienia);
-			System.out.println("Zaliczone:");
-			debugListaIndexow(indexyZaliczone);
-			System.out.println("B³êdne:");
-			debugListaIndexow(indexyBledne);
-			System.out.println("\n\n");
+			debugStanListyIndexow();
+			debugListaListenerow();
 			
 			//Wyczyszczenie zawartoœci informacji
 			tfTlumaczenie.setText("");
@@ -643,11 +630,47 @@ public class Test extends Panel {
 			lblPoprawnaOdp.setForeground(Color.BLUE);
 			lblPoprawnaOdp.setText("");
 			
+			//Aktualizacja statustyk
+			ustawWartosciPaskiPostepu();
+			
 			//Zmiana zachowania przycisku na sprawdzenie.
 			btnDalej.removeActionListener(akcjaDalej);
 			btnDalej.addActionListener(akcjaSprawdz);
 			btnDalej.setText("SprawdŸ");
 			// TODO Auto-generated method stub
 		}
+	}
+	
+	/**
+	 * Wyœwietla obecny stan listy indexow i innych danych.
+	 * Do debugu. 
+	 */
+	private void debugStanListyIndexow() {
+		System.err.println("Próba:\t" + proby);
+		System.out.println("Index:\t" + index + "\t\t" + indexyDoZrobienia.get(index));
+		System.out.print(slowa.get(indexyDoZrobienia.get(index)));
+		System.out.println("Do zrobienia:");
+		debugListaIndexow(indexyDoZrobienia);
+		System.out.println("Zaliczone:");
+		debugListaIndexow(indexyZaliczone);
+		System.out.println("B³êdne:");
+		debugListaIndexow(indexyBledne);
+		System.out.println();
+	}
+	
+	/**
+	 * Wyœwietla obecny stan przypisanych listenerów do przycisku.
+	 * Do debugu.
+	 */
+	private void debugListaListenerow() {
+		Object lista[] = btnDalej.getActionListeners();
+		try {
+			for(int i = 0; i < 5; i ++) {
+				System.out.println(lista[i]);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		System.out.println();
 	}
 }
