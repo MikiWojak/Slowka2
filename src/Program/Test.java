@@ -219,7 +219,6 @@ public class Test extends Panel {
 		btnDalej = new JButton("Sprawd\u017A");
 		btnDalej.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnDalej.setBounds(1085, 268, 100, 30);
-		btnDalej.addActionListener(akcjaSprawdz);
 		add(btnDalej);
 		
 		lblWynik = new JLabel("");
@@ -318,8 +317,11 @@ public class Test extends Panel {
 		proby = indexyZaliczone.size();		//Iloœæ prób - iloœæ ju¿ zaliczonych s³ów lub 0.
 		index = 0;
 		
-		//Przypisanie akcji do przycisków.
-		
+		//Przypisanie akcji do przycisków lub resetowanie.
+		btnDalej.removeActionListener(akcjaSprawdz);
+		btnDalej.removeActionListener(akcjaDalej);
+		btnDalej.addActionListener(akcjaSprawdz);
+		btnDalej.setText("SprawdŸ");
 		
 		//Ustawienie wartoœci dla pasków postêpu.
 		ustawWartosciPaskiPostepu();
@@ -327,10 +329,17 @@ public class Test extends Panel {
 		//Ustawienie pierwszego s³owa.
 		tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
 		tfTlumaczenie.setText("");
+		tfTlumaczenie.setEditable(true);
+		
+		//Czyszczenie zawartoœci pól wynikowych.
+		lblWynik.setForeground(Color.BLACK);
+		lblWynik.setText("");
+		lblPoprawnaOdp.setForeground(Color.BLACK);
+		lblPoprawnaOdp.setText("");
 		
 		//DEBUG
-		debugStanListyIndexow();
-		debugListaListenerow();
+		//debugStanListyIndexow();
+		//debugListaListenerow();
 	}
 	
 	/**
@@ -637,6 +646,7 @@ public class Test extends Panel {
 			btnDalej.removeActionListener(akcjaDalej);
 			btnDalej.addActionListener(akcjaSprawdz);
 			btnDalej.setText("SprawdŸ");
+			
 			// TODO Auto-generated method stub
 		}
 	}
