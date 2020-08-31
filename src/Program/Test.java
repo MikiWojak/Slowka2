@@ -611,6 +611,7 @@ public class Test extends Panel {
 			index++;
 			if(index < indexyDoZrobienia.size()) {
 				tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
+				przejscieDalej();
 			}
 			else {
 				if(indexyBledne.size() > 0) {
@@ -620,6 +621,7 @@ public class Test extends Panel {
 					indexyBledne.clear();
 					
 					tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
+					przejscieDalej();
 				}
 				else {
 					JOptionPane.showMessageDialog(
@@ -627,9 +629,21 @@ public class Test extends Panel {
 							"Koniec testu",
 							"Info",
 							JOptionPane.INFORMATION_MESSAGE);
+					
+					btnDalej.removeActionListener(akcjaSprawdz);
+					btnDalej.removeActionListener(akcjaDalej);
 				}
 			}
 			
+			
+			
+			// TODO Auto-generated method stub
+		}
+		
+		/**
+		 * Zadania zw, z przejœciem dalej.
+		 */
+		private void przejscieDalej() {
 			//Wyczyszczenie zawartoœci informacji
 			tfTlumaczenie.setText("");
 			tfTlumaczenie.setEditable(true);
@@ -653,8 +667,6 @@ public class Test extends Panel {
 			debugStanListyIndexow();
 			debugListaListenerow();
 			*/
-			
-			// TODO Auto-generated method stub
 		}
 	}
 	
