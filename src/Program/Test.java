@@ -549,10 +549,10 @@ public class Test extends Panel {
 			}
 			else {
 				lblWynik.setForeground(Color.RED);
-				lblWynik.setText("Z≥a odpowiedü!");
+				lblWynik.setText("Z≥a odpowiedü! Poprawna odpowiedü:");
 				
 				lblPoprawnaOdp.setForeground(Color.BLUE);
-				lblPoprawnaOdp.setText("Poprawna odpowiedü: " + poprawnaOdp);
+				lblPoprawnaOdp.setText(poprawnaOdp);
 				
 				//Dodanie indexu do b≥Ídnych
 				indexyBledne.add(indexSlowa);
