@@ -153,6 +153,14 @@ public class Test extends Panel {
 	 * Resetuje siê, kiedy pula b³êdnych odpowiedzi jest ponownie puszczana.
 	 */
 	private JProgressBar pbBledne;
+	/**
+	 * Pole, które pokazuje czêœæ mowy s³owa w j. obcym.
+	 */
+	private JTextField tfCzescMowy;
+	/**
+	 * Opis pola, w którym jest czêœæ mowy.
+	 */
+	private JLabel lblCzescMowy;
 
 	/**
 	 * Utworzenie panelu z testem.
@@ -207,31 +215,31 @@ public class Test extends Panel {
 		lblTlumaczenie = new JLabel("T\u0142umaczenie");
 		lblTlumaczenie.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTlumaczenie.setFont(new Font("Arial", Font.ITALIC, 16));
-		lblTlumaczenie.setBounds(10, 227, 120, 25);
+		lblTlumaczenie.setBounds(10, 268, 120, 25);
 		add(lblTlumaczenie);
 		
 		tfTlumaczenie = new JTextField();
 		tfTlumaczenie.setFont(new Font("Arial", Font.PLAIN, 16));
 		tfTlumaczenie.setColumns(10);
-		tfTlumaczenie.setBounds(145, 227, 1040, 25);
+		tfTlumaczenie.setBounds(145, 268, 1040, 25);
 		add(tfTlumaczenie);
 		
 		btnDalej = new JButton("Sprawd\u017A");
 		btnDalej.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnDalej.setBounds(1085, 268, 100, 30);
+		btnDalej.setBounds(1085, 309, 100, 30);
 		add(btnDalej);
 		
 		lblWynik = new JLabel("");
 		lblWynik.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWynik.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblWynik.setBounds(0, 314, 1200, 20);
+		lblWynik.setBounds(0, 355, 1200, 20);
 		add(lblWynik);
 		
 		lblPoprawnaOdp = new JLabel("");
 		lblPoprawnaOdp.setForeground(Color.BLUE);
 		lblPoprawnaOdp.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPoprawnaOdp.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblPoprawnaOdp.setBounds(0, 350, 1200, 20);
+		lblPoprawnaOdp.setBounds(0, 391, 1200, 20);
 		add(lblPoprawnaOdp);
 		
 		lblTest = new JLabel("Test");
@@ -275,6 +283,19 @@ public class Test extends Panel {
 		pbBledne.setStringPainted(true);
 		pbBledne.setBounds(145, 518, 1040, 25);
 		add(pbBledne);
+		
+		lblCzescMowy = new JLabel("Cz\u0119\u015B\u0107 mowy");
+		lblCzescMowy.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCzescMowy.setFont(new Font("Arial", Font.ITALIC, 16));
+		lblCzescMowy.setBounds(10, 227, 120, 25);
+		add(lblCzescMowy);
+		
+		tfCzescMowy = new JTextField();
+		tfCzescMowy.setFont(new Font("Arial", Font.PLAIN, 16));
+		tfCzescMowy.setEditable(false);
+		tfCzescMowy.setColumns(10);
+		tfCzescMowy.setBounds(145, 227, 1040, 25);
+		add(tfCzescMowy);
 	}
 	
 	/**
