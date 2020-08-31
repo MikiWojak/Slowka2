@@ -609,20 +609,20 @@ public class Test extends Panel {
 		public void actionPerformed(ActionEvent e) {
 			//Aktualizacja indexu i ew. listy do zrobienia.
 			index++;
-			if(index < indexyDoZrobienia.size()) {
-				tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
-				przejscieDalej();
-			}
+			
+			//Przejœcie dalej
+			if(index < indexyDoZrobienia.size()) { przejscieDalej(); }
 			else {
+				//Odœwie¿enie listy i przejœcie dalej
 				if(indexyBledne.size() > 0) {
 					index = 0;
 					indexyDoZrobienia.clear();
 					indexyDoZrobienia.addAll(indexyBledne);
 					indexyBledne.clear();
 					
-					tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
 					przejscieDalej();
 				}
+				//Koniec gry
 				else {
 					JOptionPane.showMessageDialog(
 							null,
@@ -634,16 +634,16 @@ public class Test extends Panel {
 					btnDalej.removeActionListener(akcjaDalej);
 				}
 			}
-			
-			
-			
-			// TODO Auto-generated method stub
 		}
 		
 		/**
 		 * Zadania zw, z przejœciem dalej.
+		 * Do zastosowania w paru miejscach.
 		 */
 		private void przejscieDalej() {
+			//Nowe s³owo
+			tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
+			
 			//Wyczyszczenie zawartoœci informacji
 			tfTlumaczenie.setText("");
 			tfTlumaczenie.setEditable(true);
