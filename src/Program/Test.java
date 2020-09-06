@@ -348,18 +348,7 @@ public class Test extends Panel {
 		ustawWartosciPaskiPostepu();
 		
 		//Ustawienie pierwszego s³owa.
-		int obecnyIndex = indexyDoZrobienia.get(index);
-		tfSlowo.setText(slowa.get(obecnyIndex).pobierzTlumaczenie());
-		tfCzescMowy.setText(slowa.get(obecnyIndex).pobierzCzescMowy());
-		
-		tfTlumaczenie.setText("");
-		tfTlumaczenie.setEditable(true);
-		
-		//Czyszczenie zawartoœci pól wynikowych.
-		lblWynik.setForeground(Color.BLACK);
-		lblWynik.setText("");
-		lblPoprawnaOdp.setForeground(Color.BLACK);
-		lblPoprawnaOdp.setText("");
+		ustawSlowo();
 		
 		/*
 		//DEBUG
@@ -492,6 +481,30 @@ public class Test extends Panel {
 		pbSkutecznosc.setValue(przeliczStosunekProcentowy(
 								indexyZaliczone.size(),
 								proby));
+	}
+	
+	/**
+	 * Ustawienie s³owa, które ma zostaæ odgadniête.
+	 * Do testów na jêzyk obcy i na jêzyk natywny.
+	 * Przygotowanie innych sk³adowych testu: pole na t³umaczenie, etykiet z wynikami.
+	 */
+	private void ustawSlowo() {
+		//Nowe s³owo
+		int obecnyIndex = indexyDoZrobienia.get(index);
+		tfSlowo.setText(slowa.get(obecnyIndex).pobierzTlumaczenie());
+		tfCzescMowy.setText(slowa.get(obecnyIndex).pobierzCzescMowy());
+		
+		//Wyczyszczenie zawartoœci informacji
+		tfTlumaczenie.setText("");
+		tfTlumaczenie.setEditable(true);
+		
+		lblWynik.setForeground(Color.BLACK);
+		lblWynik.setText("");
+		
+		lblPoprawnaOdp.setForeground(Color.BLACK);
+		lblPoprawnaOdp.setText("");
+		
+		// TODO Auto-generated method stub
 	}
 	
 	/**
@@ -666,19 +679,7 @@ public class Test extends Panel {
 		 */
 		private void przejscieDalej() {
 			//Nowe s³owo
-			int obecnyIndex = indexyDoZrobienia.get(index);
-			tfSlowo.setText(slowa.get(obecnyIndex).pobierzTlumaczenie());
-			tfCzescMowy.setText(slowa.get(obecnyIndex).pobierzCzescMowy());
-			
-			//Wyczyszczenie zawartoœci informacji
-			tfTlumaczenie.setText("");
-			tfTlumaczenie.setEditable(true);
-			
-			lblWynik.setForeground(Color.BLACK);
-			lblWynik.setText("");
-			
-			lblPoprawnaOdp.setForeground(Color.BLUE);
-			lblPoprawnaOdp.setText("");
+			ustawSlowo();
 			
 			//Aktualizacja statustyk
 			ustawWartosciPaskiPostepu();
@@ -723,9 +724,7 @@ public class Test extends Panel {
 			for(int i = 0; i < 5; i ++) {
 				System.out.println(lista[i]);
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		} catch (Exception e) {}
 		System.out.println();
 	}
 }
