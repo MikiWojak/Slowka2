@@ -133,13 +133,20 @@ public class Program extends JFrame {
 		warstwy.setPreferredSize(new Dimension(OKNO_SZEROKOSC, OKNO_WYSOKOSC));
 		warstwy.setLayout(null);
 		
+		/*
+		 * Inicjacja: najpierw test, potem Widok.
+		 * Prze³¹czenie na widok.
+		 * Usuniêcie przek³amañ w interfejsie Widok.
+		 */
+		//test
+		test = new Test();
+		warstwy.add(test);
+		
 		//widok
 		widok = new Widok();
 		warstwy.add(widok);
 		
-		//test
-		test = new Test();
-		warstwy.add(test);
+		zmienPanel(widok);
 	}
 	
 	/**
