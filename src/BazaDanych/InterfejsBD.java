@@ -390,6 +390,7 @@ public class InterfejsBD {
 	 * Ustawia status s³owa - czy jest zapamiêtane.
 	 * S³owo jest zapamiêtane, jeœli siê je odgad³o.
 	 * S³owo jest do zaliczenia przy resecie testu.
+	 * Do zastosowania przy: odhaczaniu s³owa i przy resecie testu lub grupy.
 	 * @param id_slowo ID s³owa, którego status nale¿y zmieniæ.
 	 * @param czy_zapamietane true, jeœli s³owo ma byæ zapamiêtane; false, jeœli s³owo ma byæ do zaliczenia.
 	 * @return true, jeœli modyfikacja statusu s³owa przebieg³a pomyœlnie.
@@ -402,7 +403,6 @@ public class InterfejsBD {
 					+ "UPDATE slowa SET "
 					+ "czy_zapamietane = ? "
 					+ "WHERE id_slowo = ?");
-			//UPDATE slowa SET czy_zapamietane = ? WHERE id_slowo = ?
 			preparedStatement.setBoolean(1, czy_zapamietane);
 			preparedStatement.setInt(2, id_slowo);
 			preparedStatement.execute();

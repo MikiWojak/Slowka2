@@ -583,6 +583,13 @@ public class Test extends Panel {
 				
 				//Dodanie indexu do zaliczonych
 				indexyZaliczone.add(indexSlowa);
+				
+				//Odhaczenie s³owa w BD
+				interfejsBD.otworzPolaczenie();
+				interfejsBD.ustawStatusSlowa(
+						slowa.get(indexSlowa).pobierzIdSlowo(),
+						true);
+				interfejsBD.zamknijPolaczenie();
 			}
 			else {
 				lblWynik.setForeground(Color.RED);
