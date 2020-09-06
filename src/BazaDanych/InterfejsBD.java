@@ -387,6 +387,37 @@ public class InterfejsBD {
 	}
 	
 	/**
+	 * Ustawia status s³owa - czy jest zapamiêtane.
+	 * S³owo jest zapamiêtane, jeœli siê je odgad³o.
+	 * S³owo jest do zaliczenia przy resecie testu.
+	 * @param id_slowo ID s³owa, którego status nale¿y zmieniæ.
+	 * @param czy_zapamietane true, jeœli s³owo ma byæ zapamiêtane; false, jeœli s³owo ma byæ do zaliczenia.
+	 * @return true, jeœli modyfikacja statusu s³owa przebieg³a pomyœlnie.
+	 */
+	public boolean ustawStatusSlowa(
+			int id_slowo,
+			boolean czy_zapamietane) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(""
+					+ "UPDATE slowa SET "
+					+ "czy_zapamietane = ? "
+					+ "WHERE id_slowo = ?");
+			//UPDATE slowa SET czy_zapamietane = ? WHERE id_slowo = ?
+			preparedStatement.setBoolean(1, czy_zapamietane);
+			preparedStatement.setInt(2, id_slowo);
+			preparedStatement.execute();
+			log.debug("Pomyœlne ustawienie statusu s³owa o ID: " + id_slowo);
+		} catch (Exception e) {
+			log.debug("ERROR! B³¹d przy modyfikacji s³owa o ID: " + id_slowo + "!");
+			System.err.println("ERROR! B³¹d przy modyfikacji s³owa!");
+			e.printStackTrace();
+			return false;
+			// TODO: handle exception
+		}
+		return true;
+	}
+	
+	/**
 	 * Usuniêcie grupy oraz powi¹zanych z ni¹ s³ów.
 	 * @param id_grupa ID grupy do usuniêcia
 	 * @return status usuniêcia grupy
