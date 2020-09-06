@@ -348,7 +348,10 @@ public class Test extends Panel {
 		ustawWartosciPaskiPostepu();
 		
 		//Ustawienie pierwszego s³owa.
-		tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
+		int obecnyIndex = indexyDoZrobienia.get(index);
+		tfSlowo.setText(slowa.get(obecnyIndex).pobierzTlumaczenie());
+		tfCzescMowy.setText(slowa.get(obecnyIndex).pobierzCzescMowy());
+		
 		tfTlumaczenie.setText("");
 		tfTlumaczenie.setEditable(true);
 		
@@ -663,7 +666,9 @@ public class Test extends Panel {
 		 */
 		private void przejscieDalej() {
 			//Nowe s³owo
-			tfSlowo.setText(slowa.get(indexyDoZrobienia.get(index)).pobierzTlumaczenie());
+			int obecnyIndex = indexyDoZrobienia.get(index);
+			tfSlowo.setText(slowa.get(obecnyIndex).pobierzTlumaczenie());
+			tfCzescMowy.setText(slowa.get(obecnyIndex).pobierzCzescMowy());
 			
 			//Wyczyszczenie zawartoœci informacji
 			tfTlumaczenie.setText("");
