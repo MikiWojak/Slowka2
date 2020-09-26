@@ -519,6 +519,22 @@ public class InterfejsBD {
 	}
 	
 	/**
+	 * Oznacza wszystkie s³owa w podanej grupie jako "do zrobienia".
+	 * Po tej operacji pole tabeli Slowa <code>czy_zapamietane = false</code> dla s³ów z podanej grupy.
+	 * Ponowna nauka s³ów z danej grupy.
+	 * @param id_grupa ID grupy, w której s³owa maj¹ byæ ponownie "do zrobiena"
+	 * @return true, jeœli operacja wykona³a siê pomyœlnie
+	 */
+	public boolean resetujGrupeSlow(int id_grupa) {
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return true;
+	}
+	
+	/**
 	 * Zamkniêcie po³¹czenia z baz¹ danych.
 	 */
 	public void zamknijPolaczenie() {
