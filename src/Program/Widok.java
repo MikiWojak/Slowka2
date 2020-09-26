@@ -255,7 +255,7 @@ public class Widok extends Panel {
 	 * Aktualizacja iloœci wyœwietlonych s³ów.
 	 * @param indexGrupa indeks grupy na liœcie
 	 */
-	private void zmienGrupe(int indexGrupa) {
+	public void zmienGrupe(int indexGrupa) {
 		if(indexGrupa >= 0) {
 			//nag³ówek listy s³ów
 			lblGrupa.setText(grupy.get(indexGrupa).pobierzNazwaGrupy());
@@ -327,6 +327,19 @@ public class Widok extends Panel {
 		try {
 			id_grupa = grupy.get(listGrupy.getSelectedIndex()).pobierzIdGrupa();
 			return id_grupa;
+		} catch (IndexOutOfBoundsException e) {
+			return -1;
+		}
+	}
+	
+	/**
+	 * Pobranie indeksu grupy w panelu <code>Widok</code>.
+	 * Do odœwie¿enia zawartoœci tabeli po teœcie.
+	 * @return Indeks grupy w BD albo -1, jeœli coœ pójdzie nie tak
+	 */
+	public int pobierzIndexGrupa() {
+		try {
+			return grupy.get(listGrupy.getSelectedIndex()).pobierzIdGrupa();
 		} catch (IndexOutOfBoundsException e) {
 			return -1;
 		}

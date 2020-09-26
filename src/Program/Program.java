@@ -191,6 +191,7 @@ public class Program extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) { 
 			zmienPanel(widok);
+			widok.zmienGrupe(widok.pobierzIndexGrupa());
 			
 			mnWidok.removeMouseListener(listenerWidok);
 			mnWidok.setEnabled(false);
