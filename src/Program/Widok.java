@@ -339,7 +339,7 @@ public class Widok extends Panel {
 	 */
 	public int pobierzIndexGrupa() {
 		try {
-			return grupy.get(listGrupy.getSelectedIndex()).pobierzIdGrupa();
+			return listGrupy.getSelectedIndex();
 		} catch (IndexOutOfBoundsException e) {
 			return -1;
 		}
