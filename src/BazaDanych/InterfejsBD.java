@@ -497,7 +497,25 @@ public class InterfejsBD {
 	 * @return iloœæ s³ów do przerobienia (<code>czy_zapamietane = false</code>)
 	 */
 	public int pobierzIloscSlowDoZrobiena(int id_grupa) {
-		return 1;
+		otworzPolaczenie();
+		try {
+			int ileSlow;
+			ResultSet wynik = statement.executeQuery(
+					"SELECT COUNT(id_slowo) AS ileSlow "
+					+ "FROM slowa "
+					+ "WHERE id_grupa = " + id_grupa + " "
+					+ "AND czy_zapamietane = false;");
+			ileSlow = wynik.getInt("ileSlow");
+			log.debug("Pobrano iloœæ s³ów do przerobienia z grupy o ID: " + id_grupa);
+			zamknijPolaczenie();
+			return ileSlow;
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.err.println("ERROR! B³¹d podczas pobierania iloœci s³ów do przerobienia!");
+			log.debug("ERROR! B³¹d podczas pobierania iloœci s³ów do przerobienia o ID: " + id_grupa + "!");
+			zamknijPolaczenie();
+			return 0;
+		}
 	}
 	
 	/**

@@ -234,7 +234,16 @@ public class Program extends JFrame {
 						+ "Nie mo¿na uruchomiæ testu!",
 						"Uwaga",
 						JOptionPane.WARNING_MESSAGE);
-			} else {
+			} else if(
+					interfejsBD.pobierzIloscSlowDoZrobiena(
+							widok.pobierzIdGrupa()) == 0) {
+				JOptionPane.showMessageDialog(
+						null,
+						"Wszystkie s³owa s¹ zaliczone!\n"
+						+ "Nie mo¿na uruchomiæ testu!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			} else{
 				zmienPanel(test);
 				test.przygotujTest(widok.pobierzIdGrupa());
 				
