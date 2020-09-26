@@ -491,6 +491,16 @@ public class InterfejsBD {
 	}
 	
 	/**
+	 * Pobiera iloœæ s³ów z danej grupy do przerobienia.
+	 * Zabezpieczenie przed w³¹czeniem testu tam, gdzie s¹ wszystkie s³owa do zaliczenia.
+	 * @param id_grupa ID grupy, dla której nale¿y sprawdziæ s³owa
+	 * @return iloœæ s³ów do przerobienia (<code>czy_zapamietane = false</code>)
+	 */
+	public int pobierzIloscSlowDoZrobiena(int id_grupa) {
+		return 1;
+	}
+	
+	/**
 	 * Zamkniêcie po³¹czenia z baz¹ danych.
 	 */
 	public void zamknijPolaczenie() {
