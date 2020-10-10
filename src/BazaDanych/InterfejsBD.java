@@ -412,7 +412,6 @@ public class InterfejsBD {
 			System.err.println("ERROR! B³¹d przy modyfikacji s³owa!");
 			e.printStackTrace();
 			return false;
-			// TODO: handle exception
 		}
 		return true;
 	}
@@ -510,7 +509,6 @@ public class InterfejsBD {
 			zamknijPolaczenie();
 			return ileSlow;
 		} catch (SQLException e) {
-			// TODO: handle exception
 			System.err.println("ERROR! B³¹d podczas pobierania iloœci s³ów do przerobienia!");
 			log.debug("ERROR! B³¹d podczas pobierania iloœci s³ów do przerobienia o ID: " + id_grupa + "!");
 			zamknijPolaczenie();
@@ -522,14 +520,28 @@ public class InterfejsBD {
 	 * Oznacza wszystkie s³owa w podanej grupie jako "do zrobienia".
 	 * Po tej operacji pole tabeli Slowa <code>czy_zapamietane = false</code> dla s³ów z podanej grupy.
 	 * Ponowna nauka s³ów z danej grupy.
+	 * Zawiera otwarcie i zamkniêcie po³¹czenia z BD.
 	 * @param id_grupa ID grupy, w której s³owa maj¹ byæ ponownie "do zrobiena"
 	 * @return true, jeœli operacja wykona³a siê pomyœlnie
 	 */
 	public boolean resetujGrupeSlow(int id_grupa) {
+		otworzPolaczenie();
 		try {
-			
+			PreparedStatement preparedStatement = connection.prepareStatement(""
+					+ "UPDATE slowa SET "
+					+ "czy_zapamietane = false "
+					+ "WHERE id_grupa = ?");
+			preparedStatement.setInt(1, id_grupa);
+			preparedStatement.execute();
+			zamknijPolaczenie();
+			log.debug("Pomyœlne zresetowano grupê s³ów o ID: " + id_grupa);
 		} catch (Exception e) {
 			// TODO: handle exception
+			log.debug("ERROR! B³¹d przy resetowaniu grupy s³ów o ID: " + id_grupa + "!");
+			System.err.println("ERROR! B³¹d przy resetowaniu grupy s³ów!");
+			e.printStackTrace();
+			zamknijPolaczenie();
+			return false;
 		}
 		return true;
 	}
