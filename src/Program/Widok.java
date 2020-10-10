@@ -101,6 +101,11 @@ public class Widok extends Panel {
 	 * Przycisk do usuwania s³owa lub s³ów.
 	 */
 	private JButton btnUsunSlowa;
+	/**
+	 * Przycisk do resetowania grupy s³ów.
+	 * Ustawienie wartoœci parametry <code>czy_zapamietane</code> na <code>false</code>.
+	 */
+	private JButton btnResetujGrupeSlow;
 	
 	/**
 	 * Utworzenie panelu z widokiem.
@@ -208,6 +213,13 @@ public class Widok extends Panel {
 		btnUsunSlowa.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnUsunSlowa.setBounds(565, 466, 150, 30);
 		add(btnUsunSlowa);
+		
+		btnResetujGrupeSlow = new JButton("Resetuj grup\u0119");
+		btnResetujGrupeSlow.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnResetujGrupeSlow.setBackground(new Color(255, 69, 0));
+		btnResetujGrupeSlow.setBounds(1050, 466, 150, 30);
+		btnResetujGrupeSlow.addActionListener(new ResetujGrupeSlow());
+		add(btnResetujGrupeSlow);
 	}
 	
 	/**
@@ -719,5 +731,32 @@ public class Widok extends Panel {
 				
 			return component;
 		}
+	}
+	
+	/**
+	 * Klasa wewnêtrzna do resetowania grupy s³ów.
+	 * Ustawienie ich jako s³owa do zaliczenia.
+	 * Do wywo³ywania akcji.
+	 * @author MikiWojak (Miko³aj ¯arnowski)
+	 */
+	private class ResetujGrupeSlow implements ActionListener {
+		/**
+		 * Konstruktor klasy <code>ResetujGrupeSlow</code>.
+		 */
+		public ResetujGrupeSlow() {} 
+		
+		/**
+		 * Akcja zw. z resetem grupy s³ów.
+		 * Ustawienie ich jako s³owa do zaliczenia.
+		 */
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			int indexGrupa = listGrupy.getSelectedIndex();
+			interfejsBD.resetujGrupeSlow(
+					grupy.get(indexGrupa).pobierzIdGrupa());
+			zmienGrupe(indexGrupa);
+		}
+		
 	}
 }
