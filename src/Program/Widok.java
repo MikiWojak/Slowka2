@@ -204,7 +204,7 @@ public class Widok extends Panel {
 		btnUsunGrupy.setBackground(new Color(255, 69, 0));
 		btnUsunGrupy.addActionListener(new UsunGrupy());
 		btnUsunGrupy.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnUsunGrupy.setBounds(200, 466, 150, 30);
+		btnUsunGrupy.setBounds(200, 504, 150, 30);
 		add(btnUsunGrupy);
 		
 		btnUsunSlowa = new JButton("Usu\u0144 s\u0142owo/a");
@@ -216,8 +216,8 @@ public class Widok extends Panel {
 		
 		btnResetujGrupeSlow = new JButton("Resetuj grup\u0119");
 		btnResetujGrupeSlow.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnResetujGrupeSlow.setBackground(new Color(255, 69, 0));
-		btnResetujGrupeSlow.setBounds(1050, 466, 150, 30);
+		btnResetujGrupeSlow.setBackground(Color.LIGHT_GRAY);
+		btnResetujGrupeSlow.setBounds(200, 466, 150, 30);
 		btnResetujGrupeSlow.addActionListener(new ResetujGrupeSlow());
 		add(btnResetujGrupeSlow);
 	}
@@ -753,10 +753,18 @@ public class Widok extends Panel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int indexGrupa = listGrupy.getSelectedIndex();
-			interfejsBD.resetujGrupeSlow(
-					grupy.get(indexGrupa).pobierzIdGrupa());
-			zmienGrupe(indexGrupa);
+			
+			if(indexGrupa >= 0) {
+				interfejsBD.resetujGrupeSlow(
+						grupy.get(indexGrupa).pobierzIdGrupa());
+				zmienGrupe(indexGrupa);
+			} else {
+				JOptionPane.showMessageDialog(
+						null,
+						"Wybierz grupê z listy!",
+						"Uwaga",
+						JOptionPane.WARNING_MESSAGE);
+			}
 		}
-		
 	}
 }
